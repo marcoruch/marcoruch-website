@@ -14,7 +14,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Force animate all elements after a delay to ensure visibility
+    setTimeout(forceAnimateAll, 1000);
 });
+
+/**
+ * Force all animatable elements to show regardless of scroll position
+ * This ensures content is visible even if scroll animations fail
+ */
+function forceAnimateAll() {
+    const elements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text, .about-text p, .about-text blockquote, .about-attributes');
+    elements.forEach(element => {
+        element.classList.add('animate');
+    });
+}
 
 /**
  * Navigation functionality
@@ -98,14 +112,15 @@ function initNavigation() {
  * Uses Intersection Observer to trigger animations as elements come into view
  */
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    // Select all elements that need animation
+    const animatedElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text p, .about-text blockquote, .about-attributes');
     
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-                // Optional: stop observing after animation is triggered
-                // animationObserver.unobserve(entry.target);
+                entry.target.classList.add('animate');
+                // Stop observing after animation is triggered
+                animationObserver.unobserve(entry.target);
             }
         });
     }, {
