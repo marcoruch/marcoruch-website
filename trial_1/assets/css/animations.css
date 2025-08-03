@@ -190,10 +190,37 @@
 .about-text {
     opacity: 0;
     transform: translateX(30px);
+    animation-delay: 0.2s;
+    /* Ensure text becomes visible after 1 second even without animate class */
+    animation: makeVisible 1s forwards 1s;
 }
 
 .about-text.animate {
     animation: slideInRight var(--transition-slow) forwards;
+}
+
+/* Fallback animation to ensure visibility */
+@keyframes makeVisible {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Make all paragraph text in about section visible */
+.about-text p, 
+.about-text blockquote,
+.about-text ul,
+.about-attributes li {
+    opacity: 0;
+    animation: makeVisible 1s forwards 1s;
+}
+
+.about-text p.animate, 
+.about-text blockquote.animate,
+.about-text ul.animate,
+.about-attributes li.animate {
+    animation: fadeIn var(--transition-normal) forwards;
 }
 
 /* Contact form */

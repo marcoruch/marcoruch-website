@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
     
-    // Force animate all elements after a delay to ensure visibility
-    setTimeout(forceAnimateAll, 1000);
+    // Force animate all elements immediately and again after a delay to ensure visibility
+    forceAnimateAll();
+    setTimeout(forceAnimateAll, 500);
 });
 
 /**
@@ -24,8 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
  * This ensures content is visible even if scroll animations fail
  */
 function forceAnimateAll() {
-    const elements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text, .about-text p, .about-text blockquote, .about-attributes');
-    elements.forEach(element => {
+    // First, add animate class to parent containers
+    const containerElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text');
+    containerElements.forEach(element => {
+        element.classList.add('animate');
+    });
+
+    // Then also add it to specific child elements that might need their own animations
+    const childElements = document.querySelectorAll('.about-text p, .about-text blockquote, .about-text ul, .about-attributes li');
+    childElements.forEach(element => {
         element.classList.add('animate');
     });
 }
@@ -113,7 +121,7 @@ function initNavigation() {
  */
 function initScrollAnimations() {
     // Select all elements that need animation
-    const animatedElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text p, .about-text blockquote, .about-attributes');
+    const animatedElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text, .about-text p, .about-text blockquote, .about-text ul, .about-attributes li');
     
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -124,8 +132,8 @@ function initScrollAnimations() {
             }
         });
     }, {
-        threshold: 0.2, // Trigger when 20% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Adjust when animation triggers relative to viewport
+        threshold: 0.1, // Lower threshold to trigger sooner
+        rootMargin: '0px 0px -30px 0px' // Adjusted to trigger animations earlier
     });
     
     animatedElements.forEach(element => {
