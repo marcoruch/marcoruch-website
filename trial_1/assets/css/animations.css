@@ -1,0 +1,330 @@
+/* 
+* Animations Stylesheet
+* Contains all animations for Marco Ruch's portfolio website
+*/
+
+/* ===== Keyframes ===== */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes drawLine {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(-90deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ===== Scroll-Triggered Animations ===== */
+
+/* Section titles */
+.section-title {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-title.animate {
+    animation: fadeUp var(--transition-slow) forwards;
+}
+
+/* Section intros */
+.section-intro {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.section-intro.animate {
+    animation: fadeUp var(--transition-slow) forwards 0.2s;
+}
+
+/* Skill categories */
+.skill-category {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.skill-category.animate {
+    animation: fadeUp var(--transition-slow) forwards;
+}
+
+/* Timeline items */
+.timeline-item {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.timeline-item.animate {
+    animation: fadeUp var(--transition-slow) forwards;
+}
+
+/* Education cards */
+.education-card {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.education-card.animate {
+    animation: scaleIn var(--transition-slow) forwards;
+}
+
+/* Project cards */
+.project-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.project-card.animate {
+    animation: fadeUp var(--transition-slow) forwards;
+}
+
+/* About image */
+.about-image {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.about-image.animate {
+    animation: slideInLeft var(--transition-slow) forwards;
+}
+
+/* About text */
+.about-text {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.about-text.animate {
+    animation: slideInRight var(--transition-slow) forwards;
+}
+
+/* Contact form */
+.contact-form-container {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.contact-form-container.animate {
+    animation: slideInLeft var(--transition-slow) forwards;
+}
+
+/* Contact info */
+.contact-info {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.contact-info.animate {
+    animation: slideInRight var(--transition-slow) forwards;
+}
+
+/* Staggered Animation Delays */
+.skill-category:nth-child(1),
+.timeline-item:nth-child(1),
+.education-card:nth-child(1),
+.project-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.skill-category:nth-child(2),
+.timeline-item:nth-child(2),
+.education-card:nth-child(2),
+.project-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.skill-category:nth-child(3),
+.timeline-item:nth-child(3),
+.education-card:nth-child(3),
+.project-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.skill-category:nth-child(4),
+.timeline-item:nth-child(4),
+.education-card:nth-child(4),
+.project-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.skill-category:nth-child(5),
+.timeline-item:nth-child(5),
+.education-card:nth-child(5),
+.project-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.skill-category:nth-child(6),
+.timeline-item:nth-child(6),
+.education-card:nth-child(6),
+.project-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* ===== Special Animations ===== */
+
+/* Shimmer effect for gold elements */
+.shimmer {
+    background: linear-gradient(
+        to right,
+        var(--color-gold) 8%,
+        var(--color-gold-dark) 18%,
+        var(--color-gold) 33%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Floating animation for selected elements */
+.float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Pulse animation */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ===== Animated Skill Bars ===== */
+.skill-bar-container {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 6px;
+    margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-bar {
+    height: 100%;
+    background-color: var(--color-gold);
+    width: 0;
+    transition: width 1s ease-out;
+}
+
+.skill-bar.animate {
+    width: var(--skill-percentage);
+}
+
+/* ===== Reduced Motion Preferences ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .shimmer,
+    .float,
+    .pulse {
+        animation: none !important;
+    }
+
+    .skill-bar {
+        transition: none !important;
+    }
+}
