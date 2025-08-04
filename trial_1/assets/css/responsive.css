@@ -91,17 +91,9 @@
     }
 
     /* Experience Section */
-    .timeline::before {
-        left: 9rem;
-    }
-
-    .timeline-item {
-        grid-template-columns: 10rem 1fr;
-    }
-
-    .timeline-logo {
-        width: 7rem;
-        height: 7rem;
+    .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
     }
 
     /* Education Section */
@@ -226,17 +218,15 @@
     }
 
     /* Experience Section */
-    .timeline::before {
-        display: none;
-    }
-
-    .timeline-item {
+    .experience-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
     }
-
-    .timeline-logo {
-        margin: 0 auto var(--spacing-sm);
+    
+    .experience-card.current-position::before {
+        top: -0.8rem;
+        right: 1rem;
+        font-size: 1rem;
+        padding: 0.2rem 0.8rem;
     }
 
     /* Education Section */
@@ -395,12 +385,21 @@
         margin: 1cm;
     }
 
-    /* Expand all content to be visible */
-    .timeline::before {
-        display: none !important;
+    /* Special handling for current position */
+    .experience-card.current-position {
+        border-left: 0.5cm solid var(--color-gold) !important;
+    }
+    
+    .experience-card.current-position::before {
+        content: 'Current Position';
+        background-color: transparent !important;
+        color: black !important;
+        font-weight: bold !important;
+        top: 0 !important;
+        right: 0 !important;
     }
 
-    .timeline-item,
+    /* Expand all content to be visible */
     .about-content,
     .contact-content {
         grid-template-columns: 1fr !important;

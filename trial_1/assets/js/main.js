@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function forceAnimateAll() {
     // First, add animate class to parent containers
-    const containerElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text');
+    const containerElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .experience-card, .education-card, .project-card, .about-image, .about-text');
     containerElements.forEach(element => {
         element.classList.add('animate');
     });
@@ -121,7 +121,7 @@ function initNavigation() {
  */
 function initScrollAnimations() {
     // Select all elements that need animation
-    const animatedElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .timeline-item, .education-card, .project-card, .about-image, .about-text, .about-text p, .about-text blockquote, .about-text ul, .about-attributes li');
+    const animatedElements = document.querySelectorAll('.section-title, .section-intro, .skill-category, .experience-card, .education-card, .project-card, .about-image, .about-text, .about-text p, .about-text blockquote, .about-text ul, .about-attributes li');
     
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
