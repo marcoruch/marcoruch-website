@@ -228,6 +228,13 @@
         font-size: 1rem;
         padding: 0.2rem 0.8rem;
     }
+    
+    .company-logo {
+        width: 5rem;
+        height: 5rem;
+        top: 1rem;
+        right: 1rem;
+    }
 
     /* Education Section */
     .education-grid {
@@ -397,6 +404,10 @@
         font-weight: bold !important;
         top: 0 !important;
         right: 0 !important;
+    }
+    
+    .company-logo {
+        opacity: 0.2 !important;
     }
 
     /* Expand all content to be visible */
