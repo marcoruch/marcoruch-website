@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectModals();
     initContactForm();
     initBackToTop();
+    initLoadMoreProjects(); // Add load more projects functionality
     
     // Update current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -148,6 +149,11 @@ function initScrollAnimations() {
 function initProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projects = document.querySelectorAll('.project-card');
+    const projectsGrid = document.querySelector('.projects-grid');
+    const loadMoreBtn = document.querySelector('.load-more-btn');
+    
+    // Calculate the height of a single project card for reference if needed
+    const singleCardHeight = projects.length > 0 ? projects[0].offsetHeight : 0;
     
     if (!filterButtons.length || !projects.length) return;
     
@@ -161,14 +167,32 @@ function initProjectFilters() {
             
             projects.forEach(project => {
                 if (filter === 'all') {
-                    project.style.display = 'block';
-                    setTimeout(() => {
-                        project.classList.remove('hidden');
-                    }, 10);
+                    // When showing all, respect the load more setting
+                    if (loadMoreBtn && loadMoreBtn.textContent === 'Load More Projects') {
+                        // If we're in "show limited" mode, only show the first 6
+                        const index = Array.from(projects).indexOf(project);
+                        if (index < 6) {
+                            project.style.display = 'block';
+                            setTimeout(() => {
+                                project.classList.remove('hidden');
+                            }, 10);
+                        } else {
+                            project.classList.add('hidden');
+                            setTimeout(() => {
+                                project.style.display = 'none';
+                            }, 300);
+                        }
+                    } else {
+                        // Show all if load more was clicked
+                        project.style.display = 'block';
+                        setTimeout(() => {
+                            project.classList.remove('hidden');
+                        }, 10);
+                    }
                 } else {
-                    const projectTechnologies = project.getAttribute('data-technologies').split(',');
+                    const projectCategory = project.getAttribute('data-category');
                     
-                    if (projectTechnologies.includes(filter)) {
+                    if (projectCategory === filter) {
                         project.style.display = 'block';
                         setTimeout(() => {
                             project.classList.remove('hidden');
@@ -181,6 +205,31 @@ function initProjectFilters() {
                     }
                 }
             });
+            
+            // Calculate visible projects count
+            const visibleProjects = [...projects].filter(project => 
+                !project.classList.contains('hidden') && 
+                window.getComputedStyle(project).display !== 'none'
+            );
+            
+            // Show/hide load more button based on filter
+            if (filter !== 'all') {
+                // Hide load more button when filtering by category
+                if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+            } else {
+                // Show load more button when showing all projects
+                if (loadMoreBtn) loadMoreBtn.style.display = 'block';
+            }
+            
+            // Handle few cards without setting fixed height
+            if (projectsGrid) {
+                if (visibleProjects.length < 4) {
+                    // Add a class to prevent cards from stretching
+                    projectsGrid.classList.add('few-cards');
+                } else {
+                    projectsGrid.classList.remove('few-cards');
+                }
+            }
         });
     });
 }
@@ -266,15 +315,89 @@ function initProjectModals() {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Get project data
-            const projectCard = this.closest('.project-card');
-            const projectData = {
-                title: projectCard.querySelector('.project-title').textContent,
-                description: projectCard.getAttribute('data-description'),
-                image: projectCard.querySelector('.project-image').src,
-                technologies: projectCard.getAttribute('data-technologies').split(','),
-                demoUrl: projectCard.getAttribute('data-demo-url'),
-                repoUrl: projectCard.getAttribute('data-repo-url')
+            const projectId = this.getAttribute('data-project');
+            
+            // Project data 
+            const projectsData = {
+                'advisory-mandates': {
+                    title: 'Advisory Mandates Platform',
+                    description: '<p>A comprehensive platform for financial advisors to manage client portfolios, investment strategies, and reporting.</p><p>This solution helps financial advisors create personalized investment strategies for their clients, track performance, and generate detailed reports.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'Entity Framework', 'MSSQL'],
+                    category: 'financial'
+                },
+                'discretionary-mandates': {
+                    title: 'Discretionary Mandates Platform',
+                    description: '<p>A specialized system for managing discretionary investment mandates for high-net-worth clients.</p><p>This platform allows portfolio managers to implement investment strategies across multiple client accounts, perform rebalancing, and monitor performance against benchmarks.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'Entity Framework', 'MSSQL'],
+                    category: 'financial'
+                },
+                'financial-instruments': {
+                    title: 'Financial Instruments Data',
+                    description: '<p>A data management system for financial instruments, providing real-time market data, analytics, and historical performance.</p><p>This solution centralizes information about various financial products, including stocks, bonds, derivatives, and alternative investments.</p>',
+                    technologies: ['React', 'TypeScript', 'C#', 'MSSQL'],
+                    category: 'financial'
+                },
+                'tech-talent': {
+                    title: 'Tech Talent Recruiting Platform',
+                    description: '<p>A specialized recruiting platform connecting technology companies with qualified IT professionals.</p><p>This solution streamlines the hiring process for technical roles through skills assessment, automated screening, and interview scheduling.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'MSSQL', 'Node.js'],
+                    category: 'people'
+                },
+                'legal-protection': {
+                    title: 'Legal Protection Administration',
+                    description: '<p>A comprehensive system for managing legal protection insurance policies, claims, and case tracking.</p><p>This platform helps insurance providers streamline case management, document processing, and communication with legal professionals.</p>',
+                    technologies: ['C#', 'Entity Framework', 'MSSQL', 'ASP.NET MVC'],
+                    category: 'insurance'
+                },
+                'crm-accounting': {
+                    title: 'CRM / Accounting Platform',
+                    description: '<p>An integrated CRM and accounting solution for insurance companies, providing a unified view of customer relationships and financial data.</p><p>This system combines customer management with financial tracking to optimize business operations and reporting.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'Entity Framework', 'MSSQL'],
+                    category: 'insurance'
+                },
+                'printer-logistics': {
+                    title: 'Printer Logistics',
+                    description: '<p>A specialized logistics management system for printer distribution, tracking, and maintenance.</p><p>This solution helps organizations manage their printer fleet, schedule maintenance, and optimize distribution based on usage patterns.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'MSSQL'],
+                    category: 'other'
+                },
+                'auto-logistics': {
+                    title: 'Automobile Logistics Tracking',
+                    description: '<p>A comprehensive system for tracking automobile movement through the supply chain, from factory to dealership.</p><p>This platform provides real-time visibility into vehicle location, transportation status, and delivery timelines.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'MSSQL'],
+                    category: 'automotive'
+                },
+                'fleet-management': {
+                    title: 'Car Fleet Management',
+                    description: '<p>A complete fleet management solution for organizations with vehicle fleets, including maintenance scheduling, driver assignment, and cost tracking.</p><p>This system helps optimize fleet operations, reduce maintenance costs, and extend vehicle lifespan.</p>',
+                    technologies: ['C#', 'ASP.NET MVC', 'JavaScript', 'MSSQL'],
+                    category: 'automotive'
+                },
+                'car-order-tracking': {
+                    title: 'Car Order Tracking',
+                    description: '<p>A specialized system for tracking custom vehicle orders from placement to delivery.</p><p>This platform provides customers and dealerships with real-time updates on vehicle production status, shipping information, and delivery estimates.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'MSSQL'],
+                    category: 'automotive'
+                },
+                'civil-engineering': {
+                    title: 'Civil Engineering Administration',
+                    description: '<p>A comprehensive project management system for civil engineering firms, including project tracking, resource allocation, and document management.</p><p>This solution streamlines administrative processes for engineering projects, from proposal to completion.</p>',
+                    technologies: ['C#', 'ASP.NET MVC', 'JavaScript', 'MSSQL'],
+                    category: 'other'
+                },
+                'ticket-membership': {
+                    title: 'Ticket Membership Platform',
+                    description: '<p>A specialized platform for managing event ticket sales, memberships, and loyalty programs.</p><p>This system helps venues and event organizers optimize ticket sales, manage customer relationships, and implement effective loyalty programs.</p>',
+                    technologies: ['Angular', 'TypeScript', 'C#', 'MSSQL'],
+                    category: 'ecommerce'
+                }
+            };
+            
+            const projectData = projectsData[projectId] || {
+                title: 'Project Details',
+                description: 'No details available for this project.',
+                technologies: [],
+                image: ''
             };
             
             openModal(projectData);
@@ -399,4 +522,104 @@ function initBackToTop() {
             behavior: 'smooth'
         });
     });
+}
+
+/**
+ * Load More Projects functionality
+ * Initially shows only 6 projects, then allows loading all on button click
+ */
+function initLoadMoreProjects() {
+    const loadMoreBtn = document.querySelector('.load-more-btn');
+    const projects = document.querySelectorAll('.project-card');
+    const projectsGrid = document.querySelector('.projects-grid');
+    const projectsPerPage = 6; // Number of projects to show initially
+    let allProjectsVisible = false;
+    
+    if (!loadMoreBtn || !projects.length) return;
+    
+    // Initially hide projects beyond the initial count
+    function hideExtraProjects() {
+        // First, make all projects visible (needed if switching from filtered view)
+        projects.forEach((project, index) => {
+            project.classList.remove('hidden');
+            project.style.display = 'block';
+        });
+        
+        // Then hide projects beyond the initial count
+        projects.forEach((project, index) => {
+            if (index >= projectsPerPage) {
+                project.classList.add('hidden');
+                setTimeout(() => {
+                    project.style.display = 'none';
+                }, 300);
+            }
+        });
+        
+        allProjectsVisible = false;
+        loadMoreBtn.textContent = 'Load More Projects';
+        loadMoreBtn.style.display = 'block';
+    }
+    
+    // Function to show all projects
+    function showAllProjects() {
+        projects.forEach(project => {
+            project.style.display = 'block';
+            setTimeout(() => {
+                project.classList.remove('hidden');
+            }, 10);
+        });
+        
+        allProjectsVisible = true;
+        loadMoreBtn.textContent = 'Show Less';
+    }
+    
+    // Initialize by hiding extra projects
+    hideExtraProjects();
+    
+    // Load more button click handler
+    loadMoreBtn.addEventListener('click', () => {
+        if (allProjectsVisible) {
+            hideExtraProjects();
+        } else {
+            showAllProjects();
+        }
+        
+        // Update grid classes for responsive behavior
+        if (projectsGrid) {
+            const visibleProjects = [...projects].filter(project => 
+                !project.classList.contains('hidden') && 
+                window.getComputedStyle(project).display !== 'none'
+            );
+            
+            if (visibleProjects.length < 4) {
+                projectsGrid.classList.add('few-cards');
+            } else {
+                projectsGrid.classList.remove('few-cards');
+            }
+        }
+    });
+    
+    // Update project filters to show all projects when a filter is applied
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // When a filter is clicked, show all projects (not just first 6)
+            // but only for the filtered category
+            if (button.getAttribute('data-filter') !== 'all') {
+                allProjectsVisible = true;
+                // Hide "Load More" button when filters are active
+                loadMoreBtn.style.display = 'none';
+            } else if (!allProjectsVisible) {
+                loadMoreBtn.style.display = 'block';
+                loadMoreBtn.textContent = 'Load More Projects';
+            } else {
+                loadMoreBtn.style.display = 'block';
+                loadMoreBtn.textContent = 'Show Less';
+            }
+        });
+    });
+    
+    // Apply initial limit on page load
+    hideExtraProjects();
 }

@@ -107,6 +107,12 @@
         gap: var(--spacing-md);
     }
 
+    /* Keep filter buttons smaller on tablets */
+    .filter-btn {
+        min-width: 70px;
+        /* Allow buttons to resize but not be too small */
+    }
+
     /* Contact Section */
     .contact-content {
         grid-template-columns: 1fr;
@@ -244,11 +250,33 @@
     /* Projects Section */
     .projects-grid {
         grid-template-columns: 1fr;
+        /* On mobile, we don't need to maintain the 4-card minimum height since cards are in a single column */
+        min-height: auto !important;
+    }
+
+    /* Only maintain minimum height if there are no cards */
+    .projects-grid:empty {
+        min-height: 200px !important;
     }
 
     .project-filters {
         flex-wrap: wrap;
         justify-content: center;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .filter-btn {
+        margin-bottom: 0.5rem;
+        width: calc(50% - var(--spacing-sm)); /* Allow two buttons per row on mobile */
+        min-width: 0; /* Override desktop minimum width */
+    }
+    
+    /* Style the load more button on mobile */
+    .load-more-btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.2rem;
+        margin-top: var(--spacing-md);
     }
 
     /* Contact Section */
@@ -301,6 +329,10 @@
 
     .project-technologies {
         flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+        width: 100%; /* Full width for very small screens */
     }
 
     .tech-tag {
@@ -385,6 +417,17 @@
     .education-grid,
     .projects-grid {
         grid-template-columns: repeat(2, 1fr) !important;
+        min-height: auto !important;
+        align-items: start !important;
+    }
+    
+    /* Show all projects in print, regardless of filter */
+    .project-card {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        align-self: start !important;
+        height: auto !important;
     }
 
     /* Add page numbers */
