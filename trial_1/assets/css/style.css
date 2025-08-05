@@ -91,7 +91,7 @@ body {
 .section-intro {
     font-size: 1.8rem;
     max-width: 80rem;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 /* Buttons */

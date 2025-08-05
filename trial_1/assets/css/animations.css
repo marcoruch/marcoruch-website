@@ -227,6 +227,7 @@
 .contact-form-container {
     opacity: 0;
     transform: translateX(-30px);
+    animation: makeVisible 1s forwards 1s; /* Add fallback animation */
 }
 
 .contact-form-container.animate {
@@ -237,6 +238,7 @@
 .contact-info {
     opacity: 0;
     transform: translateX(30px);
+    animation: makeVisible 1s forwards 1s; /* Add fallback animation */
 }
 
 .contact-info.animate {
