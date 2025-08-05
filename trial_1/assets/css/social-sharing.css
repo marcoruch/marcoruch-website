@@ -1,0 +1,86 @@
+/**
+ * Social sharing styles for Marco Ruch's portfolio
+ */
+
+/* Modal social sharing section */
+.social-sharing {
+    margin: 25px 0;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.social-sharing h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.share-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: var(--text-color);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.share-btn svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.share-btn span {
+    font-size: 0.9rem;
+}
+
+.share-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Contact section share profile */
+.share-profile {
+    margin-top: 25px;
+}
+
+.share-profile h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--heading-color);
+}
+
+.contact-info .share-buttons {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-info .share-btn {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .share-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .modal .share-buttons .share-btn {
+        flex: 1 0 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal .share-buttons {
+        flex-direction: column;
+    }
+}

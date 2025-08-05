@@ -46,6 +46,8 @@
     <link rel="preload" href="assets/css/style.css" as="style">
     <link rel="preload" href="assets/css/reset.css" as="style">
     <link rel="preload" href="assets/js/main.js" as="script">
+    <link rel="preload" href="assets/css/social-sharing.css" as="style">
+    <link rel="preload" href="assets/js/social-sharing.js" as="script">
     <link rel="preload" href="assets/images/miscellaneous/profile.jpeg" as="image">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;700&display=swap">
 
@@ -57,6 +59,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/social-sharing.css">
 </head>
 <body>
     <!-- Geometric Background Pattern -->
@@ -385,7 +388,7 @@
                 <div class="experience-grid">
                     <!-- Senior Software Engineer -->
                     <div class="experience-card current-position">
-                        <img class="company-logo" src="assets/images/companies/julius_baer_logo.jpeg" loading="lazy"></img>
+                        <img class="company-logo" src="assets/images/companies/julius_baer_logo.jpeg" alt="Julius Baer company logo" loading="lazy"></img>
                         <h3 class="position-title">Senior Software Engineer</h3>
                         <div class="company-info">
                             <span class="company-name">Julius Baer</span>
@@ -409,7 +412,7 @@
                     
                     <!-- Junior Software Engineer -->
                     <div class="experience-card">
-                        <img class="company-logo" src="assets/images/companies/Comitas-Logo-01-1.png"  loading="lazy"></img>
+                        <img class="company-logo" src="assets/images/companies/Comitas-Logo-01-1.png" alt="Comitas AG company logo" loading="lazy"></img>
                         <h3 class="position-title">Software Engineer</h3>
                         <div class="company-info">
                             <span class="company-name">Comitas AG</span>
@@ -431,7 +434,7 @@
                     
                     <!-- Intern Software Engineer -->
                     <div class="experience-card">
-                        <img class="company-logo" src="assets/images/companies/vistasys_logo.png" loading="lazy"></img>
+                        <img class="company-logo" src="assets/images/companies/vistasys_logo.png" alt="Vistasys AG company logo" loading="lazy"></img>
                         <h3 class="position-title">Intern Software Engineer</h3>
                         <div class="company-info">
                             <span class="company-name">Vistasys AG</span>
@@ -453,7 +456,7 @@
                     
                     <!-- Apprentice Developer -->
                     <div class="experience-card">
-                        <img class="company-logo" src="assets/images/companies/kanton_aargau_logo.png" loading="lazy"></img>
+                        <img class="company-logo" src="assets/images/companies/kanton_aargau_logo.png" alt="Kanton Aargau logo" loading="lazy"></img>
                         <h3 class="position-title">Apprentice Application Developer</h3>
                         <div class="company-info">
                             <span class="company-name">Kanton Aargau</span>
@@ -560,7 +563,7 @@
                 <div class="projects-grid">
                     <!-- Advisory Mandates Platform -->
                     <div class="project-card" data-category="financial">
-                        <img class="project-image" src="assets/images/projects/dias.png" style="background-size: contain;" loading="lazy"></img>
+                        <img class="project-image" src="assets/images/projects/dias.png" alt="Advisory Mandates Platform - DIAS project screenshot" style="background-size: contain;" loading="lazy"></img>
                         <h3 class="project-title">Advisory Mandates Platform</h3>
                         <div class="project-technologies">
                             <span class="tech-tag">Angular</span>
@@ -574,8 +577,8 @@
                     
                     <!-- Discretionary Mandates Platform -->
                     <div class="project-card" data-category="financial">                        
-                        <img class="project-image" src="assets/images/projects/discretionary_mandates_platform.jpeg" style="background-size: contain;" loading="lazy"></img>
-                        <div class="project-image" style="background-image: url('assets/images/projects/discretionary_mandates_platform.jpeg'); background-size: contain;"></div>
+                        <img class="project-image" src="assets/images/projects/discretionary_mandates_platform.jpeg" alt="Discretionary Mandates Platform project screenshot" style="background-size: contain;" loading="lazy"></img>
+                        <div class="project-image" style="background-image: url('assets/images/projects/discretionary_mandates_platform.jpeg'); background-size: contain;" role="img" aria-label="Discretionary Mandates Platform screenshot"></div>
                         <h3 class="project-title">Discretionary Mandates Platform</h3>
                         <div class="project-technologies">
                             <span class="tech-tag">Angular</span>
@@ -589,7 +592,7 @@
                     
                     <!-- Financial Instruments Data -->
                     <div class="project-card" data-category="financial">                        
-                        <img class="project-image" src="assets/images/projects/financial_instruments.jpg" style="background-size: contain;" loading="lazy"></img>
+                        <img class="project-image" src="assets/images/projects/financial_instruments.jpg" alt="Financial Instruments Data project interface" style="background-size: contain;" loading="lazy"></img>
                         <h3 class="project-title">Financial Instruments Data</h3>
                         <div class="project-technologies">
                             <span class="tech-tag">React</span>
@@ -602,7 +605,7 @@
                     
                     <!-- Tech Talent Recruiting Platform -->
                     <div class="project-card" data-category="people">
-                        <img class="project-image" src="assets/images/projects/technology_careerboard.png" style="background-size: contain;" loading="lazy"></img>
+                        <img class="project-image" src="assets/images/projects/technology_careerboard.png" alt="Tech Talent Recruiting Platform interface" style="background-size: contain;" loading="lazy"></img>
                         <h3 class="project-title">Tech Talent Recruiting Platform</h3>
                         <div class="project-technologies">
                             <span class="tech-tag">Angular</span>
@@ -762,6 +765,23 @@
                             <h3>Based in:</h3>
                             <p>Zürich, Switzerland</p>
                         </div>
+                        <div class="share-profile">
+                            <h3>Share my profile:</h3>
+                            <div class="share-buttons">
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://marcoruch.ch" target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin" aria-label="Share profile on LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://twitter.com/intent/tweet?url=https://marcoruch.ch&text=Check out Marco Ruch's portfolio - C# and Angular Developer" target="_blank" rel="noopener noreferrer" class="share-btn share-twitter" aria-label="Share profile on Twitter">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                                    <span>Twitter</span>
+                                </a>
+                                <a href="mailto:?subject=Marco Ruch - C# and Angular Developer&body=Check out Marco Ruch's portfolio: https://marcoruch.ch" class="share-btn share-email" aria-label="Share profile via Email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    <span>Email</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -774,6 +794,23 @@
             <button class="modal-close" aria-label="Close modal">&times;</button>
             <div class="modal-body">
                 <!-- Project content will be dynamically inserted here -->
+            </div>
+            <div class="social-sharing">
+                <h4>Share this project:</h4>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn share-linkedin" aria-label="Share on LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="#" class="share-btn share-twitter" aria-label="Share on Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                    </a>
+                    <a href="#" class="share-btn share-facebook" aria-label="Share on Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="share-btn share-email" aria-label="Share by Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                </div>
             </div>
             <div class="modal-navigation">
                 <button class="btn btn-secondary prev-project">Previous Project</button>
@@ -823,5 +860,6 @@
 
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/social-sharing.js"></script>
 </body>
 </html>
