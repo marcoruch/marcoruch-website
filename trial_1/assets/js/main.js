@@ -525,6 +525,21 @@ function initBackToTop() {
 }
 
 /**
+ * Scroll to Projects Section
+ * Smoothly scrolls to the projects section when called
+ */
+function scrollToProjectsSection() {
+    const projectsSection = document.querySelector('#projects');
+    if (projectsSection) {
+        const offsetTop = projectsSection.offsetTop;
+        window.scrollTo({            
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    }
+}
+
+/**
  * Load More Projects functionality
  * Initially shows only 6 projects, then allows loading all on button click
  */
@@ -558,24 +573,6 @@ function initLoadMoreProjects() {
         allProjectsVisible = false;
         loadMoreBtn.textContent = 'Load More Projects';
         loadMoreBtn.style.display = 'block';
-
-        setTimeout(() => {
-            const targetSection = document.querySelector('#projects');
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (navList.classList.contains('active')) {
-                    navList.classList.remove('active');
-                    mobileMenuToggle.classList.remove('active');
-                }
-            }
-            }, 50);
     }
     
     // Function to show all projects
@@ -598,6 +595,7 @@ function initLoadMoreProjects() {
     loadMoreBtn.addEventListener('click', () => {
         if (allProjectsVisible) {
             hideExtraProjects();
+            scrollToProjectsSection();
         } else {
             showAllProjects();
         }
