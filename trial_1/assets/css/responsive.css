@@ -168,6 +168,11 @@
         position: relative;
     }
 
+    /* Experience Section - Hide 'Current' label on mobile */
+    .experience-card.current-position::before {
+        display: none;
+    }
+
     .nav-list {
         position: fixed;
         top: 0;
