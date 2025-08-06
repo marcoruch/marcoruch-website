@@ -290,6 +290,30 @@
 
 /* ===== Special Animations ===== */
 
+/* Logo animation */
+@keyframes logoAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    opacity: 0;
+    animation: logoAppear 0.8s ease-out forwards 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    opacity: 0;
+    animation: rotateIn 1s ease forwards 0.4s;
+}
+
 /* Shimmer effect for gold elements */
 .shimmer {
     background: linear-gradient(
