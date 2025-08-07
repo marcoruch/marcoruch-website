@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadMoreProjects(); // Add load more projects functionality
     
     // Update current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+    document.getElementById('current-year')?.textContent = new Date().getFullYear();
     
     // Force animate all elements immediately and again after a delay to ensure visibility
     forceAnimateAll();
