@@ -218,6 +218,19 @@
         justify-content: center;
     }
 
+    /* Ensure immediate visibility on mobile to improve LCP */
+    .hero-name,
+    .hero-title,
+    .hero-tagline,
+    .hero-cta,
+    .hero-section .social-links,
+    .logo,
+    .logo img {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
     /* About Section */
     .about-quote {
         font-size: 1.8rem;
