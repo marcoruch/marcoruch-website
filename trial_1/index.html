@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marco Ruch | C# & Angular Software Engineer</title>
     <meta name="description" content="Marco Ruch is a C# and Angular software engineer with 7+ years of experience building modern web applications for medium to large businesses.">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
     <meta name="author" content="Marco Ruch">
-    <meta name="theme-color" content="#0a192f">
-    <meta name="msapplication-TileColor" content="#0a192f">
+    <meta name="theme-color" content="#10214b">
+    <meta name="msapplication-TileColor" content="#10214b">
 
-    <!-- Canonical URL (SEO) -->
-    <link rel="canonical" href="https://marcoruch.ch/" />
+    <!-- Canonical URL (SEO) - Must be exact match -->
+    <link rel="canonical" href="https://marcoruch.ch/">
+    
+    <!-- Additional indexing hints -->
+    <link rel="alternate" hreflang="en" href="https://marcoruch.ch/">
+    <link rel="alternate" hreflang="x-default" href="https://marcoruch.ch/">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
@@ -76,16 +81,38 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
+      "@type": ["Person", "WebSite"],
       "name": "Marco Ruch",
-      "jobTitle": "Software Engineer",
+      "alternateName": "Marco Ruch Portfolio",
+      "jobTitle": "Senior Software Engineer",
+      "description": "C# and Angular software engineer with 7+ years of experience building modern web applications",
       "url": "https://marcoruch.ch/",
-      "image": "https://marcoruch.ch/assets/images/miscellaneous/profile.webp",
+      "mainEntityOfPage": "https://marcoruch.ch/",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://marcoruch.ch/assets/images/miscellaneous/profile.webp",
+        "width": 384,
+        "height": 480
+      },
       "sameAs": [
         "https://www.linkedin.com/in/marco-ruch/",
         "https://github.com/marcoruch/"
       ],
-      "knowsAbout": ["C#", ".NET", "Angular", "TypeScript", "Entity Framework", "MSSQL"]
+      "knowsAbout": ["C#", ".NET", "Angular", "TypeScript", "Entity Framework", "MSSQL", "Web Development", "Software Engineering"],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Julius Baer"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zürich",
+        "addressCountry": "Switzerland"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://marcoruch.ch/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
 </head>
