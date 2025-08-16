@@ -3,23 +3,38 @@
  * Handles cookie consent and Firebase Analytics integration
  */
 
+console.log('Consent manager script loaded');
+
 class ConsentManager {
     constructor() {
+        console.log('ConsentManager constructor called');
         this.consentKey = 'mr_consent_preferences';
         this.consentVersion = '1.0';
         this.consentData = this.loadConsent();
         this.firebase = null;
         this.analytics = null;
         
+        console.log('About to call init()');
         this.init();
+        console.log('ConsentManager constructor completed');
     }
 
     init() {
-        this.createConsentBanner();
-        this.createConsentModal();
-        this.createPrivacyIndicator();
-        this.checkConsentStatus();
-        this.bindEvents();
+        console.log('Init method called');
+        try {
+            this.createConsentBanner();
+            console.log('Consent banner created');
+            this.createConsentModal();
+            console.log('Consent modal created');
+            this.createPrivacyIndicator();
+            console.log('Privacy indicator created');
+            this.checkConsentStatus();
+            console.log('Consent status checked');
+            this.bindEvents();
+            console.log('Events bound');
+        } catch (error) {
+            console.error('Error in init method:', error);
+        }
     }
 
     loadConsent() {
@@ -348,9 +363,23 @@ class ConsentManager {
 }
 
 // Initialize consent manager when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    window.consentManager = new ConsentManager();
-});
+function initConsentManager() {
+    console.log('Initializing consent manager...');
+    try {
+        window.consentManager = new ConsentManager();
+        console.log('Consent manager initialized successfully');
+    } catch (error) {
+        console.error('Failed to initialize consent manager:', error);
+    }
+}
 
-// Export for module usage
-export default ConsentManager;
+// Try multiple initialization methods
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initConsentManager);
+} else {
+    // DOM already loaded
+    initConsentManager();
+}
+
+// Make ConsentManager available globally
+window.ConsentManager = ConsentManager;
