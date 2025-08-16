@@ -153,7 +153,7 @@ class ConsentManager {
             <div class="consent-content">
                 <div class="consent-text">
                     <h4>🍪 Your Privacy Matters</h4>
-                    <p>I use cookies and analytics to improve your experience and understand how you interact with my portfolio. <a href="privacy.html" class="consent-link" target="_blank">Learn more</a> or choose which cookies to accept.</p>
+                    <p>I use cookies and analytics to improve your experience and understand how you interact with my portfolio. <a title="Read our privacy policy" href="privacy.html" class="consent-link" target="_blank" aria-label="Read our privacy policy">Read our privacy policy</a> or choose which cookies to accept.</p>
                 </div>
                 <div class="consent-actions">
                     <button class="consent-btn consent-btn-accept" id="consent-accept">Accept All</button>
