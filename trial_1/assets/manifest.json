@@ -1,12 +1,8 @@
 {
   "short_name": "Marco Ruch",
   "name": "Marco Ruch | C# & Angular Software Engineer",
+  "description": "Portfolio of Marco Ruch, C# and Angular software engineer with 7+ years of experience building modern web applications.",
   "icons": [
-    {
-      "src": "images/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
     {
       "src": "images/favicon-16x16.png",
       "type": "image/png",
@@ -20,12 +16,14 @@
     {
       "src": "images/android-chrome-192x192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "images/android-chrome-512x512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     },
     {
       "src": "images/apple-touch-icon.png",
@@ -34,7 +32,11 @@
     }
   ],
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#0a192f",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#10214b",
+  "background_color": "#ebe7e1",
+  "categories": ["portfolio", "developer", "technology", "software engineer", "c#", "angular", "typescript", "entity framework", "mssql"],
+  "lang": "en-GB"
 }
