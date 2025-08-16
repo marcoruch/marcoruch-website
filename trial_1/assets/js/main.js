@@ -419,12 +419,6 @@ function initProjectModals() {
         titleEl.textContent = projectData.title || 'Project Details';
         modalBody.appendChild(titleEl);
 
-        // Intro (short description shown above carousel). Keep class project-description for sharing hooks
-        const introEl = document.createElement('div');
-        introEl.className = 'modal-intro modal-description project-description';
-        introEl.innerHTML = projectData.intro || projectData.description || '';
-        modalBody.appendChild(introEl);
-
         // Technologies
         if (projectData.technologies && projectData.technologies.length) {
             const techWrap = document.createElement('div');
@@ -437,6 +431,12 @@ function initProjectModals() {
             });
             modalBody.appendChild(techWrap);
         }
+        // Intro (short description shown above carousel). Keep class project-description for sharing hooks
+        const introEl = document.createElement('div');
+        introEl.className = 'modal-intro modal-description project-description';
+        introEl.innerHTML = projectData.intro || projectData.description || '';
+        modalBody.appendChild(introEl);
+
 
         // Carousel
         if (projectData.images && projectData.images.length) {
