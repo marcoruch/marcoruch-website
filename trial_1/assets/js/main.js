@@ -648,60 +648,59 @@ function initContactForm() {
     if (!contactForm) return;
     
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
+        // Get form data for validation
         const name = contactForm.querySelector('#name').value.trim();
         const email = contactForm.querySelector('#email').value.trim();
         const message = contactForm.querySelector('#message').value.trim();
         
         // Simple validation
         let valid = true;
-        const formFields = contactForm.querySelectorAll('.form-field');
+        const formGroups = contactForm.querySelectorAll('.form-group');
         
-        formFields.forEach(field => {
-            const input = field.querySelector('input, textarea');
-            const errorMessage = field.querySelector('.error-message');
+        formGroups.forEach(group => {
+            const input = group.querySelector('input, textarea');
+            const errorMessage = group.querySelector('.error-message');
             
             if (!input.value.trim()) {
                 valid = false;
-                field.classList.add('error');
+                group.classList.add('error');
                 if (errorMessage) {
                     errorMessage.textContent = 'This field is required';
                 }
             } else if (input.id === 'email' && !isValidEmail(email)) {
                 valid = false;
-                field.classList.add('error');
+                group.classList.add('error');
                 if (errorMessage) {
                     errorMessage.textContent = 'Please enter a valid email address';
                 }
             } else {
-                field.classList.remove('error');
+                group.classList.remove('error');
                 if (errorMessage) {
                     errorMessage.textContent = '';
                 }
             }
         });
         
-        if (valid) {
-            // Here you would typically send the form data to a server
-            // For now, we'll just show a success message
-            contactForm.classList.add('form-success');
-            contactForm.innerHTML = `
-                <div class="form-success-message">
-                    <h3>Thank you for your message!</h3>
-                    <p>I'll get back to you as soon as possible.</p>
-                </div>
-            `;
+        if (!valid) {
+            // Prevent submission if validation fails
+            e.preventDefault();
+        } else {
+            // Let the form submit to FormSubmit
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+            }
         }
     });
     
     // Reset validation on input
-    contactForm.querySelectorAll('.form-field input, .form-field textarea').forEach(input => {
+    contactForm.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
         input.addEventListener('input', function() {
-            const field = this.closest('.form-field');
-            field.classList.remove('error');
-            const errorMessage = field.querySelector('.error-message');
+            const group = this.closest('.form-group');
+            group.classList.remove('error');
+            const errorMessage = group.querySelector('.error-message');
             if (errorMessage) {
                 errorMessage.textContent = '';
             }
