@@ -610,8 +610,14 @@ function initProjectModals() {
         modalClose.addEventListener('click', closeModal);
     }
     
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', closeModal);
+    // Close modal when clicking on backdrop (modal itself, not modal-content)
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            // Only close if clicking on the modal backdrop, not on the content
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
     }
     
     // Close on escape key

@@ -275,6 +275,21 @@ class ConsentManager {
                 this.hideSettings();
             }
         });
+
+        // Close modal on Escape key - use arrow function to preserve 'this' context
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                console.log('Escape key pressed');
+                const modal = document.getElementById('consent-modal');
+                if (modal && modal.classList.contains('show')) {
+                    console.log('Consent modal is open, calling hideSettings');
+                    this.hideSettings();
+                } else {
+                    console.log('Consent modal not open or not found');
+                }
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
     }
 
     checkConsentStatus() {
@@ -311,19 +326,40 @@ class ConsentManager {
 
     showSettings() {
         const modal = document.getElementById('consent-modal');
+        const indicator = document.getElementById('privacy-indicator');
+        
         if (modal) {
             // Update toggles with current preferences
             document.getElementById('analytics-toggle').checked = this.consentData.analytics;
             document.getElementById('marketing-toggle').checked = this.consentData.marketing;
             
             modal.classList.add('show');
+            
+            // Add active state to privacy indicator
+            if (indicator) {
+                indicator.classList.add('active');
+            }
         }
     }
 
     hideSettings() {
+        console.log('hideSettings called');
         const modal = document.getElementById('consent-modal');
+        const indicator = document.getElementById('privacy-indicator');
+        
         if (modal) {
             modal.classList.remove('show');
+            console.log('Modal show class removed');
+            
+            // Remove active state from privacy indicator
+            if (indicator) {
+                indicator.classList.remove('active');
+                console.log('Privacy indicator active class removed');
+            } else {
+                console.log('Privacy indicator not found');
+            }
+        } else {
+            console.log('Modal not found');
         }
     }
 

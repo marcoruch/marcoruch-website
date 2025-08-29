@@ -291,13 +291,34 @@ input:disabled + .consent-slider {
     .consent-btn {
         width: 100%;
     }
+    
+    /* Privacy indicator mobile positioning */
+    .privacy-indicator {
+        bottom: 2rem;
+        right: 7rem; /* Adjusted for mobile back-to-top button position */
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    .privacy-indicator svg {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+/* Very small screens - stack buttons vertically if needed */
+@media screen and (max-width: 480px) {
+    .privacy-indicator {
+        bottom: 7rem; /* Stack above the back-to-top button */
+        right: 2rem; /* Align with back-to-top button */
+    }
 }
 
 /* ===== Privacy Indicator ===== */
 .privacy-indicator {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 3rem;
+    right: 9rem; /* Position to the left of back-to-top button */
     background-color: var(--color-deep-blue);
     color: var(--color-off-white);
     padding: 1rem;
@@ -323,6 +344,12 @@ input:disabled + .consent-slider {
     background-color: var(--color-gold);
     color: var(--color-deep-blue);
     transform: scale(1.1);
+}
+
+.privacy-indicator.active {
+    background-color: var(--color-gold);
+    color: var(--color-deep-blue);
+    transform: scale(1.05);
 }
 
 .privacy-indicator svg {
