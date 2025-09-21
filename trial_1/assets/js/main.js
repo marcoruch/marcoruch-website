@@ -812,9 +812,12 @@ function initContactForm() {
         const email = contactForm.querySelector('#email').value.trim();
         const message = contactForm.querySelector('#message').value.trim();
         
+        // Check reCAPTCHA
+        const recaptchaResponse = grecaptcha.getResponse();
+        
         // Simple validation
         let valid = true;
-        const formGroups = contactForm.querySelectorAll('.form-group');
+        const formGroups = contactForm.querySelectorAll('.form-group:not(.recaptcha-group)');
         
         formGroups.forEach(group => {
             const input = group.querySelector('input, textarea');
@@ -839,6 +842,31 @@ function initContactForm() {
                 }
             }
         });
+        
+        // Check reCAPTCHA validation
+        if (!recaptchaResponse) {
+            valid = false;
+            const recaptchaGroup = contactForm.querySelector('.recaptcha-group');
+            if (recaptchaGroup) {
+                recaptchaGroup.classList.add('error');
+                let errorMessage = recaptchaGroup.querySelector('.error-message');
+                if (!errorMessage) {
+                    errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.textContent = 'Please complete the reCAPTCHA verification';
+                    recaptchaGroup.appendChild(errorMessage);
+                }
+            }
+        } else {
+            const recaptchaGroup = contactForm.querySelector('.recaptcha-group');
+            if (recaptchaGroup) {
+                recaptchaGroup.classList.remove('error');
+                const errorMessage = recaptchaGroup.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
+            }
+        }
         
         if (!valid) {
             // Prevent submission if validation fails
