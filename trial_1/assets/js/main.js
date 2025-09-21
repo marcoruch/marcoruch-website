@@ -255,10 +255,81 @@ function initProjectModals() {
 
     // Project data repository, keyed by data-project id
     const projectsData = {
-        'advisory-mandates': {
-            title: 'Advisory Mandates Platform',
-            description: '<p>A comprehensive platform for financial advisors to manage client portfolios, investment strategies, and reporting.</p><p>This solution helps financial advisors create personalized investment strategies for their clients, track performance, and generate detailed reports.</p>',
-            technologies: ['Angular', 'TypeScript', 'C#', 'Entity Framework', 'MSSQL'],
+        'dias-advisory-mandates': {
+            title: 'DiAS - Digital Advisory Suite',
+            intro: '<p>DiAS was Julius Baer\'s pioneering digital ecosystem for wealth management, which laid the foundation for modern advisory tools before being succeeded by the Wealth Navigator platform. I worked primarily on the Modular Offering Proposal component, enabling relationship managers to prepare detailed proposals for portfolio reallocations.</p>',
+            sections: [
+                {
+                    title: 'Modular Offering Proposal',
+                    body: '<p>The Modular Offering Proposal component was a key feature within DiAS that allowed relationship managers to prepare comprehensive reallocation proposals. It specifically focused on planning transitions from advisory to discretionary mandates, with the actual implementation handled through separate systems after client approval.</p>',
+                    type: 'header'
+                },
+                {
+                    title: 'My Contributions',
+                    body: '<p>As a developer on the DiAS platform, I focused specifically on the Modular Offering Proposal functionality. My work included developing interfaces for mandate selection and comparison, designing proposal workflows for portfolio reallocations, and creating systems for generating client-facing PDF documents that clearly communicated recommended investment strategy changes.</p>',
+                    type: 'header'
+                },
+                {
+                    title: 'Key Features Developed',
+                    body: '<ul><li><strong>Mandate Selection</strong>: Interactive tools for identifying suitable discretionary mandates based on client requirements and existing advisory portfolios</li><li><strong>Reallocation Planning</strong>: Visualization and planning of portfolio adjustments with clear before/after comparisons</li><li><strong>Comparative Analysis</strong>: Side-by-side comparison of advisory vs. discretionary investment strategies and their projected outcomes</li><li><strong>Proposal Documentation</strong>: Automated creation of professional, client-facing PDF proposals outlining recommended reallocations</li></ul>',
+                    type: 'standard'
+                },
+                {
+                    title: 'Technical Implementation',
+                    body: '<p>The proposal system was built using a microfrontend architecture with Angular for the frontend and TypeScript, while the backend utilized .NET Core and C#. This architecture enabled seamless integration with client data sources and the Mandate Solution Designer for related proposals and product selection. The system incorporated complex data modeling to properly represent both advisory and discretionary mandate structures, with PDF generation implemented through a custom templating system that maintained brand consistency.</p>',
+                    type: 'standard'
+                },
+                {
+                    title: 'Integration Points',
+                    body: '<ul><li><strong>Client Data</strong>: Microfrontend integration with client portfolio and profile information</li><li><strong>Mandate Solution Designer</strong>: Connected to MSD for accessing mandate definitions and available product offerings aswell as related proposals</li><li><strong>Rule Engine</strong>: Integration with rule engine for compliance checks</li></ul>',
+                    type: 'standard'
+                },
+                {
+                    title: 'Impact',
+                    body: '<p>The Modular Offering Proposal component significantly streamlined the advisory-to-discretionary transition process, reducing the time needed to create personalized reallocation proposals. Relationship managers could clearly explain the benefits of transitioning to discretionary mandates, compare fee structures and investment approaches, and provide clients with comprehensive documentation to support informed decisions.</p>',
+                    type: 'header'
+                }
+            ],
+            technologies: ['Angular', 'TypeScript', 'Micro Frontends', '.NET Core', 'C#', 'Octopus', 'MSSQL'],
+            images: [
+                'assets/images/projects/dias_digital_advisory_suite.png'
+            ],
+            category: 'financial'
+        },
+        'wealth-navigator-platform': {
+            title: 'WN - Wealth Navigator Platform',
+            intro: '<p>The Wealth Navigator Platform is Julius Baer\'s modern digital ecosystem for wealth management, succeeding DiAS as the primary advisory tool. I worked on the Modular Offering Proposal component, which enables relationship managers to prepare detailed proposals for portfolio reallocations using microfrontend architecture.</p>',
+            sections: [
+                {
+                    title: 'Modular Offering Proposal',
+                    body: '<p>The Modular Offering Proposal component is a key feature within the Wealth Navigator platform that allows relationship managers to prepare comprehensive reallocation proposals. It focuses on planning transitions from advisory to discretionary mandates, with the actual implementation handled through separate systems after client approval.</p>',
+                    type: 'header'
+                },
+                {
+                    title: 'My Contributions',
+                    body: '<p>As a developer on the Wealth Navigator platform, I focused specifically on the Modular Offering Proposal functionality. My work included developing interfaces for mandate selection and comparison, designing proposal workflows for portfolio reallocations, and creating systems for generating client-facing PDF documents that clearly communicated recommended investment strategy changes.</p>',
+                    type: 'header'
+                },
+                {
+                    title: 'Key Features Developed',
+                    body: '<ul><li><strong>Mandate Selection</strong>: Interactive tools for identifying suitable discretionary mandates based on client requirements and existing advisory portfolios</li><li><strong>Reallocation Planning</strong>: Visualization and planning of portfolio adjustments with clear before/after comparisons</li><li><strong>Comparative Analysis</strong>: Side-by-side comparison of advisory vs. discretionary investment strategies and their projected outcomes</li><li><strong>Proposal Documentation</strong>: Automated creation of professional, client-facing PDF proposals outlining recommended reallocations</li></ul>',
+                    type: 'standard'
+                },
+                {
+                    title: 'Technical Implementation',
+                    body: '<p>Built using Angular microfrontend architecture with TypeScript, the component integrates seamlessly with the broader Wealth Navigator ecosystem. The backend services are developed in C# with Entity Framework, ensuring robust data management and API integration for mandate data and client information.</p>',
+                    type: 'standard'
+                },
+                {
+                    title: 'Microfrontend Architecture',
+                    body: '<p>The Modular Offering Proposal component leverages microfrontend architecture to provide modularity and reusability across different platforms. This approach allows the same component to be used in both DiAS and Wealth Navigator, ensuring consistency in user experience while maintaining independent deployment capabilities.</p>',
+                    type: 'standard'
+                }
+            ],
+            technologies: ['Angular', 'TypeScript', 'Micro Frontends', '.NET Core', 'C#', 'Octopus', 'MSSQL'],
+            images: [
+                'assets/images/projects/wealth_navigator_pixelated.webp'
+            ],
             category: 'financial'
         },
         'baerhaviour-uba': {
@@ -267,39 +338,48 @@ function initProjectModals() {
             sections: [
                 {
                     title: 'Initial Situation',
-                    body: '<p>WN automates compliance tasks and supports investment strategy creation for Relationship Managers and Advisors. Its predecessor (DiAS) increased productivity but lacked integrated tracking. Without behavioural data, teams could not reliably assess feature usage, pain points, or workflow efficiency across a globally distributed user base and a micro‑frontend architecture.</p>'
+                    body: '<p>WN automates compliance tasks and supports investment strategy creation for Relationship Managers and Advisors. Its predecessor (DiAS) increased productivity but lacked integrated tracking. Without behavioural data, teams could not reliably assess feature usage, pain points, or workflow efficiency across a globally distributed user base and a micro‑frontend architecture.</p>',
+                    type: 'header'
                 },
                 {
                     title: 'Project Goal',
-                    body: '<p>Design and implement BaerHaviour as a PoC and UX concept to provide product managers and stakeholders with actionable insights into how WN is used. Establish a foundation for capturing, processing and visualising behavioural data, focusing on two journeys: Modular Offering Proposal and New Advisory Session.</p>'
+                    body: '<p>Design and implement BaerHaviour as a PoC and UX concept to provide product managers and stakeholders with actionable insights into how WN is used. Establish a foundation for capturing, processing and visualising behavioural data, focusing on two journeys: Modular Offering Proposal and New Advisory Session.</p>',
+                    type: 'header'
                 },
                 {
                     title: 'Research Questions',
-                    body: '<ul><li><strong>Data Collection</strong>: Which behaviour data points best indicate how well WN supports users, and how can they be captured?</li><li><strong>Processing & Structuring</strong>: How can captured data be validated, enriched and aggregated into actionable insights?</li><li><strong>Information Visualisation</strong>: How should the data be presented to support decision‑making?</li></ul>'
+                    body: '<ul><li><strong>Data Collection</strong>: Which behaviour data points best indicate how well WN supports users, and how can they be captured?</li><li><strong>Processing & Structuring</strong>: How can captured data be validated, enriched and aggregated into actionable insights?</li><li><strong>Information Visualisation</strong>: How should the data be presented to support decision‑making?</li></ul>',
+                    type: 'standard'
                 },
                 {
                     title: 'Solution Overview',
-                    body: '<p>The solution consists of a framework‑agnostic tracking library, a backend processing pipeline and an Angular‑based analytics frontend, complemented by a Figma prototype that explores decision‑oriented visualisations (Dashboards, Session Metrics, Journey Metrics, Drilldowns, Session Timeline, and WN‑specific insights).</p>'
+                    body: '<p>The solution consists of a framework‑agnostic tracking library, a backend processing pipeline and an Angular‑based analytics frontend, complemented by a Figma prototype that explores decision‑oriented visualisations (Dashboards, Session Metrics, Journey Metrics, Drilldowns, Session Timeline, and WN‑specific insights).</p>',
+                    type: 'header'
                 },
                 {
                     title: 'Tracking Approach',
-                    body: '<p>A custom npm package (<code>baer-haviour</code>) captures clicks, navigation, API performance, validation errors and custom events across Angular and React. The library supports scoped tagging, Shadow DOM and configuration‑driven extensibility, and sends data via the Beacon API to minimise performance impact.</p>'
+                    body: '<p>A custom npm package (<code>baer-haviour</code>) captures clicks, navigation, API performance, validation errors and custom events across Angular and React. The library supports scoped tagging, Shadow DOM and configuration‑driven extensibility, and sends data via the Beacon API to minimise performance impact.</p>',
+                    type: 'standard'
                 },
                 {
                     title: 'Backend Processing Pipeline',
-                    body: '<p>Events are validated and enriched, then aggregated into Sub‑Journeys and Composite Journeys using configurable patterns. Both raw and aggregated data are stored in a relational schema for traceability, and exposed via API endpoints. Aggregation is decoupled from real‑time operations for performance.</p>'
+                    body: '<p>Events are validated and enriched, then aggregated into Sub‑Journeys and Composite Journeys using configurable patterns. Both raw and aggregated data are stored in a relational schema for traceability, and exposed via API endpoints. Aggregation is decoupled from real‑time operations for performance.</p>',
+                    type: 'standard'
                 },
                 {
                     title: 'Frontend Architecture',
-                    body: '<p>The Angular 18 frontend uses a modular, widget‑based dashboard architecture with lazy‑loaded routes and NgRx state management. Widgets can be grouped, extended and composed as new insights are added.</p>'
+                    body: '<p>The Angular 18 frontend uses a modular, widget‑based dashboard architecture with lazy‑loaded routes and NgRx state management. Widgets can be grouped, extended and composed as new insights are added.</p>',
+                    type: 'standard'
                 },
                 {
                     title: 'UX/UI Concept',
-                    body: '<p>The Figma prototype aligns with the Julius Baer design system and emphasises usability: high‑level overviews, interactive visualisations, progressive disclosure, reusable layouts and clear navigation support fast decision‑making.</p>'
+                    body: '<p>The Figma prototype aligns with the Julius Baer design system and emphasises usability: high‑level overviews, interactive visualisations, progressive disclosure, reusable layouts and clear navigation support fast decision‑making.</p>',
+                    type: 'standard'
                 },
                 {
                     title: 'Outcomes & Validation',
-                    body: '<p>Stakeholder validation with five participants confirmed practical relevance and usefulness. Metrics and visualisations were rated more helpful than previous ad‑hoc methods, enabling a shift from reactive to proactive identification of UX and workflow issues.</p>'
+                    body: '<p>Stakeholder validation with five participants confirmed practical relevance and usefulness. Metrics and visualisations were rated more helpful than previous ad‑hoc methods, enabling a shift from reactive to proactive identification of UX and workflow issues.</p>',
+                    type: 'header'
                 },
                 {
                     title: 'Team',
@@ -317,7 +397,8 @@ function initProjectModals() {
                                         <li>Fabian Affolter</li>
                                     </ul>
                                 </li>
-                            </ul>`
+                            </ul>`,
+                    type: 'subtitle'
                 }
             ],
             technologies: ['Angular', 'TypeScript', 'C#', 'Entity Framework', 'MSSQL'],
@@ -333,6 +414,42 @@ function initProjectModals() {
                 'assets/images/projects/baer_haviour_uba_analytics/proof_of_concept_application_session_metrics.png',
                 'assets/images/projects/baer_haviour_uba_analytics/proof_of_concept_journey_metrics.png',
                 'assets/images/projects/baer_haviour_uba_analytics/prrof_of_concept_drilldown_sessions.png'
+            ],
+            category: 'financial'
+        },
+        'discretionary-mandates-platform': {
+            title: 'MSD - Mandate Solution Designer',
+            intro: '<p>A comprehensive platform for creating and managing discretionary investment mandates for high-net-worth clients. The solution enables relationship managers and portfolio managers to craft personalized investment strategies while incorporating ESG preferences.</p>',
+            sections: [
+                {
+                    title: 'Platform Overview',
+                    body: '<p>MSD provides a powerful environment for financial professionals to design, link, and implement sophisticated investment strategies using various financial products. The platform offers comprehensive insights into the entire product catalogue, facilitating informed decision-making.</p>',
+                    type: 'header'
+                },
+                {
+                    title: 'Core Capabilities',
+                    body: '<p>The platform supports strategy creation, product selection, ESG preference integration, performance monitoring, and analytical reporting. It streamlines mandate management workflows while ensuring compliance with regulatory requirements and client preferences.</p>',
+                    type: 'standard'
+                },
+                {
+                    title: 'My Contributions',
+                    body: '<p>My work spanned the entire technology stack, including backend development, frontend implementation, database design, and microfrontend integration. I also took a leading role in design work across the frontend stack, ensuring a consistent and intuitive user experience.</p>',
+                    type: 'header'
+                },
+                {
+                    title: 'Technical Impact',
+                    body: '<p>A significant achievement was optimizing a critical dashboard\'s performance, resulting in up to 95% speed improvement. This enhancement dramatically improved user experience and operational efficiency for financial advisors managing complex client portfolios.</p>',
+                    type: 'standard'
+                },
+                {
+                    title: 'Technologies',
+                    body: '<p>The solution leverages a modern tech stack including React with TypeScript for the frontend, Java with Hibernate for the backend, Oracle databases for data storage, SCSS for styling, and the Zafire design system for consistent UI components.</p>',
+                    type: 'subtitle'
+                }
+            ],
+            technologies: ['React', 'TypeScript', 'Java', 'Hibernate', 'Oracle', 'SCSS', 'Zafire Design System'],
+            images: [
+                'assets/images/projects/msd_mandate_solution_designer_pixelated.webp'
             ],
             category: 'financial'
         },
@@ -534,11 +651,32 @@ function initProjectModals() {
 
             projectData.sections.forEach(section => {
                 const sectionBlock = document.createElement('section');
-                const header = document.createElement('h3');
+                
+                // Apply section type as a class if specified
+                if (section.type) {
+                    sectionBlock.classList.add(`section-type-${section.type}`);
+                }
+                
+                // Create header with consistent h4 tag but apply typography classes based on type
+                const header = document.createElement('h4');
                 header.textContent = section.title;
+                
+                // Apply typography classes based on section type
+                if (section.type === 'header') {
+                    header.classList.add('typography-section-header');
+                } else if (section.type === 'subtitle') {
+                    header.classList.add('typography-section-subtitle');
+                } else {
+                    header.classList.add('typography-section-standard');
+                }
+                
                 const body = document.createElement('div');
                 body.className = 'modal-section-body';
+                if (section.type) {
+                    body.classList.add(`body-type-${section.type}`);
+                }
                 body.innerHTML = section.body;
+                
                 sectionBlock.appendChild(header);
                 sectionBlock.appendChild(body);
                 sectionsWrap.appendChild(sectionBlock);

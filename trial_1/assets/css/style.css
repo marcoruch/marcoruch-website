@@ -517,7 +517,7 @@ body {
 .skill-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -545,7 +545,7 @@ body {
     top: 0;
     left: 0;
     color: rgba(255, 255, 255, 0.2);
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 .star.filled::before {
@@ -584,7 +584,6 @@ body {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    width: 6rem;
     height: 6rem;
     opacity: 0.5;
     background-size: contain;
@@ -1059,14 +1058,33 @@ body {
     transform: rotate(90deg);
 }
 
-.modal-body h2 {
+.modal-body h3.modal-title {
     font-size: 3.6rem;
     margin-bottom: var(--spacing-md);
     color: var(--color-deep-blue);
 }
 
-.modal-body h3 {
+/* Section typography classes for blog-style modals */
+.typography-section-header {
     font-size: 2.4rem;
+    font-weight: 700;
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    color: var(--color-deep-blue);
+    border-bottom: 1px solid var(--color-gold);
+    padding-bottom: var(--spacing-xs);
+    font-family: var(--font-primary);
+}
+
+.typography-section-subtitle {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: var(--spacing-md) 0 var(--spacing-xs);
+    color: var(--color-deep-blue);
+    font-style: italic;
+}
+
+.typography-section-standard {
+    font-size: 2rem;
     margin: var(--spacing-md) 0 var(--spacing-sm);
     color: var(--color-deep-blue);
 }
