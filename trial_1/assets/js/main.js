@@ -807,25 +807,9 @@ function initContactForm() {
     
     if (!contactForm || !sendBtn) return;
     
-    // Wait until reCAPTCHA is ready
-    grecaptcha.ready(function() {
-        // Ask for a token when the page loads
-        grecaptcha.execute('6Lfi0tArAAAAAOrRO4X-ILWXjQUIJ8h8ZXCjn8OR', { action: 'contact' })
-            .then(function(token) {
-                // Store the token in the hidden input
-                document.getElementById('g-recaptcha-response').value = token;
-                
-                // Enable the submit button
-                sendBtn.disabled = false;
-                sendBtn.textContent = 'Send Message';
-            })
-            .catch(function(error) {
-                console.error('reCAPTCHA error:', error);
-                // Still enable the button but log the error
-                sendBtn.disabled = false;
-                sendBtn.textContent = 'Send Message';
-            });
-    });
+    // Enable the submit button immediately
+    sendBtn.disabled = false;
+    sendBtn.textContent = 'Send Message';
     
     contactForm.addEventListener('submit', function(e) {
         // Get form data for validation
@@ -865,29 +849,11 @@ function initContactForm() {
             // Prevent submission if validation fails
             e.preventDefault();
         } else {
-            // Get a fresh reCAPTCHA token before submission
-            grecaptcha.execute('6Lfi0tArAAAAAOrRO4X-ILWXjQUIJ8h8ZXCjn8OR', { action: 'submit' })
-                .then(function(token) {
-                    // Update the token
-                    document.getElementById('g-recaptcha-response').value = token;
-                    
-                    // Show loading state
-                    sendBtn.textContent = 'Sending...';
-                    sendBtn.disabled = true;
-                    
-                    // Submit the form
-                    contactForm.submit();
-                })
-                .catch(function(error) {
-                    console.error('reCAPTCHA error on submit:', error);
-                    // Still submit the form even if reCAPTCHA fails
-                    sendBtn.textContent = 'Sending...';
-                    sendBtn.disabled = true;
-                    contactForm.submit();
-                });
+            // Show loading state and submit
+            sendBtn.textContent = 'Sending...';
+            sendBtn.disabled = true;
             
-            // Prevent default submission since we're handling it above
-            e.preventDefault();
+            // Form will submit normally without reCAPTCHA
         }
     });
     
