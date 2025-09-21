@@ -3,35 +3,25 @@
  * Handles cookie consent and Firebase Analytics integration
  */
 
-console.log('Consent manager script loaded');
 
 class ConsentManager {
     constructor() {
-        console.log('ConsentManager constructor called');
         this.consentKey = 'mr_consent_preferences';
         this.consentVersion = '1.0';
         this.consentData = this.loadConsent();
         this.firebase = null;
         this.analytics = null;
         
-        console.log('About to call init()');
         this.init();
-        console.log('ConsentManager constructor completed');
     }
 
     init() {
-        console.log('Init method called');
         try {
             this.createConsentBanner();
-            console.log('Consent banner created');
             this.createConsentModal();
-            console.log('Consent modal created');
             this.createPrivacyIndicator();
-            console.log('Privacy indicator created');
             this.checkConsentStatus();
-            console.log('Consent status checked');
             this.bindEvents();
-            console.log('Events bound');
         } catch (error) {
             console.error('Error in init method:', error);
         }
@@ -48,7 +38,7 @@ class ConsentManager {
                 }
             }
         } catch (e) {
-            console.log('No previous consent found');
+            // No previous consent found
         }
         
         return {
@@ -111,7 +101,6 @@ class ConsentManager {
                 'security_storage': 'granted'
             });
 
-            console.log('Firebase Analytics initialized with consent');
 
         } catch (error) {
             console.error('Failed to initialize Firebase Analytics:', error);
@@ -279,13 +268,9 @@ class ConsentManager {
         // Close modal on Escape key - use arrow function to preserve 'this' context
         const escapeHandler = (e) => {
             if (e.key === 'Escape') {
-                console.log('Escape key pressed');
                 const modal = document.getElementById('consent-modal');
                 if (modal && modal.classList.contains('show')) {
-                    console.log('Consent modal is open, calling hideSettings');
                     this.hideSettings();
-                } else {
-                    console.log('Consent modal not open or not found');
                 }
             }
         };
@@ -343,23 +328,16 @@ class ConsentManager {
     }
 
     hideSettings() {
-        console.log('hideSettings called');
         const modal = document.getElementById('consent-modal');
         const indicator = document.getElementById('privacy-indicator');
         
         if (modal) {
             modal.classList.remove('show');
-            console.log('Modal show class removed');
             
             // Remove active state from privacy indicator
             if (indicator) {
                 indicator.classList.remove('active');
-                console.log('Privacy indicator active class removed');
-            } else {
-                console.log('Privacy indicator not found');
             }
-        } else {
-            console.log('Modal not found');
         }
     }
 
@@ -400,10 +378,8 @@ class ConsentManager {
 
 // Initialize consent manager when DOM is ready
 function initConsentManager() {
-    console.log('Initializing consent manager...');
     try {
         window.consentManager = new ConsentManager();
-        console.log('Consent manager initialized successfully');
     } catch (error) {
         console.error('Failed to initialize consent manager:', error);
     }
