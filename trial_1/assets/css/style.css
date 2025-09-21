@@ -981,44 +981,6 @@ body {
     color: transparent;
 }
 
-/* reCAPTCHA styling */
-.recaptcha-group {
-    display: flex;
-    justify-content: center;
-    margin: var(--spacing-md) 0;
-}
-
-.recaptcha-group .g-recaptcha {
-    transform: scale(0.9);
-    transform-origin: center;
-}
-
-.recaptcha-group.error .g-recaptcha {
-    border: 2px solid var(--color-error);
-    border-radius: 4px;
-    padding: 4px;
-}
-
-.recaptcha-group .error-message {
-    color: var(--color-error);
-    font-size: 1.4rem;
-    margin-top: var(--spacing-sm);
-    text-align: center;
-}
-
-/* Responsive reCAPTCHA */
-@media (max-width: 768px) {
-    .recaptcha-group .g-recaptcha {
-        transform: scale(0.8);
-    }
-}
-
-@media (max-width: 480px) {
-    .recaptcha-group .g-recaptcha {
-        transform: scale(0.7);
-    }
-}
-
 .contact-info {
     display: flex;
     flex-direction: column;

@@ -803,8 +803,29 @@ function initProjectModals() {
  */
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
+    const sendBtn = document.getElementById('sendBtn');
     
-    if (!contactForm) return;
+    if (!contactForm || !sendBtn) return;
+    
+    // Wait until reCAPTCHA is ready
+    grecaptcha.ready(function() {
+        // Ask for a token when the page loads
+        grecaptcha.execute('6Lfi0tArAAAAAOrRO4X-ILWXjQUIJ8h8ZXCjn8OR', { action: 'contact' })
+            .then(function(token) {
+                // Store the token in the hidden input
+                document.getElementById('g-recaptcha-response').value = token;
+                
+                // Enable the submit button
+                sendBtn.disabled = false;
+                sendBtn.textContent = 'Send Message';
+            })
+            .catch(function(error) {
+                console.error('reCAPTCHA error:', error);
+                // Still enable the button but log the error
+                sendBtn.disabled = false;
+                sendBtn.textContent = 'Send Message';
+            });
+    });
     
     contactForm.addEventListener('submit', function(e) {
         // Get form data for validation
@@ -812,12 +833,9 @@ function initContactForm() {
         const email = contactForm.querySelector('#email').value.trim();
         const message = contactForm.querySelector('#message').value.trim();
         
-        // Check reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
-        
         // Simple validation
         let valid = true;
-        const formGroups = contactForm.querySelectorAll('.form-group:not(.recaptcha-group)');
+        const formGroups = contactForm.querySelectorAll('.form-group');
         
         formGroups.forEach(group => {
             const input = group.querySelector('input, textarea');
@@ -843,42 +861,33 @@ function initContactForm() {
             }
         });
         
-        // Check reCAPTCHA validation
-        if (!recaptchaResponse) {
-            valid = false;
-            const recaptchaGroup = contactForm.querySelector('.recaptcha-group');
-            if (recaptchaGroup) {
-                recaptchaGroup.classList.add('error');
-                let errorMessage = recaptchaGroup.querySelector('.error-message');
-                if (!errorMessage) {
-                    errorMessage = document.createElement('div');
-                    errorMessage.className = 'error-message';
-                    errorMessage.textContent = 'Please complete the reCAPTCHA verification';
-                    recaptchaGroup.appendChild(errorMessage);
-                }
-            }
-        } else {
-            const recaptchaGroup = contactForm.querySelector('.recaptcha-group');
-            if (recaptchaGroup) {
-                recaptchaGroup.classList.remove('error');
-                const errorMessage = recaptchaGroup.querySelector('.error-message');
-                if (errorMessage) {
-                    errorMessage.remove();
-                }
-            }
-        }
-        
         if (!valid) {
             // Prevent submission if validation fails
             e.preventDefault();
         } else {
-            // Let the form submit to FormSubmit
-            // Show loading state
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.textContent = 'Sending...';
-                submitBtn.disabled = true;
-            }
+            // Get a fresh reCAPTCHA token before submission
+            grecaptcha.execute('6Lfi0tArAAAAAOrRO4X-ILWXjQUIJ8h8ZXCjn8OR', { action: 'submit' })
+                .then(function(token) {
+                    // Update the token
+                    document.getElementById('g-recaptcha-response').value = token;
+                    
+                    // Show loading state
+                    sendBtn.textContent = 'Sending...';
+                    sendBtn.disabled = true;
+                    
+                    // Submit the form
+                    contactForm.submit();
+                })
+                .catch(function(error) {
+                    console.error('reCAPTCHA error on submit:', error);
+                    // Still submit the form even if reCAPTCHA fails
+                    sendBtn.textContent = 'Sending...';
+                    sendBtn.disabled = true;
+                    contactForm.submit();
+                });
+            
+            // Prevent default submission since we're handling it above
+            e.preventDefault();
         }
     });
     
