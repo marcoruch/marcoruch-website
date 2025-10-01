@@ -17,135 +17,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Shared Bites Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     
     <!-- Highcharts -->
     <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.0/highcharts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.0/modules/networkgraph.js"></script>
     
     <style>
-        /* ===== Variables ===== */
-        :root {
-            /* Color Palette */
-            --color-deep-blue: #10214b;
-            --color-gold: #d7bd88;
-            --color-dust: #d03c3b;
-            --color-off-white: #ebe7e1;
-            
-            /* Color Variations */
-            --color-deep-blue-light: #1a3366;
-            --color-gold-dark: #c5aa75;
-            --color-deep-blue-80: rgba(16, 33, 75, 0.8);
-            --color-gold-20: rgba(215, 189, 136, 0.2);
-            
-            /* Typography */
-            --font-primary: 'Playfair Display', serif;
-            --font-secondary: 'Montserrat', sans-serif;
-            
-            /* Transitions */
-            --transition-fast: 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
-            --transition-normal: 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
-            --transition-slow: 500ms cubic-bezier(0.19, 1, 0.22, 1);
-            
-            /* Shadows */
-            --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.05);
-            --shadow-elevated: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
+        /* ===== Page-Specific Styles for Small World Visualization ===== */
         
-        /* ===== Reset & Base Styles ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: var(--font-secondary);
-            background-color: var(--color-off-white);
-            color: #333333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* ===== Layout ===== */
-        .page-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--color-deep-blue), var(--color-deep-blue-light));
-            color: var(--color-off-white);
-            padding: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(45deg, transparent 48%, var(--color-gold-20) 49%, var(--color-gold-20) 51%, transparent 52%),
-                linear-gradient(-45deg, transparent 48%, var(--color-gold-20) 49%, var(--color-gold-20) 51%, transparent 52%);
-            background-size: 40px 40px;
-            opacity: 0.3;
-            pointer-events: none;
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .back-link {
-            display: inline-block;
-            color: var(--color-gold);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            transition: color var(--transition-fast);
-            font-weight: 500;
-            letter-spacing: 0.05em;
-        }
-        
-        .back-link:hover {
-            color: var(--color-off-white);
-        }
-        
-        h1 {
-            font-family: var(--font-primary);
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 800px;
-            font-weight: 300;
-        }
-        
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* ===== Visualization Container ===== */
+        /* Visualization Container */
         .viz-container {
             flex: 1;
-            min-height: 800px;
+            min-height: 1000px;
             background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
             display: flex;
             flex-direction: column;
@@ -159,11 +47,15 @@
             position: relative;
         }
         
+        /* Canvas and SVG Visualization */
         #canvas-container {
             flex: 1;
             min-width: 0;
             position: relative;
             background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         #canvas-container svg {
@@ -171,17 +63,18 @@
             height: 100%;
         }
         
+        /* D3.js Network Visualization Elements */
         .node {
             fill: var(--color-deep-blue);
             stroke: var(--color-off-white);
             stroke-width: 2px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
         
         .node:hover {
             fill: var(--color-gold);
-            r: 14;
+            stroke-width: 3px;
         }
         
         .node.selected {
@@ -198,463 +91,28 @@
         
         .link {
             stroke: var(--color-deep-blue);
-            stroke-opacity: 0.6;
-            stroke-width: 3px;
+            stroke-opacity: 0.4;
+            stroke-width: 2px;
+            fill: none;
         }
         
         .link.shortcut {
             stroke: var(--color-gold);
             stroke-opacity: 0.8;
-            stroke-width: 4px;
+            stroke-width: 3px;
         }
         
         .link.path-link {
             stroke: var(--color-dust);
             stroke-opacity: 1;
-            stroke-width: 5px;
+            stroke-width: 4px;
         }
         
-        /* ===== Controls Panel ===== */
-        .controls-panel {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1.5rem;
-            border: 1px solid var(--color-gold);
-            box-shadow: var(--shadow-elevated);
-            width: 320px;
-            flex-shrink: 0;
-            backdrop-filter: blur(10px);
-            align-self: flex-start;
+        .cluster-group {
+            opacity: 1;
         }
         
-        .controls-title {
-            font-family: var(--font-primary);
-            font-size: 1.2rem;
-            color: var(--color-deep-blue);
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--color-gold);
-            padding-bottom: 0.5rem;
-        }
-        
-        .control-group {
-            margin-bottom: 1.2rem;
-            transition: opacity var(--transition-normal);
-        }
-        
-        .control-group[style*="display: none"] {
-            opacity: 0;
-        }
-        
-        .control-group label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--color-deep-blue);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 0.7rem 1rem;
-            background-color: var(--color-gold);
-            color: var(--color-deep-blue);
-            border: none;
-            font-family: var(--font-secondary);
-            font-weight: 500;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .btn:hover {
-            background-color: var(--color-gold-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-elevated);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--color-gold);
-            border: 1px solid var(--color-gold);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--color-gold);
-            color: var(--color-deep-blue);
-        }
-        
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        input[type="range"] {
-            flex: 1;
-            height: 4px;
-            background: linear-gradient(to right, var(--color-deep-blue), var(--color-gold));
-            outline: none;
-            transition: all var(--transition-normal);
-            -webkit-appearance: none;
-            appearance: none;
-            border-radius: 0;
-            cursor: pointer;
-        }
-        
-        input[type="range"]:hover {
-            box-shadow: 0 0 8px var(--color-gold-20);
-        }
-        
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            background: var(--color-gold);
-            cursor: pointer;
-            border-radius: 0;
-            transition: all var(--transition-fast);
-            box-shadow: var(--shadow-subtle);
-            margin-top: -6px; /* Centers the thumb on the track */
-        }
-        
-        input[type="range"]::-webkit-slider-thumb:hover {
-            background: var(--color-gold-dark);
-            transform: scale(1.2);
-            box-shadow: var(--shadow-elevated);
-        }
-        
-        input[type="range"]::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            background: var(--color-gold);
-            cursor: pointer;
-            border-radius: 0;
-            border: none;
-            transition: all var(--transition-fast);
-            box-shadow: var(--shadow-subtle);
-        }
-        
-        input[type="range"]::-moz-range-thumb:hover {
-            background: var(--color-gold-dark);
-            transform: scale(1.2);
-            box-shadow: var(--shadow-elevated);
-        }
-        
-        input[type="range"]::-webkit-slider-runnable-track {
-            height: 4px;
-            background: transparent;
-            border-radius: 0;
-        }
-        
-        input[type="range"]::-moz-range-track {
-            height: 4px;
-            background: transparent;
-            border-radius: 0;
-        }
-        
-        .slider-value {
-            min-width: 35px;
-            text-align: right;
-            font-weight: 700;
-            color: var(--color-gold);
-            font-size: 0.9rem;
-        }
-        
-        /* ===== Info Panel ===== */
-        .info-panel {
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--color-deep-blue);
-            padding: 1.5rem;
-            width: 320px;
-            flex-shrink: 0;
-            border-left: 3px solid var(--color-gold);
-            box-shadow: var(--shadow-elevated);
-            backdrop-filter: blur(10px);
-            align-self: flex-start;
-        }
-        
-        .info-title {
-            font-family: var(--font-primary);
-            font-size: 1rem;
-            color: var(--color-deep-blue);
-            margin-bottom: 0.8rem;
-        }
-        
-        .info-text {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-        
-        .stats {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(16, 33, 75, 0.2);
-        }
-        
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem;
-        }
-        
-        .stat-label {
-            opacity: 0.8;
-        }
-        
-        .stat-value {
-            font-weight: 500;
-            color: var(--color-gold);
-        }
-        
-        /* ===== Explanation Section ===== */
-        .explanation {
-            background: var(--color-deep-blue);
-            color: var(--color-off-white);
-            padding: 4rem 2rem;
-        }
-        
-        .explanation-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            font-family: var(--font-primary);
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--color-gold);
-        }
-        
-        .section-intro {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .explanation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .explanation-card {
-            background-color: var(--color-off-white);
-            color: var(--color-deep-blue);
-            padding: 1.5rem;
-            border-left: 3px solid var(--color-gold);
-            box-shadow: var(--shadow-subtle);
-            transition: all var(--transition-normal);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .explanation-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-elevated);
-        }
-        
-        .explanation-card h3 {
-            font-family: var(--font-primary);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--color-deep-blue);
-        }
-        
-        .explanation-card p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-        
-        .flowing-explanation {
-            margin: 2rem 0;
-        }
-        
-        .flowing-explanation p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .flowing-explanation strong {
-            font-weight: 600;
-            color: var(--color-gold);
-        }
-        
-        .subsection-header {
-            font-family: var(--font-primary);
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
-            color: var(--color-gold);
-        }
-        
-        .info-box {
-            margin-top: 3rem;
-        }
-        
-        .info-box h4 {
-            font-family: var(--font-primary);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--color-gold);
-        }
-        
-        .info-box p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .info-box ul {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-left: 1.8rem;
-            list-style: disc;
-            opacity: 0.9;
-        }
-        
-        .info-box li {
-            margin-bottom: 0.6rem;
-        }
-        
-        .info-box strong {
-            font-weight: 600;
-            color: var(--color-gold);
-        }
-        
-        .technical-note {
-            margin-top: 2.5rem;
-        }
-        
-        .technical-note h4 {
-            font-family: var(--font-secondary);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.8rem;
-            color: var(--color-gold);
-            opacity: 0.8;
-        }
-        
-        .technical-note p {
-            font-size: 0.9rem;
-            line-height: 1.8;
-            opacity: 0.75;
-        }
-        
-        .section-header {
-            font-family: var(--font-primary);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--color-gold);
-        }
-        
-        .chart-explanation {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin: 2rem 0;
-            opacity: 0.9;
-        }
-        
-        .highlight-quote {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            font-style: italic;
-            padding-left: 1.5rem;
-            border-left: 3px solid var(--color-gold);
-            margin-top: 2.5rem;
-            opacity: 0.9;
-        }
-        
-        /* ===== Loading State ===== */
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: var(--color-deep-blue);
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--color-gold-20);
-            border-top-color: var(--color-gold);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* ===== Responsive ===== */
-        @media (max-width: 1200px) {
-            .viz-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .controls-panel,
-            .info-panel {
-                width: 100%;
-                max-width: 100%;
-            }
-            
-            #canvas-container {
-                min-height: 400px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .viz-content {
-                padding: 1rem;
-            }
-            
-            .path-panel {
-                margin: 0 1rem 1rem 1rem;
-            }
-            
-            .viz-container {
-                min-height: 400px;
-            }
-            
-            .explanation-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* ===== Node Selection Indicator ===== */
-        .selection-mode {
-            background: var(--color-gold-20);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            color: var(--color-deep-blue);
-        }
-        
-        /* ===== Path Visualization Panel ===== */
+        /* Path Visualization Panel */
         .path-panel {
             background: rgba(255, 255, 255, 0.98);
             padding: 1.5rem 2rem;
@@ -768,50 +226,7 @@
             font-size: 1rem;
         }
         
-        /* ===== Legend ===== */
-        .legend {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--color-gold-20);
-        }
-        
-        .legend-title {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--color-gold);
-            margin-bottom: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            margin-bottom: 0.5rem;
-            font-size: 0.75rem;
-        }
-        
-        .legend-icon {
-            width: 24px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .legend-node {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--color-deep-blue);
-        }
-        
-        .legend-line {
-            width: 20px;
-            height: 2px;
-        }
-        
+        /* Legend Specific Styles */
         .legend-line.regular {
             background: var(--color-deep-blue);
             opacity: 0.5;
@@ -825,12 +240,7 @@
             background: var(--color-dust);
         }
         
-        .legend-text {
-            opacity: 0.9;
-            color: var(--color-deep-blue);
-        }
-        
-        /* ===== Highcharts Network Comparison ===== */
+        /* Highcharts Network Comparison */
         .network-comparison {
             margin: 3rem 0;
         }
@@ -854,6 +264,23 @@
             border-left: 3px solid var(--color-gold);
             box-shadow: var(--shadow-subtle);
             padding: 1rem;
+        }
+        
+        /* Responsive Overrides */
+        @media (max-width: 1200px) {
+            #canvas-container {
+                min-height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .path-panel {
+                margin: 0 1rem 1rem 1rem;
+            }
+            
+            .viz-container {
+                min-height: 400px;
+            }
         }
         
         @media (max-width: 1024px) {
@@ -939,10 +366,24 @@
                     <!-- Right Panel: Controls -->
                     <div class="controls-panel">
                         <h3 class="controls-title">Network Controls</h3>
+                        <p class="info-text">Select different network modes and see how the average path becomes shorter.</p>
                         
-                        <div class="control-group">
+                        <div class="control-group first-control">
                             <label>Network Type</label>
-                            <button class="btn" id="toggleNetwork">Switch to Small World</button>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="networkType" value="clustered" checked>
+                                    <span class="radio-label">Clustered</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="networkType" value="smallworld">
+                                    <span class="radio-label">Small World</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="networkType" value="random">
+                                    <span class="radio-label">Random</span>
+                                </label>
+                            </div>
                         </div>
                         
                         <div class="control-group" id="shortcutControl" style="display: none;">
@@ -955,7 +396,8 @@
                         
                         <div class="control-group">
                             <label>Path Finding</label>
-                            <button class="btn btn-secondary" id="findPath">Find Shortest Path</button>
+                            <button class="btn btn-secondary" id="randomPath">Random Path</button>
+                            <button class="btn btn-secondary" id="findPath">Define Custom Path</button>
                         </div>
                         
                         <div id="selectionMode" class="selection-mode" style="display: none;">
@@ -1046,6 +488,9 @@
                     <p>
                         This visualization is based on the Watts-Strogatz model (1998), which demonstrated that random shortcuts reduce average path length dramatically while barely affecting the clustering coefficient. The clustering coefficient measures how connected a node's neighbors are to each other, while average path length tracks the typical number of steps between random nodes. This balance between local structure and global efficiency is what makes small-world networks so prevalent in nature and engineered systems.
                     </p>
+                    <p>
+                        This page was inspired by Veritasium's video <a href="https://www.youtube.com/watch?v=CYlon2tvywA" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">"Something Strange Happens When You Trace How Connected We Are"</a>, which beautifully explains the math behind six degrees of separation.
+                    </p>
                 </div>
             </div>
         </section>
@@ -1057,45 +502,71 @@
             constructor() {
                 this.nodes = [];
                 this.edges = [];
-                this.isSmallWorld = false;
+                this.networkType = 'clustered'; // 'clustered', 'smallworld', 'random'
                 this.shortcutProbability = 0.05;
-                this.gridSize = 16; // 16x16 grid = 256 nodes
+                this.numClusters = 8; // Number of distinct clusters
+                this.nodesPerCluster = 32; // Nodes in each cluster
             }
             
             createClusteredNetwork() {
                 this.nodes = [];
                 this.edges = [];
                 
-                console.log('Creating network with spacing: 60, grid size:', this.gridSize);
+                const mainRadius = 300; // Radius of the main circle
+                const clusterRadius = 80; // Radius of each cluster
                 
-                // Create grid of nodes
-                for (let i = 0; i < this.gridSize; i++) {
-                    for (let j = 0; j < this.gridSize; j++) {
-                        const x = (i - this.gridSize / 2) * 60;
-                        const z = (j - this.gridSize / 2) * 60;
+                // Create clusters arranged in a circle
+                for (let c = 0; c < this.numClusters; c++) {
+                    const clusterAngle = (2 * Math.PI * c) / this.numClusters;
+                    const clusterCenterX = Math.cos(clusterAngle) * mainRadius;
+                    const clusterCenterY = Math.sin(clusterAngle) * mainRadius;
+                    
+                    // Create nodes within each cluster
+                    for (let n = 0; n < this.nodesPerCluster; n++) {
+                        const nodeAngle = (2 * Math.PI * n) / this.nodesPerCluster;
+                        const radius = clusterRadius * (0.3 + Math.random() * 0.7); // Vary radius for organic look
+                        
+                        const x = clusterCenterX + Math.cos(nodeAngle) * radius;
+                        const y = clusterCenterY + Math.sin(nodeAngle) * radius;
+                        
                         this.nodes.push({
-                            id: i * this.gridSize + j,
-                            x, y: 0, z,
+                            id: c * this.nodesPerCluster + n,
+                            x, y,
+                            cluster: c,
                             neighbors: []
                         });
                     }
                 }
                 
-                // Connect neighbors in grid
-                for (let i = 0; i < this.gridSize; i++) {
-                    for (let j = 0; j < this.gridSize; j++) {
-                        const idx = i * this.gridSize + j;
-                        
-                        // Connect to right neighbor
-                        if (j < this.gridSize - 1) {
-                            const rightIdx = i * this.gridSize + (j + 1);
-                            this.addEdge(idx, rightIdx);
+                // Connect nodes within clusters (creating tight local networks)
+                for (let c = 0; c < this.numClusters; c++) {
+                    const clusterStart = c * this.nodesPerCluster;
+                    const clusterEnd = clusterStart + this.nodesPerCluster;
+                    
+                    for (let i = clusterStart; i < clusterEnd; i++) {
+                        // Connect to 4-6 neighbors within the same cluster
+                        const numConnections = 4 + Math.floor(Math.random() * 3);
+                        for (let k = 1; k <= numConnections; k++) {
+                            const neighborId = clusterStart + ((i - clusterStart + k) % this.nodesPerCluster);
+                            if (!this.nodes[i].neighbors.includes(neighborId)) {
+                                this.addEdge(i, neighborId);
+                            }
                         }
-                        
-                        // Connect to bottom neighbor
-                        if (i < this.gridSize - 1) {
-                            const bottomIdx = (i + 1) * this.gridSize + j;
-                            this.addEdge(idx, bottomIdx);
+                    }
+                }
+                
+                // Add a few connections between adjacent clusters
+                for (let c = 0; c < this.numClusters; c++) {
+                    const nextCluster = (c + 1) % this.numClusters;
+                    const clusterStart = c * this.nodesPerCluster;
+                    const nextClusterStart = nextCluster * this.nodesPerCluster;
+                    
+                    // Connect 2-3 nodes from this cluster to the next
+                    for (let i = 0; i < 2; i++) {
+                        const node1 = clusterStart + Math.floor(Math.random() * this.nodesPerCluster);
+                        const node2 = nextClusterStart + Math.floor(Math.random() * this.nodesPerCluster);
+                        if (!this.nodes[node1].neighbors.includes(node2)) {
+                            this.addEdge(node1, node2);
                         }
                     }
                 }
@@ -1104,18 +575,80 @@
             createSmallWorldNetwork() {
                 this.createClusteredNetwork();
                 
-                // Add random shortcuts
+                // Add random shortcuts across different clusters
                 const numShortcuts = Math.floor(this.nodes.length * this.shortcutProbability);
                 for (let i = 0; i < numShortcuts; i++) {
                     const node1 = Math.floor(Math.random() * this.nodes.length);
                     let node2 = Math.floor(Math.random() * this.nodes.length);
                     
-                    // Ensure it's not the same node and not already connected
-                    while (node2 === node1 || this.nodes[node1].neighbors.includes(node2)) {
+                    // Ensure it's from a different cluster and not already connected
+                    let attempts = 0;
+                    while ((node2 === node1 || 
+                           this.nodes[node1].cluster === this.nodes[node2].cluster ||
+                           this.nodes[node1].neighbors.includes(node2)) && 
+                           attempts < 50) {
                         node2 = Math.floor(Math.random() * this.nodes.length);
+                        attempts++;
                     }
                     
-                    this.addEdge(node1, node2, true); // Mark as shortcut
+                    if (attempts < 50) {
+                        this.addEdge(node1, node2, true); // Mark as shortcut
+                    }
+                }
+            }
+            
+            createRandomNetwork() {
+                this.nodes = [];
+                this.edges = [];
+                
+                const mainRadius = 300; // Radius of the main circle
+                const clusterRadius = 80; // Radius of each cluster
+                
+                // Create nodes in same cluster positions as clustered network
+                // but they won't have cluster-based connections
+                for (let c = 0; c < this.numClusters; c++) {
+                    const clusterAngle = (2 * Math.PI * c) / this.numClusters;
+                    const clusterCenterX = Math.cos(clusterAngle) * mainRadius;
+                    const clusterCenterY = Math.sin(clusterAngle) * mainRadius;
+                    
+                    // Create nodes within each cluster
+                    for (let n = 0; n < this.nodesPerCluster; n++) {
+                        const nodeAngle = (2 * Math.PI * n) / this.nodesPerCluster;
+                        const radius = clusterRadius * (0.3 + Math.random() * 0.7);
+                        
+                        const x = clusterCenterX + Math.cos(nodeAngle) * radius;
+                        const y = clusterCenterY + Math.sin(nodeAngle) * radius;
+                        
+                        this.nodes.push({
+                            id: c * this.nodesPerCluster + n,
+                            x, y,
+                            cluster: c,
+                            neighbors: []
+                        });
+                    }
+                }
+                
+                // Create completely random connections
+                // Target similar number of edges as clustered network
+                const avgDegree = 5; // Average connections per node
+                const numEdges = (this.nodes.length * avgDegree) / 2;
+                
+                for (let i = 0; i < numEdges; i++) {
+                    let node1 = Math.floor(Math.random() * this.nodes.length);
+                    let node2 = Math.floor(Math.random() * this.nodes.length);
+                    
+                    // Ensure it's not the same node and not already connected
+                    let attempts = 0;
+                    while ((node2 === node1 || this.nodes[node1].neighbors.includes(node2)) && 
+                           attempts < 50) {
+                        node1 = Math.floor(Math.random() * this.nodes.length);
+                        node2 = Math.floor(Math.random() * this.nodes.length);
+                        attempts++;
+                    }
+                    
+                    if (attempts < 50) {
+                        this.addEdge(node1, node2, false);
+                    }
                 }
             }
             
@@ -1152,9 +685,14 @@
                 let totalLength = 0;
                 let count = 0;
                 
-                for (let i = 0; i < this.nodes.length; i++) {
-                    for (let j = i + 1; j < this.nodes.length; j++) {
-                        const path = this.findShortestPath(i, j);
+                // Sample a subset for performance (all pairs is too slow for 256 nodes)
+                const sampleSize = 50;
+                for (let i = 0; i < sampleSize; i++) {
+                    const node1 = Math.floor(Math.random() * this.nodes.length);
+                    const node2 = Math.floor(Math.random() * this.nodes.length);
+                    
+                    if (node1 !== node2) {
+                        const path = this.findShortestPath(node1, node2);
                         if (path) {
                             totalLength += path.length - 1;
                             count++;
@@ -1167,6 +705,7 @@
             
             calculateClusteringCoefficient() {
                 let totalCoeff = 0;
+                let nodeCount = 0;
                 
                 for (const node of this.nodes) {
                     const neighbors = node.neighbors;
@@ -1183,183 +722,108 @@
                     
                     const possibleConnections = (neighbors.length * (neighbors.length - 1)) / 2;
                     totalCoeff += connections / possibleConnections;
+                    nodeCount++;
                 }
                 
-                return (totalCoeff / this.nodes.length).toFixed(3);
+                return nodeCount > 0 ? (totalCoeff / nodeCount).toFixed(3) : 0;
             }
         }
         
-        // ===== 3D Visualization =====
+        // ===== D3.js Visualization =====
         class NetworkVisualization {
             constructor() {
-                this.scene = null;
-                this.camera = null;
-                this.renderer = null;
-                this.nodeMeshes = [];
-                this.edgeMeshes = [];
+                this.svg = null;
+                this.g = null;
+                this.zoom = null;
                 this.graph = new NetworkGraph();
                 this.selectedNodes = [];
                 this.pathMode = false;
                 
                 this.init();
                 this.createNetwork();
-                this.animate();
             }
             
             init() {
                 const container = document.getElementById('canvas-container');
                 const loading = container.querySelector('.loading');
                 
-                // Scene
-                this.scene = new THREE.Scene();
-                this.scene.background = null; // Transparent to show container background
+                // Clear any existing SVG
+                d3.select('#canvas-container svg').remove();
                 
-                // Camera
-                this.camera = new THREE.PerspectiveCamera(
-                    75,
-                    container.clientWidth / container.clientHeight,
-                    0.1,
-                    4000
-                );
-                this.camera.position.set(0, 700, 850);
-                this.camera.lookAt(0, 0, 0);
+                // Create SVG
+                const width = container.clientWidth;
+                const height = container.clientHeight;
                 
-                console.log('Camera initialized at:', this.camera.position);
+                this.svg = d3.select('#canvas-container')
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height);
                 
-                // Renderer
-                this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-                this.renderer.setSize(container.clientWidth, container.clientHeight);
-                this.renderer.setPixelRatio(window.devicePixelRatio);
-                this.renderer.setClearColor(0x000000, 0); // Transparent
-                container.appendChild(this.renderer.domElement);
+                // Main group for positioning (zoom/pan disabled)
+                this.g = this.svg.append('g');
                 
-                // Lighting
-                const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-                this.scene.add(ambientLight);
+                // Center the view (static, no interactive zoom)
+                this.g.attr('transform', `translate(${width / 2}, ${height / 2}) scale(0.8)`);
                 
-                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-                directionalLight.position.set(50, 100, 50);
-                this.scene.add(directionalLight);
-                
-                // Mouse interaction
-                this.raycaster = new THREE.Raycaster();
-                this.mouse = new THREE.Vector2();
-                
+                // Window resize handler
                 window.addEventListener('resize', () => this.onWindowResize());
-                this.renderer.domElement.addEventListener('click', (e) => this.onNodeClick(e));
-                this.renderer.domElement.addEventListener('mousemove', (e) => this.onMouseMove(e));
-                
-                // Auto-rotate disabled
-                this.autoRotate = false;
                 
                 loading.style.display = 'none';
             }
             
             createNetwork() {
-                // Clear existing meshes
-                this.nodeMeshes.forEach(mesh => this.scene.remove(mesh));
-                this.edgeMeshes.forEach(mesh => this.scene.remove(mesh));
-                this.nodeMeshes = [];
-                this.edgeMeshes = [];
+                // Clear existing visualization
+                this.g.selectAll('*').remove();
                 
-                // Create graph
-                if (this.graph.isSmallWorld) {
+                // Create graph based on network type
+                if (this.graph.networkType === 'smallworld') {
                     this.graph.createSmallWorldNetwork();
+                } else if (this.graph.networkType === 'random') {
+                    this.graph.createRandomNetwork();
                 } else {
                     this.graph.createClusteredNetwork();
                 }
                 
-                // Create edges
-                this.graph.edges.forEach(edge => {
-                    const from = this.graph.nodes[edge.from];
-                    const to = this.graph.nodes[edge.to];
-                    
-                    const geometry = new THREE.BufferGeometry().setFromPoints([
-                        new THREE.Vector3(from.x, from.y, from.z),
-                        new THREE.Vector3(to.x, to.y, to.z)
-                    ]);
-                    
-                    const material = new THREE.LineBasicMaterial({
-                        color: edge.isShortcut ? 0xd7bd88 : 0x10214b,
-                        transparent: true,
-                        opacity: edge.isShortcut ? 0.95 : 0.7,
-                        linewidth: edge.isShortcut ? 10 : 8
-                    });
-                    
-                    const line = new THREE.Line(geometry, material);
-                    line.userData = { edge };
-                    this.scene.add(line);
-                    this.edgeMeshes.push(line);
-                });
+                // Create links
+                const links = this.g.append('g')
+                    .attr('class', 'links')
+                    .selectAll('line')
+                    .data(this.graph.edges)
+                    .enter()
+                    .append('line')
+                    .attr('class', d => d.isShortcut ? 'link shortcut' : 'link')
+                    .attr('x1', d => this.graph.nodes[d.from].x)
+                    .attr('y1', d => this.graph.nodes[d.from].y)
+                    .attr('x2', d => this.graph.nodes[d.to].x)
+                    .attr('y2', d => this.graph.nodes[d.to].y);
                 
                 // Create nodes
-                this.graph.nodes.forEach(node => {
-                    const geometry = new THREE.SphereGeometry(14, 16, 16);
-                    const material = new THREE.MeshPhongMaterial({
-                        color: 0x10214b,
-                        emissive: 0x10214b,
-                        emissiveIntensity: 0.2,
-                        shininess: 30
+                const nodes = this.g.append('g')
+                    .attr('class', 'nodes')
+                    .selectAll('circle')
+                    .data(this.graph.nodes)
+                    .enter()
+                    .append('circle')
+                    .attr('class', 'node')
+                    .attr('r', 6)
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y)
+                    .on('mouseover', function(event, d) {
+                        if (!d3.select(this).classed('path-node') && !d3.select(this).classed('selected')) {
+                            d3.select(this).attr('r', 9);
+                        }
+                    })
+                    .on('mouseout', function(event, d) {
+                        if (!d3.select(this).classed('path-node') && !d3.select(this).classed('selected')) {
+                            d3.select(this).attr('r', 6);
+                        }
                     });
-                    
-                    const mesh = new THREE.Mesh(geometry, material);
-                    mesh.position.set(node.x, node.y, node.z);
-                    mesh.userData = { nodeId: node.id };
-                    this.scene.add(mesh);
-                    this.nodeMeshes.push(mesh);
-                });
+                
+                // Store references
+                this.links = links;
+                this.nodes = nodes;
                 
                 this.updateStats();
-            }
-            
-            onNodeClick(event) {
-                if (!this.pathMode) return;
-                
-                const rect = this.renderer.domElement.getBoundingClientRect();
-                this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-                this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-                
-                this.raycaster.setFromCamera(this.mouse, this.camera);
-                const intersects = this.raycaster.intersectObjects(this.nodeMeshes);
-                
-                if (intersects.length > 0) {
-                    const nodeId = intersects[0].object.userData.nodeId;
-                    this.selectedNodes.push(nodeId);
-                    
-                    // Highlight selected node
-                    intersects[0].object.material.color.setHex(0xd7bd88);
-                    
-                    if (this.selectedNodes.length === 2) {
-                        this.showPath(this.selectedNodes[0], this.selectedNodes[1]);
-                        this.selectedNodes = [];
-                        this.pathMode = false;
-                        document.getElementById('selectionMode').style.display = 'none';
-                    }
-                }
-            }
-            
-            onMouseMove(event) {
-                const rect = this.renderer.domElement.getBoundingClientRect();
-                this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-                this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-                
-                this.raycaster.setFromCamera(this.mouse, this.camera);
-                const intersects = this.raycaster.intersectObjects(this.nodeMeshes);
-                
-                this.nodeMeshes.forEach(mesh => {
-                    if (!mesh.userData.highlighted && !mesh.userData.inPath) {
-                        mesh.material.emissiveIntensity = 0.2;
-                        mesh.scale.set(1, 1, 1);
-                    }
-                });
-                
-                if (intersects.length > 0 && !intersects[0].object.userData.inPath) {
-                    intersects[0].object.material.emissiveIntensity = 0.5;
-                    intersects[0].object.scale.set(1.3, 1.3, 1.3);
-                    this.renderer.domElement.style.cursor = 'pointer';
-                } else {
-                    this.renderer.domElement.style.cursor = 'default';
-                }
             }
             
             async showPath(startId, endId) {
@@ -1372,28 +836,20 @@
                 // Animate path step by step
                 for (let i = 0; i < path.length; i++) {
                     const nodeId = path[i];
-                    const mesh = this.nodeMeshes[nodeId];
                     
-                    // Highlight current node
-                    mesh.material.color.setHex(0xd7bd88);
-                    mesh.material.emissive.setHex(0xd7bd88);
-                    mesh.material.emissiveIntensity = 0.8;
-                    mesh.scale.set(1.5, 1.5, 1.5);
-                    mesh.userData.inPath = true;
+                    // Highlight current node (just change color, not size)
+                    this.nodes.filter(d => d.id === nodeId)
+                        .classed('path-node', true);
                     
                     // Highlight edge to this node (if not first)
                     if (i > 0) {
                         const from = path[i - 1];
                         const to = nodeId;
                         
-                        this.edgeMeshes.forEach(edgeMesh => {
-                            const edge = edgeMesh.userData.edge;
-                            if ((edge.from === from && edge.to === to) || 
-                                (edge.from === to && edge.to === from)) {
-                                edgeMesh.material.color.setHex(0xd03c3b);
-                                edgeMesh.material.opacity = 1;
-                            }
-                        });
+                        this.links.filter(d => 
+                            (d.from === from && d.to === to) || 
+                            (d.from === to && d.to === from))
+                            .classed('path-link', true);
                     }
                     
                     // Update path visualization incrementally
@@ -1449,25 +905,22 @@
             }
             
             resetHighlights() {
-                this.nodeMeshes.forEach(mesh => {
-                    mesh.material.color.setHex(0x10214b);
-                    mesh.material.emissive.setHex(0x10214b);
-                    mesh.material.emissiveIntensity = 0.2;
-                    mesh.scale.set(1, 1, 1);
-                    mesh.userData.inPath = false;
-                    mesh.userData.highlighted = false;
-                });
+                this.nodes
+                    .classed('path-node', false)
+                    .classed('selected', false)
+                    .attr('r', 6);
                 
-                this.edgeMeshes.forEach(edgeMesh => {
-                    const edge = edgeMesh.userData.edge;
-                    edgeMesh.material.color.setHex(edge.isShortcut ? 0xd7bd88 : 0x10214b);
-                    edgeMesh.material.opacity = edge.isShortcut ? 0.95 : 0.7;
-                });
+                this.links
+                    .classed('path-link', false);
             }
             
             updateStats() {
-                document.getElementById('networkType').textContent = 
-                    this.graph.isSmallWorld ? 'Small World' : 'Clustered';
+                const typeMap = {
+                    'clustered': 'Clustered',
+                    'smallworld': 'Small World',
+                    'random': 'Random'
+                };
+                document.getElementById('networkType').textContent = typeMap[this.graph.networkType];
                 document.getElementById('nodeCount').textContent = this.graph.nodes.length;
                 
                 // Calculate stats (this is computationally expensive, so we do it sparingly)
@@ -1482,21 +935,15 @@
             
             onWindowResize() {
                 const container = document.getElementById('canvas-container');
-                this.camera.aspect = container.clientWidth / container.clientHeight;
-                this.camera.updateProjectionMatrix();
-                this.renderer.setSize(container.clientWidth, container.clientHeight);
-            }
-            
-            animate() {
-                requestAnimationFrame(() => this.animate());
+                const width = container.clientWidth;
+                const height = container.clientHeight;
                 
-                if (this.autoRotate) {
-                    this.camera.position.x = Math.sin(Date.now() * 0.0001) * 850;
-                    this.camera.position.z = Math.cos(Date.now() * 0.0001) * 850;
-                    this.camera.lookAt(0, 0, 0);
-                }
+                this.svg
+                    .attr('width', width)
+                    .attr('height', height);
                 
-                this.renderer.render(this.scene, this.camera);
+                // Re-center the view (static positioning)
+                this.g.attr('transform', `translate(${width / 2}, ${height / 2}) scale(0.8)`);
             }
         }
         
@@ -1519,27 +966,27 @@
         window.addEventListener('DOMContentLoaded', () => {
             viz = new NetworkVisualization();
             
-            // Toggle network type
-            document.getElementById('toggleNetwork').addEventListener('click', () => {
-                viz.graph.isSmallWorld = !viz.graph.isSmallWorld;
-                viz.resetHighlights();
-                viz.createNetwork();
-                
-                const btn = document.getElementById('toggleNetwork');
-                const shortcutControl = document.getElementById('shortcutControl');
-                
-                if (viz.graph.isSmallWorld) {
-                    btn.textContent = 'Switch to Clustered';
-                    shortcutControl.style.display = 'block';
-                } else {
-                    btn.textContent = 'Switch to Small World';
-                    shortcutControl.style.display = 'none';
-                }
+            // Network type radio buttons
+            const networkTypeRadios = document.querySelectorAll('input[name="networkType"]');
+            networkTypeRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    viz.graph.networkType = e.target.value;
+                    viz.resetHighlights();
+                    viz.createNetwork();
+                    
+                    const shortcutControl = document.getElementById('shortcutControl');
+                    // Show shortcut slider only for small world
+                    if (viz.graph.networkType === 'smallworld') {
+                        shortcutControl.style.display = 'block';
+                    } else {
+                        shortcutControl.style.display = 'none';
+                    }
+                });
             });
             
             // Shortcut slider with debounce
             const debouncedNetworkUpdate = debounce(() => {
-                if (viz.graph.isSmallWorld) {
+                if (viz.graph.networkType === 'smallworld') {
                     viz.createNetwork();
                 }
             }, 300);
@@ -1550,6 +997,28 @@
                 viz.graph.shortcutProbability = value / 100;
                 
                 debouncedNetworkUpdate();
+            });
+            
+            // Random path button
+            document.getElementById('randomPath').addEventListener('click', () => {
+                viz.pathMode = false;
+                viz.selectedNodes = [];
+                viz.resetHighlights();
+                
+                // Select two random nodes
+                const node1 = Math.floor(Math.random() * viz.graph.nodes.length);
+                let node2 = Math.floor(Math.random() * viz.graph.nodes.length);
+                
+                // Ensure they're different nodes
+                while (node2 === node1) {
+                    node2 = Math.floor(Math.random() * viz.graph.nodes.length);
+                }
+                
+                // Hide selection mode indicator
+                document.getElementById('selectionMode').style.display = 'none';
+                
+                // Show the path
+                viz.showPath(node1, node2);
             });
             
             // Find path button
@@ -1570,14 +1039,24 @@
                 document.getElementById('selectionMode').style.display = 'block';
                 document.getElementById('selectionMode').textContent = 'Select first node...';
                 
-                // After first selection, update text
-                const originalClick = viz.onNodeClick.bind(viz);
-                viz.onNodeClick = function(event) {
-                    originalClick(event);
+                // Enable click handlers for nodes
+                viz.nodes.on('click', (event, d) => {
+                    if (!viz.pathMode) return;
+                    
+                    event.stopPropagation();
+                    
+                    viz.selectedNodes.push(d.id);
+                    d3.select(event.currentTarget).classed('selected', true);
+                    
                     if (viz.selectedNodes.length === 1) {
                         document.getElementById('selectionMode').textContent = 'Select second node...';
+                    } else if (viz.selectedNodes.length === 2) {
+                        viz.showPath(viz.selectedNodes[0], viz.selectedNodes[1]);
+                        viz.selectedNodes = [];
+                        viz.pathMode = false;
+                        document.getElementById('selectionMode').style.display = 'none';
                     }
-                };
+                });
             });
             
             // ===== Highcharts Network Visualizations =====
