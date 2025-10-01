@@ -283,6 +283,23 @@ body {
     transform: scaleX(1);
 }
 
+/* External Link Indicator */
+.nav-link-external {
+    color: var(--color-gold);
+    font-weight: 600;
+}
+
+.external-icon {
+    display: inline-block;
+    margin-left: 0.3rem;
+    font-size: 1.4rem;
+    transition: transform var(--transition-fast);
+}
+
+.nav-link-external:hover .external-icon {
+    transform: translateX(3px);
+}
+
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
@@ -1233,7 +1250,7 @@ body {
 
 .footer-nav ul {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-sm);
 }
 

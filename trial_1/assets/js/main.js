@@ -100,10 +100,11 @@ function initNavigation() {
     // Smooth scrolling for navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
+            
+            // Only prevent default and smooth scroll for anchor links
             if (targetId.startsWith('#')) {
+                e.preventDefault();
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
                     const offsetTop = targetSection.offsetTop;
@@ -112,6 +113,9 @@ function initNavigation() {
                         top: offsetTop,
                         behavior: 'smooth'
                     });
+                    
+                    // Update URL hash for sharing
+                    history.pushState(null, null, targetId);
                     
                     // Close mobile menu if open
                     if (navList.classList.contains('active')) {
