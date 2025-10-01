@@ -19,6 +19,7 @@
     
     <!-- Shared Bites Styles -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../assets/css/breadcrumbs.css">
     
     <style>
         /* ===== Page-Specific Styles for Bites Overview ===== */
@@ -312,7 +313,11 @@
     <div class="page-container">
         <header>
             <div class="hero-content">
-                <a href="../index.html" class="back-link">← BACK TO PORTFOLIO</a>
+                <div class="breadcrumb-nav">
+                    <a href="../index.html" class="breadcrumb-link">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Bites</span>
+                </div>
                 <h1>Bites</h1>
                 <p class="tagline">Interactive explorations of interesting concepts in data science, mathematics, and technology</p>
             </div>
@@ -335,7 +340,7 @@
                 <!-- Bites Grid -->
                 <div class="bites-grid" id="bitesGrid">
                     <!-- Bite Card: What a Small World -->
-                    <a href="what-a-small-world.html" class="bite-card" data-tags="networks,visualization,mathematics">
+                    <a href="what-a-small-world/index.html" class="bite-card" data-tags="networks,visualization,mathematics">
                         <div class="bite-image-container">
                             <img src="assets/images/what-a-small-world-cluster_preview.webp" 
                                  alt="What a Small World visualization preview" 
