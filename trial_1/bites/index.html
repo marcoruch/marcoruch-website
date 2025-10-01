@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bites - Interactive Explorations | Marco Ruch</title>
+    <meta name="description" content="Interactive visualizations and explorations of interesting concepts in data science, mathematics, and technology by Marco Ruch.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Shared Bites Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* ===== Page-Specific Styles for Bites Overview ===== */
+        
+        /* Remove header from shared styles and use custom one */
+        header {
+            background: linear-gradient(135deg, var(--color-deep-blue), var(--color-deep-blue-light));
+            color: var(--color-off-white);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, var(--color-gold-20) 49%, var(--color-gold-20) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, var(--color-gold-20) 49%, var(--color-gold-20) 51%, transparent 52%);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .hero-content .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .hero-content h1 {
+            font-family: var(--font-primary);
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        
+        /* Bites Grid Section */
+        .bites-section {
+            background: var(--color-off-white);
+            padding: 4rem 2rem;
+            min-height: 60vh;
+        }
+        
+        .bites-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Filter Tags */
+        .filter-section {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .filter-label {
+            font-family: var(--font-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-deep-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .filter-tag {
+            background: transparent;
+            border: 2px solid var(--color-deep-blue);
+            color: var(--color-deep-blue);
+            padding: 0.5rem 1.2rem;
+            font-family: var(--font-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: var(--color-deep-blue);
+            color: var(--color-off-white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        /* Bites Grid */
+        .bites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* Bite Card */
+        .bite-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .bite-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-elevated);
+            border-left-color: var(--color-dust);
+        }
+        
+        .bite-image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
+            position: relative;
+        }
+        
+        .bite-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .bite-card:hover .bite-image {
+            transform: scale(1.05);
+        }
+        
+        .bite-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bite-title {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .bite-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .bite-tag {
+            background: var(--color-gold-20);
+            color: var(--color-deep-blue);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all var(--transition-fast);
+        }
+        
+        .bite-card:hover .bite-tag {
+            background: var(--color-gold);
+            color: var(--color-deep-blue);
+        }
+        
+        .bite-description {
+            font-family: var(--font-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+        
+        .bite-cta {
+            font-family: var(--font-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all var(--transition-fast);
+        }
+        
+        .bite-cta::after {
+            content: '→';
+            font-size: 1.2rem;
+            transition: transform var(--transition-fast);
+        }
+        
+        .bite-card:hover .bite-cta {
+            color: var(--color-dust);
+        }
+        
+        .bite-card:hover .bite-cta::after {
+            transform: translateX(5px);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--color-deep-blue);
+            opacity: 0.6;
+        }
+        
+        .empty-state h3 {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state p {
+            font-size: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-content .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .bites-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .filter-tags {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-tag {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .bites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <div class="hero-content">
+                <a href="../index.html" class="back-link">← BACK TO PORTFOLIO</a>
+                <h1>Bites</h1>
+                <p class="tagline">Interactive explorations of interesting concepts in data science, mathematics, and technology</p>
+            </div>
+        </header>
+        
+        <section class="bites-section">
+            <div class="bites-container">
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <span class="filter-label">Filter by Topic</span>
+                    <div class="filter-tags">
+                        <button class="filter-tag active" data-filter="all">All</button>
+                        <button class="filter-tag" data-filter="networks">Networks</button>
+                        <button class="filter-tag" data-filter="visualization">Visualization</button>
+                        <button class="filter-tag" data-filter="mathematics">Mathematics</button>
+                        <button class="filter-tag" data-filter="data-science">Data Science</button>
+                    </div>
+                </div>
+                
+                <!-- Bites Grid -->
+                <div class="bites-grid" id="bitesGrid">
+                    <!-- Bite Card: What a Small World -->
+                    <a href="what-a-small-world.html" class="bite-card" data-tags="networks,visualization,mathematics">
+                        <div class="bite-image-container">
+                            <img src="assets/images/what-a-small-world-cluster_preview.webp" 
+                                 alt="What a Small World visualization preview" 
+                                 class="bite-image"
+                                 loading="lazy">
+                        </div>
+                        <div class="bite-content">
+                            <h2 class="bite-title">What a Small World</h2>
+                            <div class="bite-tags">
+                                <span class="bite-tag">Networks</span>
+                                <span class="bite-tag">Visualization</span>
+                                <span class="bite-tag">Mathematics</span>
+                            </div>
+                            <p class="bite-description">
+                                An interactive 3D exploration of the small-world phenomenon, demonstrating how just a few random connections can dramatically shrink the degrees of separation in a network. Explore how the six degrees of separation actually work in practice.
+                            </p>
+                            <span class="bite-cta">Explore Visualization</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Future bites will be added here -->
+                </div>
+                
+                <!-- Empty State (hidden by default, shown when filter returns no results) -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <h3>No bites found</h3>
+                    <p>Try selecting a different filter or check back later for new content.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // ===== Filter Functionality =====
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const biteCards = document.querySelectorAll('.bite-card');
+        const emptyState = document.getElementById('emptyState');
+        const bitesGrid = document.getElementById('bitesGrid');
+        
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Update active state
+                filterTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                
+                const filter = tag.dataset.filter;
+                let visibleCount = 0;
+                
+                // Filter cards
+                biteCards.forEach(card => {
+                    const cardTags = card.dataset.tags.split(',');
+                    
+                    if (filter === 'all' || cardTags.includes(filter)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide empty state
+                if (visibleCount === 0) {
+                    bitesGrid.style.display = 'none';
+                    emptyState.style.display = 'block';
+                } else {
+                    bitesGrid.style.display = 'grid';
+                    emptyState.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
