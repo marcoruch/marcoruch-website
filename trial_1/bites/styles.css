@@ -521,6 +521,10 @@ input[type="range"]::-moz-range-track {
     opacity: 0.75;
 }
 
+.technical-note p + p {
+    margin-top: 1rem;
+}
+
 .chart-explanation {
     font-size: 1rem;
     line-height: 1.8;
