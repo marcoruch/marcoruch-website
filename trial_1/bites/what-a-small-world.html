@@ -1594,7 +1594,8 @@
                         id: String(i),
                         marker: { radius: 2, fillColor: "#10214b" },
                         x: Math.cos(angle) * radius,
-                        y: Math.sin(angle) * radius
+                        y: Math.sin(angle) * radius,
+                        connections: 0 // Will be updated when edges are added
                     });
                 }
                 return nodes;
@@ -1639,6 +1640,19 @@
             
             // ===== Chart templates =====
             function makeNetwork(container, title, edges, color = "#10214b") {
+                // Calculate connections for each node
+                const nodeConnections = {};
+                edges.forEach(edge => {
+                    nodeConnections[edge[0]] = (nodeConnections[edge[0]] || 0) + 1;
+                    nodeConnections[edge[1]] = (nodeConnections[edge[1]] || 0) + 1;
+                });
+                
+                // Update nodes with connection counts
+                const nodesWithConnections = baseNodes.map(node => ({
+                    ...node,
+                    connections: nodeConnections[node.id] || 0
+                }));
+                
                 Highcharts.chart(container, {
                     chart: {
                         type: "networkgraph",
@@ -1656,6 +1670,19 @@
                         }
                     },
                     credits: { enabled: false },
+                    tooltip: {
+                        useHTML: true,
+                        formatter: function() {
+                            if (this.point.id) {
+                                return `<b>Node ${this.point.id}</b><br/>Connections: ${this.point.connections || 'N/A'}`;
+                            }
+                            return false;
+                        },
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontSize: "0.85rem"
+                        }
+                    },
                     plotOptions: {
                         networkgraph: {
                             keys: ["from", "to"],
@@ -1669,11 +1696,14 @@
                     },
                     series: [{
                         data: edges,
-                        nodes: baseNodes,
+                        nodes: nodesWithConnections,
                         color: color,
                         lineWidth: 1,
                         marker: {
                             radius: 4
+                        },
+                        dataLabels: {
+                            enabled: false
                         }
                     }]
                 });
