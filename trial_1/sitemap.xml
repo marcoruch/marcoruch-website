@@ -11,6 +11,30 @@
       <image:caption>Professional portfolio of Marco Ruch, software engineer specializing in C# and Angular development</image:caption>
     </image:image>
   </url>
+  
+  <url>
+    <loc>https://marcoruch.ch/bites/</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp</image:loc>
+      <image:title>Bites - Interactive Explorations</image:title>
+      <image:caption>Interactive visualizations and explorations of interesting concepts in data science, mathematics, and technology</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://marcoruch.ch/bites/what-a-small-world/</loc>
+    <lastmod>2025-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp</image:loc>
+      <image:title>What a Small World - Interactive Network Visualization</image:title>
+      <image:caption>An interactive 3D visualization exploring the small-world phenomenon and six degrees of separation in networks</image:caption>
+    </image:image>
+  </url>
 </urlset>
 
 

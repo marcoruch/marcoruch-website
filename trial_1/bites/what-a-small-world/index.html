@@ -3,23 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What a Small World - Interactive Visualization | Marco Ruch</title>
+    <title>What a Small World | Bites | Marco Ruch</title>
     <meta name="description" content="An interactive 3D visualization exploring the small-world phenomenon - how just a few random connections can dramatically shrink the degrees of separation in a network.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="author" content="Marco Ruch">
+    <meta name="theme-color" content="#10214b">
+    <meta name="msapplication-TileColor" content="#10214b">
+    <meta name="keywords" content="small world phenomenon, network theory, six degrees of separation, data visualization, interactive visualization, graph theory, Watts-Strogatz model">
+
+    <!-- Canonical URL (SEO) -->
+    <link rel="canonical" href="https://marcoruch.ch/bites/what-a-small-world/">
+    
+    <!-- Additional indexing hints -->
+    <link rel="alternate" hreflang="en" href="https://marcoruch.ch/bites/what-a-small-world/">
+    <link rel="alternate" hreflang="x-default" href="https://marcoruch.ch/bites/what-a-small-world/">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="What a Small World | Bites | Marco Ruch">
+    <meta property="og:description" content="Explore how random shortcuts in networks create surprisingly short paths between nodes. An interactive visualization of the small-world phenomenon and six degrees of separation.">
+    <meta property="og:url" content="https://marcoruch.ch/bites/what-a-small-world/">
+    <meta property="og:site_name" content="Marco Ruch">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:image" content="https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp">
+    <meta property="og:image:alt" content="What a Small World - Network Visualization showing small-world phenomenon">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="article:author" content="Marco Ruch">
+    <meta property="article:published_time" content="2025-10-01T00:00:00Z">
+    <meta property="article:section" content="Data Visualization">
+    <meta property="article:tag" content="Network Theory">
+    <meta property="article:tag" content="Data Visualization">
+    <meta property="article:tag" content="Interactive">
+
+    <!-- Twitter Card (Social) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="What a Small World | Bites | Marco Ruch">
+    <meta name="twitter:description" content="Explore how random shortcuts in networks create surprisingly short paths between nodes. An interactive visualization of the small-world phenomenon.">
+    <meta name="twitter:image" content="https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp">
+    <meta name="twitter:creator" content="@marcoruch">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/manifest.json" crossorigin="use-credentials">
     
-    <!-- Fonts -->
+    <!-- Performance Enhancements -->
+    <!-- Preconnect / DNS Prefetch -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://d3js.org">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://d3js.org">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../styles.css" as="style">
+    <link rel="preload" href="../../assets/css/breadcrumbs.css" as="style">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     
     <!-- Shared Bites Styles -->
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../../assets/css/breadcrumbs.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "What a Small World | Bites | Marco Ruch",
+      "description": "An interactive 3D visualization exploring the small-world phenomenon - how just a few random connections can dramatically shrink the degrees of separation in a network",
+      "url": "https://marcoruch.ch/bites/what-a-small-world/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://marcoruch.ch/bites/what-a-small-world/"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp",
+        "width": 1200,
+        "height": 630
+      },
+      "datePublished": "2025-10-01T00:00:00Z",
+      "dateModified": "2025-10-01T00:00:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/",
+        "jobTitle": "Senior Software Engineer",
+        "sameAs": [
+          "https://www.linkedin.com/in/marco-ruch/",
+          "https://github.com/marcoruch/"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/"
+      },
+      "articleSection": "Data Visualization",
+      "keywords": "small world phenomenon, network theory, six degrees of separation, data visualization, interactive visualization, graph theory, Watts-Strogatz model",
+      "inLanguage": "en-GB",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Portfolio",
+            "item": "https://marcoruch.ch/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bites",
+            "item": "https://marcoruch.ch/bites/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "What a Small World",
+            "item": "https://marcoruch.ch/bites/what-a-small-world/"
+          }
+        ]
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Network Theory"
+        },
+        {
+          "@type": "Thing",
+          "name": "Small-World Phenomenon"
+        },
+        {
+          "@type": "Thing",
+          "name": "Graph Theory"
+        }
+      ]
+    }
+    </script>
     
     <!-- D3.js -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
