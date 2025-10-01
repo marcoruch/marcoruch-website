@@ -843,7 +843,6 @@
         
         .network-chart {
             flex: 1;
-            min-height: 400px;
             background: var(--color-off-white);
             border-left: 3px solid var(--color-gold);
             box-shadow: var(--shadow-subtle);
@@ -851,7 +850,6 @@
         
         .results-chart {
             width: 100%;
-            min-height: 500px;
             background: var(--color-off-white);
             border-left: 3px solid var(--color-gold);
             box-shadow: var(--shadow-subtle);
@@ -861,10 +859,6 @@
         @media (max-width: 1024px) {
             .network-row {
                 flex-direction: column;
-            }
-            
-            .network-chart {
-                min-height: 350px;
             }
         }
     </style>
@@ -1027,7 +1021,7 @@
                     </div>
                     
                     <p class="chart-explanation">The graph above illustrates this mathematically: as rewiring probability increases, the clustering coefficient (blue line) stays relatively high until p≈0.1, while the path length (gold line) drops rapidly even with minimal rewiring. The highlighted region shows the "sweet spot" where small-world properties emerge - networks that are both highly clustered locally and efficiently connected globally.</p>
-                </div>
+                    </div>
                 
                 <h3 class="section-header">Real-World Applications</h3>
                 
@@ -1640,7 +1634,7 @@
             // ===== Parameters =====
             const N = 60;
             const k = 4;
-            const radius = 200;
+            const radius = 280;
             const baseNodes = circularNodes(N, radius);
             
             // ===== Chart templates =====
@@ -1665,14 +1659,22 @@
                     plotOptions: {
                         networkgraph: {
                             keys: ["from", "to"],
-                            layoutAlgorithm: { enableSimulation: false }
+                            layoutAlgorithm: { 
+                                enableSimulation: false,
+                                integration: 'verlet',
+                                linkLength: 50,
+                                initialPositions: 'circle'
+                            }
                         }
                     },
                     series: [{
                         data: edges,
                         nodes: baseNodes,
                         color: color,
-                        lineWidth: 1
+                        lineWidth: 1,
+                        marker: {
+                            radius: 4
+                        }
                     }]
                 });
             }
