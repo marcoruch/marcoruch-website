@@ -536,8 +536,6 @@
         
         .technical-note {
             margin-top: 2.5rem;
-            padding-left: 1rem;
-            border-left: 2px solid rgba(215, 189, 136, 0.3);
         }
         
         .technical-note h4 {
@@ -555,6 +553,20 @@
             font-size: 0.9rem;
             line-height: 1.8;
             opacity: 0.75;
+        }
+        
+        .section-header {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-gold);
+        }
+        
+        .chart-explanation {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+            opacity: 0.9;
         }
         
         .highlight-quote {
@@ -1001,23 +1013,23 @@
                 </blockquote>
                 
                 <div class="network-comparison">
-                    <h3 style="font-family: var(--font-primary); font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-gold);">Network Evolution</h3>
+                    <h3 class="section-header">Network Evolution</h3>
                     <div class="network-row">
                         <div id="regularNetwork" class="network-chart"></div>
                         <div id="smallWorldNetwork" class="network-chart"></div>
                         <div id="randomNetwork" class="network-chart"></div>
                     </div>
                     
-                    <p style="font-size: 1rem; line-height: 1.8; margin: 2rem 0; opacity: 0.9;">The three diagrams above show the evolution from clustered to random networks. The <strong>Regular (p=0)</strong> network displays a perfect circular structure where each node connects only to its immediate neighbors, creating long path lengths but high clustering. The <strong>Small-World (p≈0.05)</strong> network introduces just a few random shortcuts (shown in red), dramatically reducing path length while preserving most of the local clustering. The <strong>Random (p=1)</strong> network shows what happens with maximum rewiring - short paths but no meaningful clustering.</p>
+                    <p class="chart-explanation">The three diagrams above show the evolution from clustered to random networks. The <strong>Regular (p=0)</strong> network displays a perfect circular structure where each node connects only to its immediate neighbors, creating long path lengths but high clustering. The <strong>Small-World (p≈0.05)</strong> network introduces just a few random shortcuts (shown in red), dramatically reducing path length while preserving most of the local clustering. The <strong>Random (p=1)</strong> network shows what happens with maximum rewiring - short paths but no meaningful clustering.</p>
                     
                     <div class="results-chart">
                         <div id="resultsChart" style="width: 100%; height: 100%;"></div>
                     </div>
                     
-                    <p style="font-size: 1rem; line-height: 1.8; margin: 2rem 0; opacity: 0.9;">The graph above illustrates this mathematically: as rewiring probability increases, the clustering coefficient (blue line) stays relatively high until p≈0.1, while the path length (gold line) drops rapidly even with minimal rewiring. The highlighted region shows the "sweet spot" where small-world properties emerge - networks that are both highly clustered locally and efficiently connected globally.</p>
+                    <p class="chart-explanation">The graph above illustrates this mathematically: as rewiring probability increases, the clustering coefficient (blue line) stays relatively high until p≈0.1, while the path length (gold line) drops rapidly even with minimal rewiring. The highlighted region shows the "sweet spot" where small-world properties emerge - networks that are both highly clustered locally and efficiently connected globally.</p>
                 </div>
                 
-                <h3 style="font-family: var(--font-primary); font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-gold);">Real-World Applications</h3>
+                <h3 class="section-header">Real-World Applications</h3>
                 
                 <div class="flowing-explanation">
                     <p>This principle appears everywhere in nature and technology. <strong>Neural networks</strong> in your brain use shortcuts to pass signals efficiently across distant regions while clustering handles specialized tasks, enabling both fast processing and robust, localized function. <strong>Global infrastructure</strong> like air travel relies on local regional airports (clusters) connected by a handful of global hubs (shortcuts), making worldwide travel possible without requiring direct routes between every city pair.</p>
@@ -1026,7 +1038,7 @@
                 </div>
                 
                 <div class="info-box">
-                    <h3 style="font-family: var(--font-primary); font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-gold);">Try It Yourself</h3>
+                    <h3 class="section-header">Try It Yourself</h3>
                     <p>Use the controls above to explore how shortcuts transform the network:</p>
                     <ul>
                         <li>Toggle to <strong>Small World</strong> and adjust the shortcut slider. Watch how the average path length drops dramatically with just a few random connections.</li>
