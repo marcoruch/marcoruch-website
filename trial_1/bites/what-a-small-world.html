@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What a Small World - Interactive Visualization | Marco Ruch</title>
+    <meta name="description" content="An interactive 3D visualization exploring the small-world phenomenon - how just a few random connections can dramatically shrink the degrees of separation in a network.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Highcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.0/highcharts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.0/modules/networkgraph.js"></script>
+    
+    <style>
+        /* ===== Variables ===== */
+        :root {
+            /* Color Palette */
+            --color-deep-blue: #10214b;
+            --color-gold: #d7bd88;
+            --color-dust: #d03c3b;
+            --color-off-white: #ebe7e1;
+            
+            /* Color Variations */
+            --color-deep-blue-light: #1a3366;
+            --color-gold-dark: #c5aa75;
+            --color-deep-blue-80: rgba(16, 33, 75, 0.8);
+            --color-gold-20: rgba(215, 189, 136, 0.2);
+            
+            /* Typography */
+            --font-primary: 'Playfair Display', serif;
+            --font-secondary: 'Montserrat', sans-serif;
+            
+            /* Transitions */
+            --transition-fast: 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-normal: 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-slow: 500ms cubic-bezier(0.19, 1, 0.22, 1);
+            
+            /* Shadows */
+            --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-elevated: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ===== Reset & Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--color-off-white);
+            color: #333333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ===== Layout ===== */
+        .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--color-deep-blue), var(--color-deep-blue-light));
+            color: var(--color-off-white);
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, var(--color-gold-20) 49%, var(--color-gold-20) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, var(--color-gold-20) 49%, var(--color-gold-20) 51%, transparent 52%);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: var(--color-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            transition: color var(--transition-fast);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        
+        .back-link:hover {
+            color: var(--color-off-white);
+        }
+        
+        h1 {
+            font-family: var(--font-primary);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            font-weight: 300;
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* ===== Visualization Container ===== */
+        .viz-container {
+            flex: 1;
+            min-height: 800px;
+            background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .viz-content {
+            flex: 1;
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        #canvas-container {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
+        }
+        
+        #canvas-container svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .node {
+            fill: var(--color-deep-blue);
+            stroke: var(--color-off-white);
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .node:hover {
+            fill: var(--color-gold);
+            r: 14;
+        }
+        
+        .node.selected {
+            fill: var(--color-gold);
+            stroke: var(--color-deep-blue);
+            stroke-width: 3px;
+        }
+        
+        .node.path-node {
+            fill: var(--color-gold);
+            stroke: var(--color-deep-blue);
+            stroke-width: 3px;
+        }
+        
+        .link {
+            stroke: var(--color-deep-blue);
+            stroke-opacity: 0.6;
+            stroke-width: 3px;
+        }
+        
+        .link.shortcut {
+            stroke: var(--color-gold);
+            stroke-opacity: 0.8;
+            stroke-width: 4px;
+        }
+        
+        .link.path-link {
+            stroke: var(--color-dust);
+            stroke-opacity: 1;
+            stroke-width: 5px;
+        }
+        
+        /* ===== Controls Panel ===== */
+        .controls-panel {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border: 1px solid var(--color-gold);
+            box-shadow: var(--shadow-elevated);
+            width: 320px;
+            flex-shrink: 0;
+            backdrop-filter: blur(10px);
+            align-self: flex-start;
+        }
+        
+        .controls-title {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--color-gold);
+            padding-bottom: 0.5rem;
+        }
+        
+        .control-group {
+            margin-bottom: 1.2rem;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .control-group[style*="display: none"] {
+            opacity: 0;
+        }
+        
+        .control-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-deep-blue);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background-color: var(--color-gold);
+            color: var(--color-deep-blue);
+            border: none;
+            font-family: var(--font-secondary);
+            font-weight: 500;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-gold-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-gold);
+            border: 1px solid var(--color-gold);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-gold);
+            color: var(--color-deep-blue);
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        input[type="range"] {
+            flex: 1;
+            height: 4px;
+            background: linear-gradient(to right, var(--color-deep-blue), var(--color-gold));
+            outline: none;
+            transition: all var(--transition-normal);
+            -webkit-appearance: none;
+            appearance: none;
+            border-radius: 0;
+            cursor: pointer;
+        }
+        
+        input[type="range"]:hover {
+            box-shadow: 0 0 8px var(--color-gold-20);
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--color-gold);
+            cursor: pointer;
+            border-radius: 0;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-subtle);
+            margin-top: -6px; /* Centers the thumb on the track */
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: var(--color-gold-dark);
+            transform: scale(1.2);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: var(--color-gold);
+            cursor: pointer;
+            border-radius: 0;
+            border: none;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        input[type="range"]::-moz-range-thumb:hover {
+            background: var(--color-gold-dark);
+            transform: scale(1.2);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 4px;
+            background: transparent;
+            border-radius: 0;
+        }
+        
+        input[type="range"]::-moz-range-track {
+            height: 4px;
+            background: transparent;
+            border-radius: 0;
+        }
+        
+        .slider-value {
+            min-width: 35px;
+            text-align: right;
+            font-weight: 700;
+            color: var(--color-gold);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== Info Panel ===== */
+        .info-panel {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--color-deep-blue);
+            padding: 1.5rem;
+            width: 320px;
+            flex-shrink: 0;
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-elevated);
+            backdrop-filter: blur(10px);
+            align-self: flex-start;
+        }
+        
+        .info-title {
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 0.8rem;
+        }
+        
+        .info-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(16, 33, 75, 0.2);
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .stat-label {
+            opacity: 0.8;
+        }
+        
+        .stat-value {
+            font-weight: 500;
+            color: var(--color-gold);
+        }
+        
+        /* ===== Explanation Section ===== */
+        .explanation {
+            background: var(--color-deep-blue);
+            color: var(--color-off-white);
+            padding: 4rem 2rem;
+        }
+        
+        .explanation-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-gold);
+        }
+        
+        .section-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .explanation-card {
+            background-color: var(--color-off-white);
+            color: var(--color-deep-blue);
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+            transition: all var(--transition-normal);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .explanation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        .explanation-card h3 {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--color-deep-blue);
+        }
+        
+        .explanation-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .subsection-header {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: var(--color-gold);
+        }
+        
+        .info-box {
+            margin-top: 3rem;
+            max-width: 900px;
+        }
+        
+        .info-box h4 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-gold);
+        }
+        
+        .info-box p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .info-box ul {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-left: 1.8rem;
+            list-style: disc;
+            opacity: 0.9;
+        }
+        
+        .info-box li {
+            margin-bottom: 0.6rem;
+        }
+        
+        .info-box strong {
+            font-weight: 600;
+            color: var(--color-gold);
+        }
+        
+        .technical-note {
+            margin-top: 2.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(215, 189, 136, 0.3);
+            max-width: 900px;
+        }
+        
+        .technical-note h4 {
+            font-family: var(--font-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.8rem;
+            color: var(--color-gold);
+            opacity: 0.8;
+        }
+        
+        .technical-note p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.75;
+        }
+        
+        .highlight-quote {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-style: italic;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--color-gold);
+            margin-top: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        /* ===== Loading State ===== */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--color-deep-blue);
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--color-gold-20);
+            border-top-color: var(--color-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ===== Responsive ===== */
+        @media (max-width: 1200px) {
+            .viz-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .controls-panel,
+            .info-panel {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            #canvas-container {
+                min-height: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .viz-content {
+                padding: 1rem;
+            }
+            
+            .path-panel {
+                margin: 0 1rem 1rem 1rem;
+            }
+            
+            .viz-container {
+                min-height: 400px;
+            }
+            
+            .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ===== Node Selection Indicator ===== */
+        .selection-mode {
+            background: var(--color-gold-20);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            color: var(--color-deep-blue);
+        }
+        
+        /* ===== Path Visualization Panel ===== */
+        .path-panel {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1.5rem 2rem;
+            border-top: 3px solid var(--color-gold);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            min-height: 160px;
+            margin: 0 2rem 2rem 2rem;
+        }
+        
+        .path-panel.has-path .path-content {
+            opacity: 1;
+        }
+        
+        .path-content {
+            opacity: 0.3;
+            transition: opacity var(--transition-normal);
+        }
+        
+        .path-panel.empty .path-title {
+            opacity: 0.5;
+        }
+        
+        .path-header {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-gold);
+        }
+        
+        .path-title {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+            color: var(--color-deep-blue);
+        }
+        
+        .path-steps {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+        
+        .path-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+        
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-gold);
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .step-node {
+            background: var(--color-deep-blue);
+            color: var(--color-off-white);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-subtle);
+            transition: all var(--transition-normal);
+        }
+        
+        .step-node:hover {
+            background: var(--color-gold);
+            color: var(--color-deep-blue);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        .step-arrow {
+            color: var(--color-gold);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            align-self: center;
+            margin-top: 1.5rem;
+        }
+        
+        .path-summary {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(16, 33, 75, 0.2);
+            display: flex;
+            gap: 2rem;
+            font-size: 0.85rem;
+        }
+        
+        .path-metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .path-metric-label {
+            color: #666;
+        }
+        
+        .path-metric-value {
+            font-weight: 700;
+            color: var(--color-deep-blue);
+            font-size: 1rem;
+        }
+        
+        /* ===== Legend ===== */
+        .legend {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-gold-20);
+        }
+        
+        .legend-title {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-gold);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+        }
+        
+        .legend-icon {
+            width: 24px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .legend-node {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-deep-blue);
+        }
+        
+        .legend-line {
+            width: 20px;
+            height: 2px;
+        }
+        
+        .legend-line.regular {
+            background: var(--color-deep-blue);
+            opacity: 0.5;
+        }
+        
+        .legend-line.shortcut {
+            background: var(--color-gold);
+        }
+        
+        .legend-line.path {
+            background: var(--color-dust);
+        }
+        
+        .legend-text {
+            opacity: 0.9;
+            color: var(--color-deep-blue);
+        }
+        
+        /* ===== Highcharts Network Comparison ===== */
+        .network-comparison {
+            margin: 3rem 0;
+        }
+        
+        .network-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .network-chart {
+            flex: 1;
+            min-height: 400px;
+            background: var(--color-off-white);
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .results-chart {
+            width: 100%;
+            min-height: 500px;
+            background: var(--color-off-white);
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+            padding: 1rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .network-row {
+                flex-direction: column;
+            }
+            
+            .network-chart {
+                min-height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <div class="header-content">
+                <a href="../index.html" class="back-link">← BACK TO PORTFOLIO</a>
+                <h1>What a Small World</h1>
+                <p class="subtitle">An interactive 3D exploration of how random connections create surprisingly short paths in networks</p>
+            </div>
+        </header>
+        
+        <main>
+            <div class="viz-container">
+                <div class="viz-content">
+                    <!-- Left Panel: Network Statistics -->
+                    <div class="info-panel">
+                        <h3 class="info-title">Network Statistics</h3>
+                        <p class="info-text">The small-world phenomenon shows that adding just a few random connections dramatically reduces the average path length between nodes.</p>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Network Type:</span>
+                                <span class="stat-value" id="networkType">Clustered</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total Nodes:</span>
+                                <span class="stat-value" id="nodeCount">256</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Avg Path Length:</span>
+                                <span class="stat-value" id="avgPath">-</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Clustering Coefficient:</span>
+                                <span class="stat-value" id="clustering">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="legend">
+                            <h4 class="legend-title">Visual Legend</h4>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-node"></div>
+                                </div>
+                                <span class="legend-text">Network Node</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-line regular"></div>
+                                </div>
+                                <span class="legend-text">Regular Connection</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-line shortcut"></div>
+                                </div>
+                                <span class="legend-text">Random Shortcut</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-line path"></div>
+                                </div>
+                                <span class="legend-text">Shortest Path</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Center: 3D Visualization -->
+                    <div id="canvas-container">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            <p>Initializing visualization...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Panel: Controls -->
+                    <div class="controls-panel">
+                        <h3 class="controls-title">Network Controls</h3>
+                        
+                        <div class="control-group">
+                            <label>Network Type</label>
+                            <button class="btn" id="toggleNetwork">Switch to Small World</button>
+                        </div>
+                        
+                        <div class="control-group" id="shortcutControl" style="display: none;">
+                            <label>Shortcut Probability</label>
+                            <div class="slider-container">
+                                <input type="range" id="shortcutSlider" min="0" max="20" value="5" step="1">
+                                <span class="slider-value" id="shortcutValue">5%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Path Finding</label>
+                            <button class="btn btn-secondary" id="findPath">Find Shortest Path</button>
+                        </div>
+                        
+                        <div id="selectionMode" class="selection-mode" style="display: none;">
+                            Click a node to select
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom: Path Visualization -->
+                <div id="pathPanel" class="path-panel empty">
+                    <div class="path-header">
+                        <h3 class="path-title">Shortest Path Visualization</h3>
+                    </div>
+                    <div class="path-content">
+                        <div class="path-steps" id="pathSteps">
+                            <div class="path-step">
+                                <div class="step-label">Waiting</div>
+                                <div class="step-node" style="opacity: 0.3;">-</div>
+                            </div>
+                        </div>
+                        <div class="path-summary">
+                            <div class="path-metric">
+                                <span class="path-metric-label">Total Hops:</span>
+                                <span class="path-metric-value" id="pathHops">-</span>
+                            </div>
+                            <div class="path-metric">
+                                <span class="path-metric-label">From Node:</span>
+                                <span class="path-metric-value" id="pathStart">-</span>
+                            </div>
+                            <div class="path-metric">
+                                <span class="path-metric-label">To Node:</span>
+                                <span class="path-metric-value" id="pathEnd">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="explanation">
+            <div class="explanation-content">
+                <h2 class="section-header">Understanding the Small-World Problem</h2>
+                <p class="section-intro">
+                    The small-world phenomenon reveals that in large networks, most nodes can be reached from any other through a surprisingly small number of steps, often just six degrees of separation. This occurs when a network combines local clustering (tight-knit groups) with a few random long-distance connections.
+                </p>
+                
+                <blockquote class="highlight-quote">
+                    Consider sending a message through close friends in Switzerland. If you only rely on your immediate friend circle and their close friends, it might take a dozen or more hops to reach someone in Geneva when you're based in Zurich. Each step moves through tightly clustered local networks. However, if you happen to know someone from Thailand or the United States you met while traveling, that single connection suddenly opens an entirely different network. What would have required many local hops can now be achieved in just 2-3 steps by leveraging that one long-distance bridge. This is the core mechanism behind "six degrees of separation" and why seemingly random acquaintances can create surprisingly short paths to distant parts of a network.
+                </blockquote>
+                
+                <div class="network-comparison">
+                    <h3 style="font-family: var(--font-primary); font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-gold);">Network Evolution</h3>
+                    <div class="network-row">
+                        <div id="regularNetwork" class="network-chart"></div>
+                        <div id="smallWorldNetwork" class="network-chart"></div>
+                        <div id="randomNetwork" class="network-chart"></div>
+                    </div>
+                    <div class="results-chart">
+                        <div id="resultsChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                </div>
+                
+                <div class="explanation-grid">
+                    <div class="explanation-card">
+                        <h3>Clustered Networks</h3>
+                        <p>In a purely clustered network (like a grid), nodes connect only to their immediate neighbors. Information or connections travel slowly, requiring many hops to reach distant nodes. Average path lengths are long.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Random Shortcuts</h3>
+                        <p>Adding just a few random long-distance connections (shortcuts) dramatically reduces average path length. These bridges between clusters create express routes across the network.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Real-World Impact</h3>
+                        <p>This principle appears everywhere: social networks, the internet, neural pathways, and disease spread. Understanding it helps us design better networks and predict information flow.</p>
+                    </div>
+                </div>
+                
+                <h3 class="subsection-header">Why This Matters</h3>
+                
+                <div class="explanation-grid">
+                    <div class="explanation-card">
+                        <h3>Neural Networks</h3>
+                        <p>Your brain uses shortcuts to pass signals efficiently across distant regions while clustering handles specialized tasks. This balance enables both fast processing and robust, localized function.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Global Infrastructure</h3>
+                        <p>Air travel relies on local regional airports (clusters) connected by a handful of global hubs (shortcuts). This makes worldwide travel possible without requiring direct routes between every city pair.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Information Spread</h3>
+                        <p>Diseases and information spread slowly within tight clusters, but a single bridge traveler or viral share can accelerate global reach. Understanding this helps predict and manage cascading effects.</p>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h4>Try It Yourself</h4>
+                    <p>Use the controls above to explore how shortcuts transform the network:</p>
+                    <ul>
+                        <li>Toggle to <strong>Small World</strong> and adjust the shortcut slider. Watch how the average path length drops dramatically with just a few random connections.</li>
+                        <li>Click <strong>Find Shortest Path</strong> and select two distant nodes. Compare path lengths in clustered vs. small-world networks.</li>
+                        <li>Notice the clustering coefficient stays high even as shortcuts shrink the network. This balance is key to real-world efficiency.</li>
+                    </ul>
+                </div>
+                
+                <div class="technical-note">
+                    <h4>Technical Note</h4>
+                    <p>
+                        This visualization is based on the Watts-Strogatz model (1998), which demonstrated that random shortcuts reduce average path length dramatically while barely affecting the clustering coefficient. The clustering coefficient measures how connected a node's neighbors are to each other, while average path length tracks the typical number of steps between random nodes. This balance between local structure and global efficiency is what makes small-world networks so prevalent in nature and engineered systems.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // ===== Network Graph Class =====
+        class NetworkGraph {
+            constructor() {
+                this.nodes = [];
+                this.edges = [];
+                this.isSmallWorld = false;
+                this.shortcutProbability = 0.05;
+                this.gridSize = 16; // 16x16 grid = 256 nodes
+            }
+            
+            createClusteredNetwork() {
+                this.nodes = [];
+                this.edges = [];
+                
+                console.log('Creating network with spacing: 60, grid size:', this.gridSize);
+                
+                // Create grid of nodes
+                for (let i = 0; i < this.gridSize; i++) {
+                    for (let j = 0; j < this.gridSize; j++) {
+                        const x = (i - this.gridSize / 2) * 60;
+                        const z = (j - this.gridSize / 2) * 60;
+                        this.nodes.push({
+                            id: i * this.gridSize + j,
+                            x, y: 0, z,
+                            neighbors: []
+                        });
+                    }
+                }
+                
+                // Connect neighbors in grid
+                for (let i = 0; i < this.gridSize; i++) {
+                    for (let j = 0; j < this.gridSize; j++) {
+                        const idx = i * this.gridSize + j;
+                        
+                        // Connect to right neighbor
+                        if (j < this.gridSize - 1) {
+                            const rightIdx = i * this.gridSize + (j + 1);
+                            this.addEdge(idx, rightIdx);
+                        }
+                        
+                        // Connect to bottom neighbor
+                        if (i < this.gridSize - 1) {
+                            const bottomIdx = (i + 1) * this.gridSize + j;
+                            this.addEdge(idx, bottomIdx);
+                        }
+                    }
+                }
+            }
+            
+            createSmallWorldNetwork() {
+                this.createClusteredNetwork();
+                
+                // Add random shortcuts
+                const numShortcuts = Math.floor(this.nodes.length * this.shortcutProbability);
+                for (let i = 0; i < numShortcuts; i++) {
+                    const node1 = Math.floor(Math.random() * this.nodes.length);
+                    let node2 = Math.floor(Math.random() * this.nodes.length);
+                    
+                    // Ensure it's not the same node and not already connected
+                    while (node2 === node1 || this.nodes[node1].neighbors.includes(node2)) {
+                        node2 = Math.floor(Math.random() * this.nodes.length);
+                    }
+                    
+                    this.addEdge(node1, node2, true); // Mark as shortcut
+                }
+            }
+            
+            addEdge(from, to, isShortcut = false) {
+                this.nodes[from].neighbors.push(to);
+                this.nodes[to].neighbors.push(from);
+                this.edges.push({ from, to, isShortcut });
+            }
+            
+            findShortestPath(startId, endId) {
+                const queue = [[startId]];
+                const visited = new Set([startId]);
+                
+                while (queue.length > 0) {
+                    const path = queue.shift();
+                    const node = path[path.length - 1];
+                    
+                    if (node === endId) {
+                        return path;
+                    }
+                    
+                    for (const neighbor of this.nodes[node].neighbors) {
+                        if (!visited.has(neighbor)) {
+                            visited.add(neighbor);
+                            queue.push([...path, neighbor]);
+                        }
+                    }
+                }
+                
+                return null;
+            }
+            
+            calculateAveragePathLength() {
+                let totalLength = 0;
+                let count = 0;
+                
+                for (let i = 0; i < this.nodes.length; i++) {
+                    for (let j = i + 1; j < this.nodes.length; j++) {
+                        const path = this.findShortestPath(i, j);
+                        if (path) {
+                            totalLength += path.length - 1;
+                            count++;
+                        }
+                    }
+                }
+                
+                return count > 0 ? (totalLength / count).toFixed(2) : 0;
+            }
+            
+            calculateClusteringCoefficient() {
+                let totalCoeff = 0;
+                
+                for (const node of this.nodes) {
+                    const neighbors = node.neighbors;
+                    if (neighbors.length < 2) continue;
+                    
+                    let connections = 0;
+                    for (let i = 0; i < neighbors.length; i++) {
+                        for (let j = i + 1; j < neighbors.length; j++) {
+                            if (this.nodes[neighbors[i]].neighbors.includes(neighbors[j])) {
+                                connections++;
+                            }
+                        }
+                    }
+                    
+                    const possibleConnections = (neighbors.length * (neighbors.length - 1)) / 2;
+                    totalCoeff += connections / possibleConnections;
+                }
+                
+                return (totalCoeff / this.nodes.length).toFixed(3);
+            }
+        }
+        
+        // ===== 3D Visualization =====
+        class NetworkVisualization {
+            constructor() {
+                this.scene = null;
+                this.camera = null;
+                this.renderer = null;
+                this.nodeMeshes = [];
+                this.edgeMeshes = [];
+                this.graph = new NetworkGraph();
+                this.selectedNodes = [];
+                this.pathMode = false;
+                
+                this.init();
+                this.createNetwork();
+                this.animate();
+            }
+            
+            init() {
+                const container = document.getElementById('canvas-container');
+                const loading = container.querySelector('.loading');
+                
+                // Scene
+                this.scene = new THREE.Scene();
+                this.scene.background = null; // Transparent to show container background
+                
+                // Camera
+                this.camera = new THREE.PerspectiveCamera(
+                    75,
+                    container.clientWidth / container.clientHeight,
+                    0.1,
+                    4000
+                );
+                this.camera.position.set(0, 700, 850);
+                this.camera.lookAt(0, 0, 0);
+                
+                console.log('Camera initialized at:', this.camera.position);
+                
+                // Renderer
+                this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                this.renderer.setSize(container.clientWidth, container.clientHeight);
+                this.renderer.setPixelRatio(window.devicePixelRatio);
+                this.renderer.setClearColor(0x000000, 0); // Transparent
+                container.appendChild(this.renderer.domElement);
+                
+                // Lighting
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+                this.scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                directionalLight.position.set(50, 100, 50);
+                this.scene.add(directionalLight);
+                
+                // Mouse interaction
+                this.raycaster = new THREE.Raycaster();
+                this.mouse = new THREE.Vector2();
+                
+                window.addEventListener('resize', () => this.onWindowResize());
+                this.renderer.domElement.addEventListener('click', (e) => this.onNodeClick(e));
+                this.renderer.domElement.addEventListener('mousemove', (e) => this.onMouseMove(e));
+                
+                // Auto-rotate disabled
+                this.autoRotate = false;
+                
+                loading.style.display = 'none';
+            }
+            
+            createNetwork() {
+                // Clear existing meshes
+                this.nodeMeshes.forEach(mesh => this.scene.remove(mesh));
+                this.edgeMeshes.forEach(mesh => this.scene.remove(mesh));
+                this.nodeMeshes = [];
+                this.edgeMeshes = [];
+                
+                // Create graph
+                if (this.graph.isSmallWorld) {
+                    this.graph.createSmallWorldNetwork();
+                } else {
+                    this.graph.createClusteredNetwork();
+                }
+                
+                // Create edges
+                this.graph.edges.forEach(edge => {
+                    const from = this.graph.nodes[edge.from];
+                    const to = this.graph.nodes[edge.to];
+                    
+                    const geometry = new THREE.BufferGeometry().setFromPoints([
+                        new THREE.Vector3(from.x, from.y, from.z),
+                        new THREE.Vector3(to.x, to.y, to.z)
+                    ]);
+                    
+                    const material = new THREE.LineBasicMaterial({
+                        color: edge.isShortcut ? 0xd7bd88 : 0x10214b,
+                        transparent: true,
+                        opacity: edge.isShortcut ? 0.95 : 0.7,
+                        linewidth: edge.isShortcut ? 10 : 8
+                    });
+                    
+                    const line = new THREE.Line(geometry, material);
+                    line.userData = { edge };
+                    this.scene.add(line);
+                    this.edgeMeshes.push(line);
+                });
+                
+                // Create nodes
+                this.graph.nodes.forEach(node => {
+                    const geometry = new THREE.SphereGeometry(14, 16, 16);
+                    const material = new THREE.MeshPhongMaterial({
+                        color: 0x10214b,
+                        emissive: 0x10214b,
+                        emissiveIntensity: 0.2,
+                        shininess: 30
+                    });
+                    
+                    const mesh = new THREE.Mesh(geometry, material);
+                    mesh.position.set(node.x, node.y, node.z);
+                    mesh.userData = { nodeId: node.id };
+                    this.scene.add(mesh);
+                    this.nodeMeshes.push(mesh);
+                });
+                
+                this.updateStats();
+            }
+            
+            onNodeClick(event) {
+                if (!this.pathMode) return;
+                
+                const rect = this.renderer.domElement.getBoundingClientRect();
+                this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                
+                this.raycaster.setFromCamera(this.mouse, this.camera);
+                const intersects = this.raycaster.intersectObjects(this.nodeMeshes);
+                
+                if (intersects.length > 0) {
+                    const nodeId = intersects[0].object.userData.nodeId;
+                    this.selectedNodes.push(nodeId);
+                    
+                    // Highlight selected node
+                    intersects[0].object.material.color.setHex(0xd7bd88);
+                    
+                    if (this.selectedNodes.length === 2) {
+                        this.showPath(this.selectedNodes[0], this.selectedNodes[1]);
+                        this.selectedNodes = [];
+                        this.pathMode = false;
+                        document.getElementById('selectionMode').style.display = 'none';
+                    }
+                }
+            }
+            
+            onMouseMove(event) {
+                const rect = this.renderer.domElement.getBoundingClientRect();
+                this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+                this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+                
+                this.raycaster.setFromCamera(this.mouse, this.camera);
+                const intersects = this.raycaster.intersectObjects(this.nodeMeshes);
+                
+                this.nodeMeshes.forEach(mesh => {
+                    if (!mesh.userData.highlighted && !mesh.userData.inPath) {
+                        mesh.material.emissiveIntensity = 0.2;
+                        mesh.scale.set(1, 1, 1);
+                    }
+                });
+                
+                if (intersects.length > 0 && !intersects[0].object.userData.inPath) {
+                    intersects[0].object.material.emissiveIntensity = 0.5;
+                    intersects[0].object.scale.set(1.3, 1.3, 1.3);
+                    this.renderer.domElement.style.cursor = 'pointer';
+                } else {
+                    this.renderer.domElement.style.cursor = 'default';
+                }
+            }
+            
+            async showPath(startId, endId) {
+                // Reset previous highlights
+                this.resetHighlights();
+                
+                const path = this.graph.findShortestPath(startId, endId);
+                if (!path) return;
+                
+                // Animate path step by step
+                for (let i = 0; i < path.length; i++) {
+                    const nodeId = path[i];
+                    const mesh = this.nodeMeshes[nodeId];
+                    
+                    // Highlight current node
+                    mesh.material.color.setHex(0xd7bd88);
+                    mesh.material.emissive.setHex(0xd7bd88);
+                    mesh.material.emissiveIntensity = 0.8;
+                    mesh.scale.set(1.5, 1.5, 1.5);
+                    mesh.userData.inPath = true;
+                    
+                    // Highlight edge to this node (if not first)
+                    if (i > 0) {
+                        const from = path[i - 1];
+                        const to = nodeId;
+                        
+                        this.edgeMeshes.forEach(edgeMesh => {
+                            const edge = edgeMesh.userData.edge;
+                            if ((edge.from === from && edge.to === to) || 
+                                (edge.from === to && edge.to === from)) {
+                                edgeMesh.material.color.setHex(0xd03c3b);
+                                edgeMesh.material.opacity = 1;
+                            }
+                        });
+                    }
+                    
+                    // Update path visualization incrementally
+                    this.displayPathVisualizationStep(path.slice(0, i + 1), startId, endId, path.length - 1);
+                    
+                    // Wait before next step (delay for animation)
+                    await new Promise(resolve => setTimeout(resolve, 400));
+                }
+            }
+            
+            displayPathVisualizationStep(currentPath, startId, endId, totalHops) {
+                const pathStepsContainer = document.getElementById('pathSteps');
+                pathStepsContainer.innerHTML = '';
+                
+                // Create step tiles for current path
+                currentPath.forEach((nodeId, index) => {
+                    // Add step
+                    const stepDiv = document.createElement('div');
+                    stepDiv.className = 'path-step';
+                    
+                    const stepLabel = document.createElement('div');
+                    stepLabel.className = 'step-label';
+                    stepLabel.textContent = index === 0 ? 'Start' : 
+                                           (index === currentPath.length - 1 && currentPath.length - 1 === totalHops) ? 'End' : 
+                                           `Hop ${index}`;
+                    
+                    const stepNode = document.createElement('div');
+                    stepNode.className = 'step-node';
+                    stepNode.textContent = nodeId;
+                    
+                    stepDiv.appendChild(stepLabel);
+                    stepDiv.appendChild(stepNode);
+                    pathStepsContainer.appendChild(stepDiv);
+                    
+                    // Add arrow (except for last node)
+                    if (index < currentPath.length - 1) {
+                        const arrow = document.createElement('div');
+                        arrow.className = 'step-arrow';
+                        arrow.textContent = '→';
+                        pathStepsContainer.appendChild(arrow);
+                    }
+                });
+                
+                // Update summary
+                document.getElementById('pathHops').textContent = totalHops;
+                document.getElementById('pathStart').textContent = startId;
+                document.getElementById('pathEnd').textContent = endId;
+                
+                // Show panel with content
+                const pathPanel = document.getElementById('pathPanel');
+                pathPanel.classList.remove('empty');
+                pathPanel.classList.add('has-path');
+            }
+            
+            resetHighlights() {
+                this.nodeMeshes.forEach(mesh => {
+                    mesh.material.color.setHex(0x10214b);
+                    mesh.material.emissive.setHex(0x10214b);
+                    mesh.material.emissiveIntensity = 0.2;
+                    mesh.scale.set(1, 1, 1);
+                    mesh.userData.inPath = false;
+                    mesh.userData.highlighted = false;
+                });
+                
+                this.edgeMeshes.forEach(edgeMesh => {
+                    const edge = edgeMesh.userData.edge;
+                    edgeMesh.material.color.setHex(edge.isShortcut ? 0xd7bd88 : 0x10214b);
+                    edgeMesh.material.opacity = edge.isShortcut ? 0.95 : 0.7;
+                });
+            }
+            
+            updateStats() {
+                document.getElementById('networkType').textContent = 
+                    this.graph.isSmallWorld ? 'Small World' : 'Clustered';
+                document.getElementById('nodeCount').textContent = this.graph.nodes.length;
+                
+                // Calculate stats (this is computationally expensive, so we do it sparingly)
+                setTimeout(() => {
+                    const avgPath = this.graph.calculateAveragePathLength();
+                    const clustering = this.graph.calculateClusteringCoefficient();
+                    
+                    document.getElementById('avgPath').textContent = avgPath;
+                    document.getElementById('clustering').textContent = clustering;
+                }, 100);
+            }
+            
+            onWindowResize() {
+                const container = document.getElementById('canvas-container');
+                this.camera.aspect = container.clientWidth / container.clientHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+            
+            animate() {
+                requestAnimationFrame(() => this.animate());
+                
+                if (this.autoRotate) {
+                    this.camera.position.x = Math.sin(Date.now() * 0.0001) * 850;
+                    this.camera.position.z = Math.cos(Date.now() * 0.0001) * 850;
+                    this.camera.lookAt(0, 0, 0);
+                }
+                
+                this.renderer.render(this.scene, this.camera);
+            }
+        }
+        
+        // ===== Utility Functions =====
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // ===== Initialize =====
+        let viz;
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            viz = new NetworkVisualization();
+            
+            // Toggle network type
+            document.getElementById('toggleNetwork').addEventListener('click', () => {
+                viz.graph.isSmallWorld = !viz.graph.isSmallWorld;
+                viz.resetHighlights();
+                viz.createNetwork();
+                
+                const btn = document.getElementById('toggleNetwork');
+                const shortcutControl = document.getElementById('shortcutControl');
+                
+                if (viz.graph.isSmallWorld) {
+                    btn.textContent = 'Switch to Clustered';
+                    shortcutControl.style.display = 'block';
+                } else {
+                    btn.textContent = 'Switch to Small World';
+                    shortcutControl.style.display = 'none';
+                }
+            });
+            
+            // Shortcut slider with debounce
+            const debouncedNetworkUpdate = debounce(() => {
+                if (viz.graph.isSmallWorld) {
+                    viz.createNetwork();
+                }
+            }, 300);
+            
+            document.getElementById('shortcutSlider').addEventListener('input', (e) => {
+                const value = e.target.value;
+                document.getElementById('shortcutValue').textContent = value + '%';
+                viz.graph.shortcutProbability = value / 100;
+                
+                debouncedNetworkUpdate();
+            });
+            
+            // Find path button
+            document.getElementById('findPath').addEventListener('click', () => {
+                viz.pathMode = true;
+                viz.selectedNodes = [];
+                viz.resetHighlights();
+                
+                // Reset path panel
+                const pathPanel = document.getElementById('pathPanel');
+                pathPanel.classList.add('empty');
+                pathPanel.classList.remove('has-path');
+                document.getElementById('pathSteps').innerHTML = '<div class="path-step"><div class="step-label">Waiting</div><div class="step-node" style="opacity: 0.3;">-</div></div>';
+                document.getElementById('pathHops').textContent = '-';
+                document.getElementById('pathStart').textContent = '-';
+                document.getElementById('pathEnd').textContent = '-';
+                
+                document.getElementById('selectionMode').style.display = 'block';
+                document.getElementById('selectionMode').textContent = 'Select first node...';
+                
+                // After first selection, update text
+                const originalClick = viz.onNodeClick.bind(viz);
+                viz.onNodeClick = function(event) {
+                    originalClick(event);
+                    if (viz.selectedNodes.length === 1) {
+                        document.getElementById('selectionMode').textContent = 'Select second node...';
+                    }
+                };
+            });
+            
+            // ===== Highcharts Network Visualizations =====
+            initNetworkCharts();
+        });
+        
+        function initNetworkCharts() {
+            // ===== Utility generators =====
+            function circularNodes(N, radius) {
+                const nodes = [];
+                for (let i = 0; i < N; i++) {
+                    const angle = (2 * Math.PI * i) / N;
+                    nodes.push({
+                        id: String(i),
+                        marker: { radius: 2, fillColor: "#10214b" },
+                        x: Math.cos(angle) * radius,
+                        y: Math.sin(angle) * radius
+                    });
+                }
+                return nodes;
+            }
+            
+            function regularEdges(N, k) {
+                const edges = [];
+                for (let i = 0; i < N; i++) {
+                    for (let j = 1; j <= k; j++) {
+                        edges.push([String(i), String((i + j) % N)]);
+                    }
+                }
+                return edges;
+            }
+            
+            function addShortcuts(edges, N, count) {
+                const shortcutEdges = [...edges];
+                for (let s = 0; s < count; s++) {
+                    const a = Math.floor(Math.random() * N);
+                    const b = Math.floor(Math.random() * N);
+                    if (a !== b) shortcutEdges.push([String(a), String(b)]);
+                }
+                return shortcutEdges;
+            }
+            
+            function randomEdges(N, numEdges) {
+                const edges = [];
+                for (let i = 0; i < numEdges; i++) {
+                    const a = Math.floor(Math.random() * N);
+                    let b = Math.floor(Math.random() * N);
+                    while (b === a) b = Math.floor(Math.random() * N);
+                    edges.push([String(a), String(b)]);
+                }
+                return edges;
+            }
+            
+            // ===== Parameters =====
+            const N = 60;
+            const k = 4;
+            const radius = 200;
+            const baseNodes = circularNodes(N, radius);
+            
+            // ===== Chart templates =====
+            function makeNetwork(container, title, edges, color = "#10214b") {
+                Highcharts.chart(container, {
+                    chart: {
+                        type: "networkgraph",
+                        backgroundColor: "#ebe7e1",
+                        spacing: [20, 20, 20, 20],
+                        margin: [60, 20, 20, 20]
+                    },
+                    title: {
+                        text: title,
+                        style: {
+                            fontFamily: "'Playfair Display', serif",
+                            fontSize: "1.3rem",
+                            color: "#10214b",
+                            fontWeight: "700"
+                        }
+                    },
+                    credits: { enabled: false },
+                    plotOptions: {
+                        networkgraph: {
+                            keys: ["from", "to"],
+                            layoutAlgorithm: { enableSimulation: false }
+                        }
+                    },
+                    series: [{
+                        data: edges,
+                        nodes: baseNodes,
+                        color: color,
+                        lineWidth: 1
+                    }]
+                });
+            }
+            
+            // ===== Networks =====
+            makeNetwork("regularNetwork", "Regular (p=0)", regularEdges(N, k), "#10214b");
+            makeNetwork("smallWorldNetwork", "Small-World (p≈0.05)", addShortcuts(regularEdges(N, k), N, 25), "#d03c3b");
+            makeNetwork("randomNetwork", "Random (p=1)", randomEdges(N, N * k), "#d7bd88");
+            
+            // ===== Results Chart =====
+            Highcharts.chart("resultsChart", {
+                chart: {
+                    backgroundColor: "transparent",
+                    spacing: [20, 20, 20, 20]
+                },
+                credits: { enabled: false },
+                title: {
+                    text: "Clustering Coefficient and Path Length vs. Rewiring Probability",
+                    style: {
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: "1.5rem",
+                        color: "#10214b",
+                        fontWeight: "700"
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    formatter: function() {
+                        const seriesName = this.series.name.includes('Clustering') ? 'Clustering' : 'Path Length';
+                        return `<b>${seriesName}</b><br/>p = ${this.x}<br/>Value: ${this.y.toFixed(2)}`;
+                    },
+                    style: {
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontSize: "0.85rem"
+                    }
+                },
+                xAxis: {
+                    type: "logarithmic",
+                    title: {
+                        text: "Rewiring probability (p)",
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontSize: "0.9rem",
+                            color: "#10214b"
+                        }
+                    },
+                    min: 0.0001,
+                    max: 1,
+                    labels: {
+                        format: "{value}",
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            color: "#10214b"
+                        }
+                    },
+                    gridLineColor: "rgba(16, 33, 75, 0.1)",
+                    plotBands: [{
+                        from: 0.001,
+                        to: 0.1,
+                        color: "rgba(16, 33, 75, 0.08)",
+                        label: {
+                            text: "Small-World Region",
+                            style: {
+                                fontFamily: "'Montserrat', sans-serif",
+                                fontSize: "0.75rem",
+                                color: "#10214b",
+                                fontWeight: "600"
+                            },
+                            align: "center",
+                            y: 20
+                        }
+                    }]
+                },
+                yAxis: {
+                    min: 0,
+                    max: 1.05,
+                    title: {
+                        text: "Normalized C(p)/C(0), L(p)/L(0)",
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontSize: "0.9rem",
+                            color: "#10214b"
+                        }
+                    },
+                    labels: {
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            color: "#10214b"
+                        }
+                    },
+                    gridLineColor: "rgba(16, 33, 75, 0.1)"
+                },
+                legend: {
+                    enabled: true,
+                    itemStyle: {
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontSize: "0.9rem",
+                        color: "#10214b"
+                    }
+                },
+                series: [
+                    {
+                        name: "C(p)/C(0) - Clustering",
+                        type: "spline",
+                        color: "#10214b",
+                        marker: { symbol: "square" },
+                        lineWidth: 3,
+                        data: [
+                            [0.0001, 1.0],
+                            [0.001, 0.97],
+                            [0.01, 0.9],
+                            [0.1, 0.35],
+                            [1.0, 0.01]
+                        ]
+                    },
+                    {
+                        name: "L(p)/L(0) - Path Length",
+                        type: "spline",
+                        color: "#d7bd88",
+                        marker: { symbol: "circle" },
+                        lineWidth: 3,
+                        data: [
+                            [0.0001, 1.0],
+                            [0.001, 0.8],
+                            [0.01, 0.3],
+                            [0.1, 0.1],
+                            [1.0, 0.05]
+                        ]
+                    }
+                ]
+            });
+        }
+    </script>
+</body>
+</html>
