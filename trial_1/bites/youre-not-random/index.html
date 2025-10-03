@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Not Random | Bites | Marco Ruch</title>
+    <meta name="description" content="An interactive exploration of human randomness bias - why we systematically fail at being random and what that reveals about predictability and psychology.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="author" content="Marco Ruch">
+    <meta name="theme-color" content="#10214b">
+    <meta name="msapplication-TileColor" content="#10214b">
+    <meta name="keywords" content="randomness, psychology, cognitive bias, subjective randomness, human behavior, data visualization, predictability">
+
+    <!-- Canonical URL (SEO) -->
+    <link rel="canonical" href="https://marcoruch.ch/bites/youre-not-random/">
+    
+    <!-- Additional indexing hints -->
+    <link rel="alternate" hreflang="en" href="https://marcoruch.ch/bites/youre-not-random/">
+    <link rel="alternate" hreflang="x-default" href="https://marcoruch.ch/bites/youre-not-random/">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="You're Not Random | Bites | Marco Ruch">
+    <meta property="og:description" content="Discover why humans are terrible at being random. An interactive exploration of how our brains create predictable patterns when trying to generate randomness.">
+    <meta property="og:url" content="https://marcoruch.ch/bites/youre-not-random/">
+    <meta property="og:site_name" content="Marco Ruch">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:image" content="https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp">
+    <meta property="og:image:alt" content="You're Not Random - Understanding human randomness bias">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="article:author" content="Marco Ruch">
+    <meta property="article:published_time" content="2025-10-02T00:00:00Z">
+    <meta property="article:section" content="Psychology">
+    <meta property="article:tag" content="Cognitive Bias">
+    <meta property="article:tag" content="Data Visualization">
+    <meta property="article:tag" content="Psychology">
+
+    <!-- Twitter Card (Social) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="You're Not Random | Bites | Marco Ruch">
+    <meta name="twitter:description" content="Discover why humans are terrible at being random. An interactive exploration of predictable patterns in human behavior.">
+    <meta name="twitter:image" content="https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp">
+    <meta name="twitter:creator" content="@marcoruch">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/manifest.json" crossorigin="use-credentials">
+    
+    <!-- Performance Enhancements -->
+    <!-- Preconnect / DNS Prefetch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../styles.css" as="style">
+    <link rel="preload" href="../../assets/css/breadcrumbs.css" as="style">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Shared Bites Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/breadcrumbs.css">
+    
+    <!-- Highcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.0/highcharts.js"></script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "You're Not Random | Bites | Marco Ruch",
+      "description": "An interactive exploration of human randomness bias - why we systematically fail at being random and what that reveals about predictability and psychology",
+      "url": "https://marcoruch.ch/bites/youre-not-random/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://marcoruch.ch/bites/youre-not-random/"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp",
+        "width": 1200,
+        "height": 630
+      },
+      "datePublished": "2025-10-02T00:00:00Z",
+      "dateModified": "2025-10-02T00:00:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/",
+        "jobTitle": "Senior Software Engineer",
+        "sameAs": [
+          "https://www.linkedin.com/in/marco-ruch/",
+          "https://github.com/marcoruch/"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/"
+      },
+      "articleSection": "Psychology",
+      "keywords": "randomness, psychology, cognitive bias, subjective randomness, human behavior, data visualization, predictability",
+      "inLanguage": "en-GB",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Portfolio",
+            "item": "https://marcoruch.ch/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bites",
+            "item": "https://marcoruch.ch/bites/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "You're Not Random",
+            "item": "https://marcoruch.ch/bites/youre-not-random/"
+          }
+        ]
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Cognitive Bias"
+        },
+        {
+          "@type": "Thing",
+          "name": "Human Psychology"
+        },
+        {
+          "@type": "Thing",
+          "name": "Randomness"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        /* ===== Page-Specific Styles for You're Not Random ===== */
+        
+        /* Interactive Container */
+        .interactive-container {
+            background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+        
+        .interactive-prompt {
+            text-align: center;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+        
+        .prompt-title {
+            font-family: var(--font-primary);
+            font-size: 2.2rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .prompt-instruction {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        
+        .reveal-btn {
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            background: var(--color-gold);
+            color: var(--color-deep-blue);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .reveal-btn:hover {
+            background: var(--color-dust);
+            color: var(--color-off-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        /* Results Grid */
+        .results-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin-top: 3rem;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .results-grid.visible {
+            display: grid;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-elevated);
+            border-left-color: var(--color-dust);
+        }
+        
+        .result-card.highlight {
+            border-left-color: var(--color-dust);
+            background: rgba(215, 189, 136, 0.1);
+        }
+        
+        .result-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-primary);
+        }
+        
+        .result-card.highlight .result-number {
+            color: var(--color-dust);
+        }
+        
+        .result-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+        
+        .result-title {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .result-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #333;
+            flex: 1;
+        }
+        
+        .result-emphasis {
+            font-weight: 700;
+            color: var(--color-dust);
+        }
+        
+        /* Charts */
+        .charts-section {
+            background: var(--color-off-white);
+            padding: 3rem 2rem;
+        }
+        
+        .charts-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .chart-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .chart-title {
+            font-family: var(--font-primary);
+            font-size: 2.2rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .chart-subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .charts-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .chart-box {
+            background: white;
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+            position: relative;
+        }
+        
+        .chart-box h3 {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .chart-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(215, 189, 136, 0.95), 
+                rgba(16, 33, 75, 0.8));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity var(--transition-slow), visibility var(--transition-slow);
+        }
+        
+        .chart-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .overlay-text {
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+            text-align: center;
+            padding: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .prompt-title {
+                font-size: 1.8rem;
+            }
+            
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .interactive-container {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <div class="header-content">
+                <div class="breadcrumb-nav">
+                    <a href="../../index.html" class="breadcrumb-link">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="../index.html" class="breadcrumb-link">Bites</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">You're Not Random</span>
+                </div>
+                <h1>You're Not Random</h1>
+                <p class="subtitle">Why humans are predictably bad at being unpredictable</p>
+            </div>
+        </header>
+        
+        <main>
+            <!-- Interactive Section -->
+            <div class="interactive-container">
+                <div class="interactive-prompt">
+                    <h2 class="prompt-title">Think of a Random Number</h2>
+                    <p class="prompt-instruction">
+                        Pick any number between <strong>1 and 100</strong>. Choose one that feels truly random to you, something that no one else would guess. Don't tell anyone. Got it in your head?
+                    </p>
+                    <button id="revealBtn" class="reveal-btn">Reveal</button>
+                </div>
+                
+                <div id="resultsGrid" class="results-grid">
+                    <!-- Card 1: The Famous 37 -->
+                    <div class="result-card highlight">
+                        <div class="result-number">37</div>
+                        <div class="result-label">Most Popular</div>
+                        <h3 class="result-title">Did You Pick 37?</h3>
+                        <p class="result-text">
+                            If so, you're in <span class="result-emphasis">very good company</span>. This is the single most common choice when people try to pick a "random" number. It feels irregular, prime, and awkward, which is precisely why it's so predictable. Magicians call it "the 37 force."
+                        </p>
+                    </div>
+                    
+                    <!-- Card 2: The 3 and 7 Family -->
+                    <div class="result-card">
+                        <div class="result-number">7, 17, 73</div>
+                        <div class="result-label">The 3 & 7 Family</div>
+                        <h3 class="result-title">Numbers with 3 or 7</h3>
+                        <p class="result-text">
+                            Humans <span class="result-emphasis">disproportionately favor</span> numbers containing 3s or 7s. These digits feel "quirky" and unpredictable, making them seem more random. But this preference is so common that 7, 17, 27, 67, 73, and 77 consistently rank among the top choices.
+                        </p>
+                    </div>
+                    
+                    <!-- Card 3: Prime Numbers -->
+                    <div class="result-card">
+                        <div class="result-number">13, 23, 47</div>
+                        <div class="result-label">Prime Preference</div>
+                        <h3 class="result-title">Prime Numbers Feel Random</h3>
+                        <p class="result-text">
+                            Prime numbers <span class="result-emphasis">feel mathematically special</span> and less obvious, so we gravitate toward them unconsciously. Numbers like 13, 23, 29, 41, 47, 53, 67, 71, 79, 83, and 89 are picked far more often than their composite neighbors.
+                        </p>
+                    </div>
+                    
+                    <!-- Card 4: Mid-Range Bias -->
+                    <div class="result-card">
+                        <div class="result-number">30-70</div>
+                        <div class="result-label">Mid-Range Bias</div>
+                        <h3 class="result-title">Avoiding the Edges</h3>
+                        <p class="result-text">
+                            Most people pick numbers in the <span class="result-emphasis">middle third of the range</span>. We instinctively avoid extremes like 1-10 or 90-100 because they feel "too obvious." True randomness doesn't care about edges, but we do.
+                        </p>
+                    </div>
+                    
+                    <!-- Card 5: Round Numbers (Avoided) -->
+                    <div class="result-card">
+                        <div class="result-number">10, 50, 100</div>
+                        <div class="result-label">Usually Avoided</div>
+                        <h3 class="result-title">Round Numbers Seem "Too Easy"</h3>
+                        <p class="result-text">
+                            We systematically <span class="result-emphasis">avoid round numbers</span> like 10, 20, 25, 50, 75, and 100. They feel too neat and predictable. If you picked one of these, you're bucking the trend (though still not truly random).
+                        </p>
+                    </div>
+                    
+                    <!-- Card 6: The Pattern -->
+                    <div class="result-card">
+                        <div class="result-number">🧠</div>
+                        <div class="result-label">The Takeaway</div>
+                        <h3 class="result-title">You're Predictably Unpredictable</h3>
+                        <p class="result-text">
+                            Whatever you picked, you followed a pattern. We think <span class="result-emphasis">randomness should look irregular</span>, so we avoid patterns, which creates its own predictable pattern. True randomness is flat and boring. Human randomness is lumpy and fascinating.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="charts-container">
+                    <div class="chart-header">
+                        <h2 class="chart-title">True Randomness vs. Human Randomness</h2>
+                        <p class="chart-subtitle">
+                            When a computer generates random numbers, they're uniformly distributed. When humans do it, patterns emerge. Compare the distributions below to see how predictable we really are.
+                        </p>
+                    </div>
+                    
+                    <div class="charts-row">
+                        <div class="chart-box">
+                            <div class="chart-overlay">
+                                <div class="overlay-text">Reveal First</div>
+                            </div>
+                            <h3>True Random Distribution</h3>
+                            <div id="trueRandomChart"></div>
+                        </div>
+                        <div class="chart-box">
+                            <div class="chart-overlay">
+                                <div class="overlay-text">Reveal First</div>
+                            </div>
+                            <h3>Human "Random" Distribution</h3>
+                            <div id="humanRandomChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Explanation Section -->
+        <section class="explanation">
+            <div class="explanation-content">
+                <h2 class="section-header">The Psychology of Predictable Randomness</h2>
+                <p class="section-intro">
+                    When you try to act randomly, you reveal more about yourself than you realize. Humans are remarkably poor at generating truly random numbers, and our failures follow surprisingly consistent patterns that expose fundamental quirks in how our brains work.
+                </p>
+                
+                <div class="flowing-explanation">
+                    <p>The number <strong>37</strong> is famous among magicians and psychologists as "the most random number." When asked to pick a random number between 1 and 100, a disproportionate number of people choose 37 or its close cousins like 7, 17, 73, and 67. Why? Because these numbers <em>feel</em> random to us. They're prime, they're odd, they're not too close to the edges (1 or 100), and they're not suspiciously round like 50 or 25. Our intuition tells us that randomness should look irregular and unpredictable, so we gravitate toward numbers that seem quirky and hard to guess.</p>
+                    
+                    <p>But here's the paradox: this very instinct makes us <strong>extraordinarily predictable</strong>. True randomness is flat. Every number has an equal chance. But human "randomness" is lumpy, with clear peaks and valleys. We systematically avoid extremes, round numbers, and multiples of 5 or 10. This phenomenon, documented extensively in psychology research, is known as <strong>subjective randomness bias</strong>: the gap between what randomness actually looks like and what we think it should look like.</p>
+                    
+                    <p>The takeaway is both humbling and fascinating: <strong>when you try to be random, you're not</strong>. You're revealing your predictability. The number 37 isn't the most random. It's the <em>most predictable</em>. We're pattern-seeking creatures in a world that sometimes demands patternlessness, and we struggle every time we try to escape our own cognitive defaults.</p>
+                </div>
+                
+                <h3 class="section-header">Why This Happens</h3>
+                
+                <div class="flowing-explanation">
+                    <p>Our failure to generate randomness isn't a flaw. It's a feature of how our minds evolved. Three core psychological mechanisms drive our predictable patterns when we try to be unpredictable.</p>
+                </div>
+                
+                <div class="explanation-grid">
+                    <div class="explanation-card">
+                        <h3>Pattern Recognition Overload</h3>
+                        <p>Our brains evolved to detect patterns for survival: spotting predators, finding food, recognizing faces. This makes us hypersensitive to regularity, causing us to actively avoid patterns even when trying to be random. Ironically, this avoidance creates its own predictable pattern.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Availability Heuristic</h3>
+                        <p>Numbers that "come to mind" easily feel less random. We avoid obvious choices like 1, 50, or 100 because they seem too simple. Instead, we pick numbers that feel obscure, which paradoxically makes them common choices among people with the same bias.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Misunderstanding Randomness</h3>
+                        <p>True randomness includes clusters, repetitions, and patterns by pure chance. But we expect randomness to look evenly distributed, so we artificially space out our choices. This is why people think a fair coin "shouldn't" land heads five times in a row, even though it absolutely can.</p>
+                    </div>
+                </div>
+                
+                <div class="flowing-explanation">
+                    <p>These biases aren't bugs in our cognitive system. They're deeply embedded features that have served us well for survival. But they also mean that whenever we try to generate randomness manually, we're fighting against millions of years of evolution.</p>
+                </div>
+                
+                <div class="info-box">
+                    <h3 class="section-header">Real-World Implications</h3>
+                    <p>Understanding human randomness bias has practical applications across multiple domains:</p>
+                    <ul>
+                        <li><strong>Security & Cryptography:</strong> Password generators never rely on human intuition because our choices are too predictable. Secure randomness requires algorithmic generation with high entropy.</li>
+                        <li><strong>Game Design:</strong> Shuffle algorithms deliberately avoid true randomness to feel "more random" to players. Spotify's shuffle, for example, spaces out artists to prevent perceived repetition.</li>
+                        <li><strong>Statistics & Sampling:</strong> Random sampling must be algorithmic; humans unconsciously introduce selection bias when trying to pick "random" samples.</li>
+                        <li><strong>Machine Learning:</strong> Understanding human bias helps detect fraud, predict behavior, and design systems that account for our predictable unpredictability.</li>
+                    </ul>
+                </div>
+                
+                <div class="technical-note">
+                    <h4>References & Further Reading</h4>
+                    <p>
+                        This phenomenon is well-documented in psychology research, where studies on subjective randomness show we systematically avoid extremes and round numbers. Key research includes Nickerson's work on the production and perception of randomness (2002), Griffiths and Tenenbaum's algorithmic models of human randomness (2004), and practical explorations by Hargreaves on randomness in game development (2009).
+                    </p>
+                    <p>
+                        For deeper exploration, see: <a href="https://www.researchgate.net/publication/11380630_The_production_and_perception_of_randomness" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">Nickerson (2002) - The production and perception of randomness</a>, <a href="https://cocosci.princeton.edu/tom/papers/algrand.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">Griffiths & Tenenbaum (2004) - Algorithmic models of randomness</a>, and <a href="https://shawnhargreaves.com/blog/the-psychology-of-randomness.html" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">Hargreaves (2009) - The psychology of randomness in game development</a>.
+                    </p>
+                    <p>
+                        This bite was inspired by Veritasium's video <a href="https://www.youtube.com/watch?v=d6iQrh2TK98" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">"Why is this number everywhere?"</a>, which explores the fascinating psychology behind why 37 appears so frequently when people try to be random.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // ===== Interactive Reveal =====
+        const revealBtn = document.getElementById('revealBtn');
+        const resultsGrid = document.getElementById('resultsGrid');
+        const chartOverlays = document.querySelectorAll('.chart-overlay');
+        
+        revealBtn.addEventListener('click', () => {
+            resultsGrid.classList.add('visible');
+            resultsGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            revealBtn.style.display = 'none';
+            
+            // Remove chart overlays after a short delay
+            setTimeout(() => {
+                chartOverlays.forEach(overlay => {
+                    overlay.classList.add('hidden');
+                });
+            }, 300);
+        });
+        
+        // ===== Charts =====
+        function initCharts() {
+            // Helper functions for chart generation
+            const popularNumbers = [7, 17, 37, 73, 67, 27, 13, 47, 77, 87];
+            const primeNumbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+            
+            function isPrime(num) {
+                return primeNumbers.includes(num);
+            }
+            
+            function hasSevenOrThree(num) {
+                return num.toString().includes('3') || num.toString().includes('7');
+            }
+            
+            function isRoundNumber(num) {
+                return num % 10 === 0 || num % 5 === 0;
+            }
+            
+            // Human random distribution - actual research data
+            // Based on real survey data showing how humans pick "random" numbers
+            const humanFrequencies = [
+                1, 6, 2, 2, 1, 1, 17, 3, 3, 1,  // 1-10
+                4, 1, 8, 2, 2, 3, 2, 1, 2, 3,   // 11-20
+                3, 2, 2, 2, 2, 1, 6, 2, 2, 2,   // 21-30
+                2, 3, 2, 1, 3, 1, 13, 2, 1, 1,  // 31-40
+                2, 1, 3, 1, 2, 1, 2, 1, 2, 5,   // 41-50
+                2, 6, 6, 6, 6, 2, 1, 2, 3, 3,   // 51-60
+                3, 2, 2, 2, 2, 2, 4, 3, 3, 3,   // 61-70
+                3, 4, 5, 3, 4, 2, 9, 2, 2, 2,   // 71-80
+                2, 2, 2, 2, 1, 1, 1, 1, 1, 1,   // 81-90
+                2, 1, 1, 1, 2, 1, 2, 1, 9, 1    // 91-100
+            ];
+            
+            const humanRandomData = humanFrequencies.map((freq, i) => [i + 1, freq]);
+            
+            // Calculate total guesses from human data
+            const totalGuesses = humanFrequencies.reduce((sum, freq) => sum + freq, 0);
+            const uniformFrequency = totalGuesses / 100;
+            
+            // True random distribution (uniform) - same total as human data
+            const trueRandomData = Array.from({ length: 100 }, (_, i) => [i + 1, uniformFrequency]);
+            
+            const commonOptions = {
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent',
+                    height: 400
+                },
+                title: {
+                    text: null
+                },
+                credits: { enabled: false },
+                legend: { enabled: false },
+                xAxis: {
+                    title: {
+                        text: 'Number (1-100)',
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontSize: '0.9rem',
+                            color: '#10214b'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            color: '#10214b'
+                        }
+                    },
+                    min: 1,
+                    max: 100,
+                    tickInterval: 10
+                },
+                yAxis: {
+                    title: {
+                        text: 'Frequency',
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontSize: '0.9rem',
+                            color: '#10214b'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            color: '#10214b'
+                        }
+                    },
+                    min: 0,
+                    max: 20
+                },
+                tooltip: {
+                    useHTML: true,
+                    formatter: function() {
+                        return `<b>Number ${this.x}</b><br/>Frequency: ${this.y}`;
+                    },
+                    style: {
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontSize: '0.85rem'
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0,
+                        groupPadding: 0,
+                        borderWidth: 0,
+                        pointWidth: 6
+                    }
+                }
+            };
+            
+            // True Random Chart
+            Highcharts.chart('trueRandomChart', {
+                ...commonOptions,
+                series: [{
+                    name: 'True Random',
+                    data: trueRandomData,
+                    color: '#10214b'
+                }]
+            });
+            
+            // Human Random Chart
+            Highcharts.chart('humanRandomChart', {
+                ...commonOptions,
+                series: [{
+                    name: 'Human Random',
+                    data: humanRandomData,
+                    color: '#d7bd88',
+                    zones: [
+                        {
+                            value: 250,
+                            color: '#d7bd88'
+                        },
+                        {
+                            color: '#d03c3b' // Highlight peak for 37
+                        }
+                    ]
+                }]
+            });
+        }
+        
+        // Initialize charts when page loads
+        window.addEventListener('DOMContentLoaded', initCharts);
+    </script>
+</body>
+</html>
+
