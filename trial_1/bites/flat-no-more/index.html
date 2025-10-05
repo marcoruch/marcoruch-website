@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flat No More | Bites | Marco Ruch</title>
+    <meta name="description" content="Explore how subtle depth, layering, and shadow can transform sterile flat interfaces into tactile, engaging designs. An interactive guide to UI depth design.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="author" content="Marco Ruch">
+    <meta name="theme-color" content="#10214b">
+    <meta name="msapplication-TileColor" content="#10214b">
+    <meta name="keywords" content="UI design, depth, shadows, flat design, interface design, visual hierarchy, design systems">
+
+    <!-- Canonical URL (SEO) -->
+    <link rel="canonical" href="https://marcoruch.ch/bites/flat-no-more/">
+    
+    <!-- Additional indexing hints -->
+    <link rel="alternate" hreflang="en" href="https://marcoruch.ch/bites/flat-no-more/">
+    <link rel="alternate" hreflang="x-default" href="https://marcoruch.ch/bites/flat-no-more/">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Flat No More | Bites | Marco Ruch">
+    <meta property="og:description" content="Discover how color layering and shadows create depth in UI design. Interactive examples show the transformation from flat to dimensional interfaces.">
+    <meta property="og:url" content="https://marcoruch.ch/bites/flat-no-more/">
+    <meta property="og:site_name" content="Marco Ruch">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:image" content="https://marcoruch.ch/bites/assets/images/flat-no-more_preview.jpg">
+    <meta property="og:image:alt" content="Flat No More - UI Depth Design">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="article:author" content="Marco Ruch">
+    <meta property="article:published_time" content="2025-10-10T00:00:00Z">
+    <meta property="article:section" content="UI Design">
+    <meta property="article:tag" content="UI Design">
+    <meta property="article:tag" content="Visualization">
+    <meta property="article:tag" content="Aesthetics">
+
+    <!-- Twitter Card (Social) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Flat No More | Bites | Marco Ruch">
+    <meta name="twitter:description" content="Explore how subtle depth, layering, and shadow transform flat interfaces into engaging designs.">
+    <meta name="twitter:image" content="https://marcoruch.ch/bites/assets/images/flat-no-more_preview.jpg">
+    <meta name="twitter:creator" content="@marcoruch">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/manifest.json" crossorigin="use-credentials">
+    
+    <!-- Performance Enhancements -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../styles.css" as="style">
+    <link rel="preload" href="../../assets/css/breadcrumbs.css" as="style">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Shared Bites Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/breadcrumbs.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Flat No More | Bites | Marco Ruch",
+      "description": "Explore how subtle depth, layering, and shadow can transform sterile flat interfaces into tactile, engaging designs",
+      "url": "https://marcoruch.ch/bites/flat-no-more/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://marcoruch.ch/bites/flat-no-more/"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://marcoruch.ch/bites/assets/images/flat-no-more_preview.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "datePublished": "2025-10-10T00:00:00Z",
+      "dateModified": "2025-10-10T00:00:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/",
+        "jobTitle": "Senior Software Engineer",
+        "sameAs": [
+          "https://www.linkedin.com/in/marco-ruch/",
+          "https://github.com/marcoruch/"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/"
+      },
+      "articleSection": "UI Design",
+      "keywords": "UI design, depth, shadows, flat design, interface design, visual hierarchy, design systems",
+      "inLanguage": "en-GB",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Portfolio",
+            "item": "https://marcoruch.ch/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bites",
+            "item": "https://marcoruch.ch/bites/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Flat No More",
+            "item": "https://marcoruch.ch/bites/flat-no-more/"
+          }
+        ]
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "UI Design"
+        },
+        {
+          "@type": "Thing",
+          "name": "Visual Design"
+        },
+        {
+          "@type": "Thing",
+          "name": "Interface Design"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        /* ===== Page-Specific Styles for Flat No More ===== */
+        
+        /* Interactive Sections */
+        .interactive-section {
+            background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+        
+        .intro-title {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .intro-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Global Toggle */
+        .depth-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 80px;
+            height: 40px;
+            background: var(--color-deep-blue);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .toggle-switch.active {
+            background: var(--color-gold);
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .toggle-switch.active .toggle-slider {
+            left: 44px;
+        }
+        
+        .toggle-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+        }
+        
+        /* Demo Components */
+        .demo-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+        
+        .demo-card {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            min-width: 280px;
+            transition: all var(--transition-normal);
+        }
+        
+        /* Nav Example */
+        .demo-nav {
+            background: hsl(220, 15%, 95%);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            transition: all var(--transition-normal);
+        }
+        
+        .demo-nav.with-depth {
+            background: hsl(220, 15%, 85%);
+        }
+        
+        .nav-item {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: hsl(220, 15%, 30%);
+            background: hsl(220, 15%, 95%);
+            transition: all var(--transition-normal);
+        }
+        
+        .demo-nav.with-depth .nav-item {
+            background: hsl(220, 15%, 92%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.08);
+        }
+        
+        .nav-item.active {
+            background: hsl(220, 15%, 98%);
+            color: hsl(220, 15%, 20%);
+        }
+        
+        .demo-nav.with-depth .nav-item.active {
+            background: hsl(220, 15%, 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 3px 8px rgba(0,0,0,0.12);
+        }
+        
+        /* Profile Card Example */
+        .demo-profile-card {
+            background: hsl(220, 15%, 96%);
+            padding: 2rem;
+            border-radius: 12px;
+            min-width: 300px;
+            transition: all var(--transition-normal);
+        }
+        
+        .demo-profile-card.with-depth {
+            background: hsl(220, 15%, 92%);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: all var(--transition-normal);
+        }
+        
+        .demo-profile-card.with-depth .profile-avatar {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .profile-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: hsl(220, 15%, 20%);
+            margin-bottom: 0.2rem;
+        }
+        
+        .profile-info p {
+            font-size: 0.85rem;
+            color: hsl(220, 15%, 45%);
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem;
+            background: hsl(220, 15%, 98%);
+            border-radius: 8px;
+            transition: all var(--transition-normal);
+        }
+        
+        .demo-profile-card.with-depth .profile-stats {
+            background: hsl(220, 15%, 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: hsl(220, 15%, 20%);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: hsl(220, 15%, 50%);
+        }
+        
+        /* Color Layer Playground */
+        .playground {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .playground-title {
+            font-family: var(--font-primary);
+            font-size: 1.3rem;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .playground-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .layer-demo {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .layer-box {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+            padding: 1rem;
+        }
+        
+        .layer-box:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        .layer-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        
+        .layer-value {
+            font-size: 0.65rem;
+            opacity: 0.7;
+            margin-top: 0.2rem;
+        }
+        
+        .usage-map {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+        
+        .usage-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .usage-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.85rem;
+        }
+        
+        .usage-color {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        
+        /* Shadow Playground */
+        .shadow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .shadow-option {
+            text-align: center;
+        }
+        
+        .shadow-box {
+            width: 100%;
+            height: 140px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .shadow-option.active .shadow-box {
+            background: var(--color-gold);
+            color: var(--color-deep-blue);
+        }
+        
+        .shadow-box.no-shadow {
+            box-shadow: none;
+            border: 2px dashed rgba(0,0,0,0.1);
+        }
+        
+        .shadow-box.dark-only {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .shadow-box.light-only {
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.5);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .shadow-box.balanced {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 3px 8px rgba(0,0,0,0.12);
+        }
+        
+        .shadow-label {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+        }
+        
+        .shadow-description {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .css-code {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #2d3748;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: #68d391;
+            overflow-x: auto;
+            display: none;
+        }
+        
+        .shadow-option.active .css-code {
+            display: block;
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .theme-buttons {
+            display: inline-flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .theme-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--color-gold);
+            background: transparent;
+            color: var(--color-deep-blue);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .theme-btn.active {
+            background: var(--color-gold);
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+        
+        .theme-demo-card {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all var(--transition-slow);
+        }
+        
+        .theme-demo-card[data-theme="light"] {
+            background: hsl(220, 15%, 92%);
+            color: hsl(220, 15%, 15%);
+        }
+        
+        .theme-demo-card[data-theme="dark"] {
+            background: hsl(220, 15%, 18%);
+            color: hsl(220, 15%, 90%);
+        }
+        
+        .theme-element {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: all var(--transition-slow);
+        }
+        
+        .theme-demo-card[data-theme="light"] .theme-element {
+            background: hsl(220, 15%, 98%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.08);
+        }
+        
+        .theme-demo-card[data-theme="dark"] .theme-element {
+            background: hsl(220, 15%, 25%);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        /* Full Dashboard Styles */
+        .dashboard-controls {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .control-group-inline {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .control-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--color-deep-blue);
+            background: transparent;
+            color: var(--color-deep-blue);
+            font-family: var(--font-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .control-btn.active {
+            background: var(--color-deep-blue);
+            color: white;
+        }
+        
+        .full-dashboard {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-elevated);
+            transition: all var(--transition-slow);
+        }
+        
+        .dashboard-wrapper {
+            font-family: 'Manrope', var(--font-secondary), sans-serif;
+        }
+        
+        /* Light theme - flat */
+        .full-dashboard[data-theme="light"][data-depth="false"] {
+            background: #f5f5f5;
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="false"] .dashboard-header-full,
+        .full-dashboard[data-theme="light"][data-depth="false"] .dashboard-sidebar,
+        .full-dashboard[data-theme="light"][data-depth="false"] .analytics-section,
+        .full-dashboard[data-theme="light"][data-depth="false"] .table-section,
+        .full-dashboard[data-theme="light"][data-depth="false"] .dashboard-stats,
+        .full-dashboard[data-theme="light"][data-depth="false"] .stats-metrics,
+        .full-dashboard[data-theme="light"][data-depth="false"] .transactions-section {
+            background: #f9f9f9;
+            border: none;
+        }
+        
+        /* Light theme - with depth */
+        .full-dashboard[data-theme="light"][data-depth="true"] {
+            background: hsl(0, 0%, 92%);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .dashboard-header-full {
+            background: hsl(0, 0%, 96%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .dashboard-sidebar {
+            background: hsl(0, 0%, 94%);
+            box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .sidebar-link {
+            background: transparent;
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .sidebar-link:hover {
+            background: hsl(0, 0%, 97%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .sidebar-link.active {
+            background: hsl(0, 0%, 99%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .search-input {
+            background: hsl(0, 0%, 98%);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .analytics-section,
+        .full-dashboard[data-theme="light"][data-depth="true"] .table-section {
+            background: hsl(0, 0%, 98%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .dashboard-stats {
+            background: hsl(0, 0%, 94%);
+            box-shadow: -2px 0 8px rgba(0,0,0,0.04);
+        }
+        
+        .full-dashboard[data-theme="light"][data-depth="true"] .stats-metrics,
+        .full-dashboard[data-theme="light"][data-depth="true"] .transactions-section {
+            background: hsl(0, 0%, 97%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.05);
+        }
+        
+        /* Dark theme - flat */
+        .full-dashboard[data-theme="dark"][data-depth="false"] {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="false"] .dashboard-header-full,
+        .full-dashboard[data-theme="dark"][data-depth="false"] .dashboard-sidebar,
+        .full-dashboard[data-theme="dark"][data-depth="false"] .analytics-section,
+        .full-dashboard[data-theme="dark"][data-depth="false"] .table-section,
+        .full-dashboard[data-theme="dark"][data-depth="false"] .dashboard-stats,
+        .full-dashboard[data-theme="dark"][data-depth="false"] .stats-metrics,
+        .full-dashboard[data-theme="dark"][data-depth="false"] .transactions-section {
+            background: #252525;
+            border: none;
+        }
+        
+        /* Dark theme - with depth */
+        .full-dashboard[data-theme="dark"][data-depth="true"] {
+            background: hsl(0, 0%, 12%);
+            color: #e0e0e0;
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .dashboard-header-full {
+            background: hsl(0, 0%, 16%);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .dashboard-sidebar {
+            background: hsl(0, 0%, 14%);
+            box-shadow: 2px 0 12px rgba(0,0,0,0.2);
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .sidebar-link {
+            background: transparent;
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .sidebar-link:hover {
+            background: hsl(0, 0%, 18%);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.03), 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .sidebar-link.active {
+            background: hsl(0, 0%, 20%);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05), 0 3px 10px rgba(0,0,0,0.4);
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .search-input {
+            background: hsl(0, 0%, 18%);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+            color: #e0e0e0;
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .analytics-section,
+        .full-dashboard[data-theme="dark"][data-depth="true"] .table-section {
+            background: hsl(0, 0%, 16%);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.02), 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .dashboard-stats {
+            background: hsl(0, 0%, 14%);
+            box-shadow: -2px 0 12px rgba(0,0,0,0.2);
+        }
+        
+        .full-dashboard[data-theme="dark"][data-depth="true"] .stats-metrics,
+        .full-dashboard[data-theme="dark"][data-depth="true"] .transactions-section {
+            background: hsl(0, 0%, 18%);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.02), 0 2px 8px rgba(0,0,0,0.25);
+        }
+        
+        /* Header */
+        .dashboard-header-full {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            gap: 1.5rem;
+            transition: all var(--transition-slow);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-deep-blue);
+        }
+        
+        .dashboard-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--color-deep-blue);
+        }
+        
+        .full-dashboard[data-theme="dark"] .hamburger-btn,
+        .full-dashboard[data-theme="dark"] .dashboard-title {
+            color: #e0e0e0;
+        }
+        
+        .header-middle {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.6rem 2.5rem 0.6rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all var(--transition-normal);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .magic-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .magic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+        
+        /* Dashboard Content */
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 200px 1fr 250px;
+            min-height: 600px;
+            transition: all var(--transition-slow);
+        }
+        
+        /* Sidebar */
+        .dashboard-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1.5rem 1rem;
+            transition: all var(--transition-slow);
+        }
+        
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all var(--transition-normal);
+        }
+        
+        /* Main Content */
+        .dashboard-main {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .section-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header-row h3,
+        .section-header-row h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .duration-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .analytics-section {
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all var(--transition-slow);
+        }
+        
+        .chart-container {
+            height: 200px;
+            margin-top: 1rem;
+        }
+        
+        .tables-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .table-section {
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all var(--transition-slow);
+        }
+        
+        .table-section h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0 0 1rem 0;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        
+        .data-table th {
+            text-align: left;
+            padding: 0.6rem 0;
+            font-weight: 600;
+            opacity: 0.7;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .data-table td {
+            padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        
+        .full-dashboard[data-theme="dark"] .data-table td {
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        
+        .data-table .active-row {
+            font-weight: 600;
+        }
+        
+        .growth-positive {
+            color: #10b981;
+        }
+        
+        .growth-negative {
+            color: #ef4444;
+        }
+        
+        /* Stats Sidebar */
+        .dashboard-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1.5rem 1rem;
+            transition: all var(--transition-slow);
+        }
+        
+        .stats-metrics {
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: all var(--transition-slow);
+        }
+        
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .full-dashboard[data-theme="dark"] .progress-bar {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width var(--transition-normal);
+        }
+        
+        .transactions-section {
+            padding: 1rem;
+            border-radius: 8px;
+            transition: all var(--transition-slow);
+        }
+        
+        .see-all-link {
+            font-size: 0.8rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .transactions-table th {
+            text-align: left;
+            padding: 0.5rem 0;
+            font-weight: 600;
+            opacity: 0.7;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .transactions-table td {
+            padding: 0.6rem 0;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        
+        .full-dashboard[data-theme="dark"] .transactions-table td {
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-title {
+                font-size: 1.6rem;
+            }
+            
+            .demo-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .layer-demo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .shadow-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-content {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .dashboard-sidebar,
+            .dashboard-stats {
+                display: none;
+            }
+            
+            .header-middle {
+                max-width: 100%;
+            }
+            
+            .tables-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard-content {
+                grid-template-columns: 180px 1fr 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <div class="header-content">
+                <div class="breadcrumb-nav">
+                    <a href="../../index.html" class="breadcrumb-link">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="../index.html" class="breadcrumb-link">Bites</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Flat No More</span>
+                </div>
+                <h1>Flat No More</h1>
+                <p class="subtitle">We've gone from skeuomorphic to flat, but stopped too soon. Explore how subtle depth, layering, and shadow can transform sterile interfaces into tactile, engaging designs.</p>
+            </div>
+        </header>
+        
+        <main>
+            <!-- Intro Section: The Problem -->
+            <section class="interactive-section">
+                <div class="section-intro">
+                    <h2 class="intro-title">The Problem with Perfect Flatness</h2>
+                    <p class="intro-text">
+                        Modern UI design often celebrates flat minimalism. But pure flatness hides hierarchy. Every element feels equally important, leaving users unsure where to look or click. Let's fix that with one of the simplest, oldest tricks in visual design: <strong>depth</strong>.
+                    </p>
+                    <div class="depth-toggle-container">
+                        <span class="toggle-label">Flat</span>
+                        <div class="toggle-switch" id="globalToggle">
+                            <div class="toggle-slider"></div>
+                        </div>
+                        <span class="toggle-label">Designed with Depth</span>
+                    </div>
+                </div>
+                
+                <div class="demo-container">
+                    <div class="demo-card">
+                        <h3 style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--color-deep-blue); font-weight: 600;">Navigation Bar</h3>
+                        <nav class="demo-nav" id="demoNav">
+                            <div class="nav-item active">Dashboard</div>
+                            <div class="nav-item">Projects</div>
+                            <div class="nav-item">Team</div>
+                        </nav>
+                    </div>
+                    
+                    <div class="demo-card">
+                        <h3 style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--color-deep-blue); font-weight: 600;">Profile Card</h3>
+                        <div class="demo-profile-card" id="demoProfile">
+                            <div class="profile-header">
+                                <div class="profile-avatar"></div>
+                                <div class="profile-info">
+                                    <h3>Alex Chen</h3>
+                                    <p>Product Designer</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <div class="stat-value">142</div>
+                                    <div class="stat-label">Projects</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">1.2k</div>
+                                    <div class="stat-label">Followers</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">89</div>
+                                    <div class="stat-label">Following</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Step 1: Color Layers -->
+            <section class="interactive-section" style="background: white;">
+                <div class="section-intro">
+                    <h2 class="intro-title">Step 1: Color Layers</h2>
+                    <p class="intro-text">
+                        Depth starts with contrast, not decoration. Build 3–4 shades of the same color. Use darker tones for background surfaces, lighter ones for interactive elements, and brightest tones for highlights.
+                    </p>
+                </div>
+                
+                <div class="playground">
+                    <h3 class="playground-title">Adjust Lightness</h3>
+                    <p class="playground-subtitle">Slide to see how tone hierarchy builds spatial separation. Each +0.1 step feels one layer closer to you.</p>
+                    
+                    <div class="slider-container" style="margin-bottom: 2rem;">
+                        <span style="font-size: 0.85rem; color: #666;">Darker</span>
+                        <input type="range" id="lightnessSlider" min="0" max="30" value="10" step="1">
+                        <span style="font-size: 0.85rem; color: #666;">Lighter</span>
+                    </div>
+                    
+                    <div class="layer-demo" id="layerDemo">
+                        <div class="layer-box" data-layer="1">
+                            <div class="layer-label">Background</div>
+                            <div class="layer-value">Base</div>
+                        </div>
+                        <div class="layer-box" data-layer="2">
+                            <div class="layer-label">Surface</div>
+                            <div class="layer-value">+0.1</div>
+                        </div>
+                        <div class="layer-box" data-layer="3">
+                            <div class="layer-label">Interactive</div>
+                            <div class="layer-value">+0.2</div>
+                        </div>
+                        <div class="layer-box" data-layer="4">
+                            <div class="layer-label">Highlight</div>
+                            <div class="layer-value">+0.3</div>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-map">
+                        <div class="usage-title">Where Each Shade is Used</div>
+                        <div class="usage-item">
+                            <div class="usage-color" style="background: hsl(220, 15%, 85%);"></div>
+                            <span><strong>Background:</strong> Page foundation, deepest layer</span>
+                        </div>
+                        <div class="usage-item">
+                            <div class="usage-color" style="background: hsl(220, 15%, 92%);"></div>
+                            <span><strong>Surface:</strong> Cards, containers, grouped content</span>
+                        </div>
+                        <div class="usage-item">
+                            <div class="usage-color" style="background: hsl(220, 15%, 96%);"></div>
+                            <span><strong>Interactive:</strong> Buttons, inputs, clickable elements</span>
+                        </div>
+                        <div class="usage-item">
+                            <div class="usage-color" style="background: hsl(220, 15%, 100%);"></div>
+                            <span><strong>Highlight:</strong> Active states, focused items</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Step 2: Shadow -->
+            <section class="interactive-section">
+                <div class="section-intro">
+                    <h2 class="intro-title">Step 2: Shadow</h2>
+                    <p class="intro-text">
+                        Shadows simulate light direction. Combine a soft bright rim on top (light source) and a subtle dark shadow below (depth anchor). Used together, they mimic how light falls on real surfaces.
+                    </p>
+                </div>
+                
+                <div class="playground">
+                    <h3 class="playground-title">Shadow Combinations</h3>
+                    <p class="playground-subtitle">Click each option to see the effect. Notice how combining both creates the most realistic feel.</p>
+                    
+                    <div class="shadow-grid">
+                        <div class="shadow-option" data-shadow="none">
+                            <div class="shadow-box no-shadow">No Shadow</div>
+                            <div class="shadow-label">No Shadow</div>
+                            <div class="shadow-description">Flat and lifeless. No depth perception at all.</div>
+                            <div class="css-code">box-shadow: none;</div>
+                        </div>
+                        
+                        <div class="shadow-option" data-shadow="dark">
+                            <div class="shadow-box dark-only">Dark Only</div>
+                            <div class="shadow-label">Dark Shadow Only</div>
+                            <div class="shadow-description">Creates separation but lacks the light source feel.</div>
+                            <div class="css-code">box-shadow: 0 4px 8px rgba(0,0,0,0.15);</div>
+                        </div>
+                        
+                        <div class="shadow-option" data-shadow="light">
+                            <div class="shadow-box light-only">Light Inset Only</div>
+                            <div class="shadow-label">Light Inset Only</div>
+                            <div class="shadow-description">Subtle highlight but missing depth anchor.</div>
+                            <div class="css-code">box-shadow: inset 0 2px 0 rgba(255,255,255,0.5);</div>
+                        </div>
+                        
+                        <div class="shadow-option active" data-shadow="balanced">
+                            <div class="shadow-box balanced">Both (Balanced)</div>
+                            <div class="shadow-label">Balanced (Ideal)</div>
+                            <div class="shadow-description">Perfect combination: light from above, depth below.</div>
+                            <div class="css-code">box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 3px 8px rgba(0,0,0,0.12);</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Step 3: Real-World Dashboard Example -->
+            <section class="interactive-section" style="background: white; min-height: auto; padding: 4rem 2rem;">
+                <div class="section-intro">
+                    <h2 class="intro-title">Step 3: Bringing It All Together</h2>
+                    <p class="intro-text">
+                        Let's see how depth transforms an entire dashboard interface. Same layout, radically different perception. Toggle between flat and depth designs, and switch between light and dark modes to see how color, depth, and shadow reshape the feel.
+                    </p>
+                </div>
+                
+                <div class="dashboard-controls">
+                    <div class="control-group-inline">
+                        <span style="font-size: 0.9rem; font-weight: 600; color: var(--color-deep-blue);">Design:</span>
+                        <button class="control-btn active" id="dashboardFlatBtn">Flat</button>
+                        <button class="control-btn" id="dashboardDepthBtn">With Depth</button>
+                    </div>
+                    <div class="control-group-inline">
+                        <span style="font-size: 0.9rem; font-weight: 600; color: var(--color-deep-blue);">Theme:</span>
+                        <button class="control-btn active" id="dashboardLightBtn">Light</button>
+                        <button class="control-btn" id="dashboardDarkBtn">Dark</button>
+                    </div>
+                </div>
+                
+                <div class="full-dashboard" id="fullDashboard" data-depth="false" data-theme="light">
+                    <div class="dashboard-wrapper">
+                        <!-- Header -->
+                        <header class="dashboard-header-full">
+                            <div class="header-left">
+                                <button class="hamburger-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="4" x2="20" y1="12" y2="12" />
+                                        <line x1="4" x2="20" y1="6" y2="6" />
+                                        <line x1="4" x2="20" y1="18" y2="18" />
+                                    </svg>
+                                </button>
+                                <h2 class="dashboard-title">Dashboard</h2>
+                            </div>
+                            <div class="header-middle">
+                                <input type="text" placeholder="Search..." class="search-input" />
+                                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="m21 21-4.3-4.3" />
+                                </svg>
+                            </div>
+                            <div class="header-right">
+                                <button class="magic-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+                                    </svg>
+                                    <span>Magic</span>
+                                </button>
+                                <div class="profile-avatar"></div>
+                            </div>
+                        </header>
+                        
+                        <div class="dashboard-content">
+                            <!-- Sidebar -->
+                            <aside class="dashboard-sidebar">
+                                <a href="javascript:void(0);" class="sidebar-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                                        <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    </svg>
+                                    <span>Home</span>
+                                </a>
+                                <a href="javascript:void(0);" class="sidebar-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 7v14" />
+                                        <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+                                    </svg>
+                                    <span>Reports</span>
+                                </a>
+                                <a href="javascript:void(0);" class="sidebar-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+                                        <path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7" />
+                                    </svg>
+                                    <span>Analytics</span>
+                                </a>
+                                <a href="javascript:void(0);" class="sidebar-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 21a8 8 0 0 0-16 0" />
+                                        <circle cx="10" cy="8" r="5" />
+                                        <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+                                    </svg>
+                                    <span>Community</span>
+                                </a>
+                                <a href="javascript:void(0);" class="sidebar-link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                    <span>Settings</span>
+                                </a>
+                            </aside>
+                            
+                            <!-- Main Content -->
+                            <main class="dashboard-main">
+                                <div class="analytics-section">
+                                    <div class="section-header-row">
+                                        <h3>Analytics</h3>
+                                        <div class="duration-selector">
+                                            <span>Last 28 days</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="m6 9 6 6 6-6" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="chart-container">
+                                        <canvas id="dashboardChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="tables-row">
+                                    <div class="table-section">
+                                        <h3>Overview</h3>
+                                        <table class="data-table">
+                                            <tr>
+                                                <th>Quarter</th>
+                                                <th>Revenue</th>
+                                                <th>Growth</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Q1 - Last</td>
+                                                <td>$3,680</td>
+                                                <td class="growth-positive">+$69</td>
+                                            </tr>
+                                            <tr class="active-row">
+                                                <td>Q2 - Current</td>
+                                                <td>$4,680</td>
+                                                <td class="growth-positive">+$420</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    <div class="table-section">
+                                        <h3>Predictions</h3>
+                                        <table class="data-table">
+                                            <tr>
+                                                <th>Quarter</th>
+                                                <th>Revenue</th>
+                                                <th>Growth</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Q3 - Next</td>
+                                                <td>$5,600</td>
+                                                <td class="growth-positive">+$389</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Q4 - Upcoming</td>
+                                                <td>$2,600</td>
+                                                <td class="growth-negative">-$1,769</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </main>
+                            
+                            <!-- Stats Sidebar -->
+                            <aside class="dashboard-stats">
+                                <div class="section-header-row">
+                                    <h3>Stats</h3>
+                                    <div class="duration-selector">
+                                        <span>Last 28 days</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="m6 9 6 6 6-6" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                
+                                <div class="stats-metrics">
+                                    <div class="metric-item">
+                                        <div class="metric-header">
+                                            <span>TT1</span>
+                                            <span>384/1000</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 38.4%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-header">
+                                            <span>TT2</span>
+                                            <span>649/1000</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 64.9%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transactions-section">
+                                    <div class="section-header-row">
+                                        <h4>Recent Transactions</h4>
+                                        <a href="javascript:void(0);" class="see-all-link">See all</a>
+                                    </div>
+                                    <table class="transactions-table">
+                                        <tr>
+                                            <th>Source</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                        <tr>
+                                            <td>PayPal</td>
+                                            <td>$4,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stripe</td>
+                                            <td>$2,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chase Bank</td>
+                                            <td>$7,800</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wells Fargo</td>
+                                            <td>$3,200</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Venmo</td>
+                                            <td>$1,500</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Explanation Section -->
+        <section class="explanation">
+            <div class="explanation-content">
+                <h2 class="section-header">The Effortless Upgrade</h2>
+                <p class="section-intro" style="text-align: left;">
+                    You don't need a complete redesign to make an interface feel alive. A few shades of color and two layers of shadow can elevate ordinary layouts to good design. The examples above demonstrate a fundamental truth: depth isn't about adding complexity or decoration. It's about creating visual hierarchy through light and shadow. True polish isn't about adding more. It's about shaping light in a way that guides the eye and clarifies the interface structure.
+                </p>
+                
+                <blockquote class="highlight-quote">
+                    Adding depth takes seconds. Feeling depth lasts forever.
+                </blockquote>
+                
+                <h3 class="section-header">The Two-Step Process</h3>
+                
+                <div class="flowing-explanation">
+                    <p>The technique is deceptively simple. <strong>First, create three to four shades of the same color.</strong> You're not picking random colors. You're building a tonal scale where each step represents one layer of elevation. Think of it like stacking sheets of paper: the bottom sheet is darkest, each layer above gets progressively lighter as it moves toward the light source.</p>
+                    
+                    <p><strong>Second, add shadows that simulate a light source from above.</strong> This isn't about randomly dropping shadows on elements. It's about creating a consistent lighting system: a subtle bright rim on top (where light hits directly) and a soft dark shadow below (where the element blocks light). When users see this pattern repeated across your interface, their brain unconsciously understands the spatial relationships.</p>
+                    
+                    <p>The magic happens in the combination. Color layering establishes the foundation of depth, while shadows add the finishing touch that makes surfaces feel tangible. Without color layers, shadows look arbitrary. Without shadows, color layers lack dimension. Together, they create the illusion that your flat screen has physical depth.</p>
+                </div>
+                
+                <h3 class="section-header">Why This Works</h3>
+                
+                <div class="explanation-grid">
+                    <div class="explanation-card">
+                        <h3>Visual Hierarchy</h3>
+                        <p>Depth creates instant priority. Elements that appear closer automatically feel more important. Users know what to focus on first without reading a single word. The elevated card with a strong shadow draws attention before the recessed table in the background.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Affordance Signals</h3>
+                        <p>Raised elements with shadows scream "I'm clickable!" while recessed surfaces signal "I'm content, not controls." This visual language is universal and intuitive. Users don't need to guess which elements are interactive.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Reduced Cognitive Load</h3>
+                        <p>Flat interfaces force users to read everything to understand structure. Depth lets them scan and navigate spatially, the way we navigate physical spaces. The brain processes spatial information faster than text.</p>
+                    </div>
+                </div>
+                
+                <div class="flowing-explanation">
+                    <p>These principles aren't theoretical. They're rooted in how humans perceive and interact with the physical world. We instinctively understand that objects closer to us are more important, that elevated surfaces are meant to be interacted with, and that spatial relationships convey meaning. By applying depth to digital interfaces, you're leveraging millions of years of evolution in spatial reasoning to make your designs immediately intuitive.</p>
+                </div>
+                
+                <h3 class="section-header">Common Mistakes to Avoid</h3>
+                
+                <div class="flowing-explanation">
+                    <p><strong>Don't go overboard with shadows.</strong> More shadow doesn't mean more depth. Subtle shadows (2-8px blur) work for most UI elements. Giant drop shadows make your interface look like it's floating in space, breaking the illusion. Use bigger shadows sparingly for modals and tooltips that truly need to float above everything else.</p>
+                    
+                    <p><strong>Maintain consistent light direction.</strong> If your light source comes from above (it almost always should), all shadows must point downward and all highlights must appear on top. Mixing shadow directions creates visual chaos and destroys the spatial logic you're trying to build.</p>
+                    
+                    <p><strong>Don't skip dark mode consideration.</strong> The same depth system works in dark mode, but you must invert the shadow logic. In light mode, dark shadows create depth. In dark mode, darker shadows still create depth, but your highlight becomes more prominent. Test both themes to ensure your depth hierarchy translates.</p>
+                </div>
+                
+                <div class="info-box">
+                    <h3 class="section-header">The 80/20 Rule of UI Polish</h3>
+                    <p>Going from average design to good design requires far less effort than going from good to excellent. It's like video game graphics settings: jumping from Normal to High gives you huge visual improvement with minimal performance cost. But pushing from High to Ultra demands massive resources for barely noticeable gains.</p>
+                    <p>Depth is your "High" setting. It's the sweet spot where small effort produces maximum impact. You're not redesigning from scratch. You're enhancing what's already there with a systematic approach to color and light.</p>
+                </div>
+                
+                <div class="technical-note">
+                    <h4>Technical Implementation</h4>
+                    <p>
+                        The techniques demonstrated in this bite are built on standard CSS principles: HSL color manipulation for generating tonal scales, and layered <code>box-shadow</code> for creating realistic lighting effects. Modern CSS custom properties make it trivial to implement theme-aware depth systems.
+                    </p>
+                    <p>
+                        This bite is inspired by the excellent work of Sajid (<a href="https://www.youtube.com/@whosajid" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">@whosajid</a>), specifically his video <a href="https://www.youtube.com/watch?v=wcZ6jSlZqDc" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">"The Easy Way to Fix Boring UIs"</a>, which offers a practical approach to creating depth in UI design.
+                    </p>
+                    <p>
+                        For deeper exploration of color theory in UI design, see Material Design's <a href="https://m3.material.io/styles/elevation/overview" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">elevation system</a> and Apple's <a href="https://developer.apple.com/design/human-interface-guidelines/depth" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">Human Interface Guidelines on depth</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Chart.js for Dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <script>
+        // ===== Global Depth Toggle =====
+        const globalToggle = document.getElementById('globalToggle');
+        const demoNav = document.getElementById('demoNav');
+        const demoProfile = document.getElementById('demoProfile');
+        
+        globalToggle.addEventListener('click', () => {
+            globalToggle.classList.toggle('active');
+            const isActive = globalToggle.classList.contains('active');
+            
+            if (isActive) {
+                demoNav.classList.add('with-depth');
+                demoProfile.classList.add('with-depth');
+            } else {
+                demoNav.classList.remove('with-depth');
+                demoProfile.classList.remove('with-depth');
+            }
+        });
+        
+        // ===== Lightness Slider =====
+        const lightnessSlider = document.getElementById('lightnessSlider');
+        const layerDemo = document.getElementById('layerDemo');
+        
+        function updateColorLayers() {
+            const value = parseInt(lightnessSlider.value);
+            const baseLight = 85;
+            const step = value / 10;
+            
+            const boxes = layerDemo.querySelectorAll('.layer-box');
+            boxes.forEach((box, index) => {
+                const lightness = baseLight + (step * index);
+                box.style.background = `hsl(220, 15%, ${lightness}%)`;
+                box.style.color = lightness > 50 ? '#333' : '#fff';
+            });
+        }
+        
+        lightnessSlider.addEventListener('input', updateColorLayers);
+        updateColorLayers();
+        
+        // ===== Shadow Options =====
+        const shadowOptions = document.querySelectorAll('.shadow-option');
+        
+        shadowOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                shadowOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+            });
+        });
+        
+        // ===== Full Dashboard Controls =====
+        const fullDashboard = document.getElementById('fullDashboard');
+        const dashboardFlatBtn = document.getElementById('dashboardFlatBtn');
+        const dashboardDepthBtn = document.getElementById('dashboardDepthBtn');
+        const dashboardLightBtn = document.getElementById('dashboardLightBtn');
+        const dashboardDarkBtn = document.getElementById('dashboardDarkBtn');
+        let dashboardChart = null;
+        
+        function initDashboardChart() {
+            const canvas = document.getElementById('dashboardChart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const theme = fullDashboard.getAttribute('data-theme');
+            const isDark = theme === 'dark';
+            
+            // Destroy existing chart if it exists
+            if (dashboardChart) {
+                dashboardChart.destroy();
+            }
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, isDark ? 'rgba(102, 126, 234, 0.3)' : 'rgba(102, 126, 234, 0.2)');
+            gradient.addColorStop(1, isDark ? 'rgba(102, 126, 234, 0)' : 'rgba(102, 126, 234, 0)');
+            
+            dashboardChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [3200, 3400, 3100, 3680, 4200, 4400, 4680],
+                        borderColor: '#667eea',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: '#667eea',
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: isDark ? '#1a1a1a' : '#ffffff',
+                            titleColor: isDark ? '#e0e0e0' : '#333',
+                            bodyColor: isDark ? '#e0e0e0' : '#333',
+                            borderColor: isDark ? '#333' : '#e0e0e0',
+                            borderWidth: 1,
+                            padding: 12,
+                            boxPadding: 6,
+                            usePointStyle: true
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: isDark ? '#888' : '#666',
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            border: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: isDark ? '#888' : '#666',
+                                font: {
+                                    size: 11
+                                },
+                                callback: function(value) {
+                                    return '$' + (value / 1000).toFixed(1) + 'k';
+                                }
+                            },
+                            border: {
+                                display: false
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+        
+        // Initialize chart on load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(initDashboardChart, 100);
+        });
+        
+        // Depth toggle (starts with Flat)
+        dashboardFlatBtn.addEventListener('click', () => {
+            fullDashboard.setAttribute('data-depth', 'false');
+            dashboardFlatBtn.classList.add('active');
+            dashboardDepthBtn.classList.remove('active');
+        });
+        
+        dashboardDepthBtn.addEventListener('click', () => {
+            fullDashboard.setAttribute('data-depth', 'true');
+            dashboardDepthBtn.classList.add('active');
+            dashboardFlatBtn.classList.remove('active');
+        });
+        
+        // Theme toggle
+        dashboardLightBtn.addEventListener('click', () => {
+            fullDashboard.setAttribute('data-theme', 'light');
+            dashboardLightBtn.classList.add('active');
+            dashboardDarkBtn.classList.remove('active');
+            initDashboardChart();
+        });
+        
+        dashboardDarkBtn.addEventListener('click', () => {
+            fullDashboard.setAttribute('data-theme', 'dark');
+            dashboardDarkBtn.classList.add('active');
+            dashboardLightBtn.classList.remove('active');
+            initDashboardChart();
+        });
+        
+    </script>
+</body>
+</html>
+
