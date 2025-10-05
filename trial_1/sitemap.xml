@@ -23,6 +23,32 @@
       <image:caption>Interactive visualizations and explorations of interesting concepts in data science, mathematics, and technology</image:caption>
     </image:image>
   </url>
+
+  <url>
+    <loc>https://marcoruch.ch/bites/the-hidden-shortcut/</loc>
+    <lastmod>2025-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://marcoruch.ch/bites/assets/images/the-hidden-shortcut_preview.jpg</image:loc>
+      <image:title>The Hidden Shortcut - How Dijkstra's Algorithm Was Outpaced</image:title>
+      <image:caption>An interactive visualization demonstrating how Duanetal.'s new algorithm's efficiency over Dijkstra's</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://marcoruch.ch/bites/youre-not-random/</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://marcoruch.ch/bites/assets/images/youre-not-random_preview.webp</image:loc>
+      <image:title>You're Not Random - Human Behavior Visualization</image:title>
+      <image:caption>The reasons why human randomness is an illusion, compiled into a bite-sized exploration</image:caption>
+    </image:image>
+  </url>
+
+
   
   <url>
     <loc>https://marcoruch.ch/bites/what-a-small-world/</loc>

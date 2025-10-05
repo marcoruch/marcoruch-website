@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hidden Shortcut | Bites | Marco Ruch</title>
+    <meta name="description" content="After 66 years, researchers finally found a faster algorithm than Dijkstra's for shortest paths. Explore how they broke the sorting barrier.">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="author" content="Marco Ruch">
+    <meta name="theme-color" content="#10214b">
+    <meta name="msapplication-TileColor" content="#10214b">
+    <meta name="keywords" content="algorithms, dijkstra, shortest path, graph theory, computer science, data structures, visualization">
+
+    <!-- Canonical URL (SEO) -->
+    <link rel="canonical" href="https://marcoruch.ch/bites/the-hidden-shortcut/">
+    
+    <!-- Additional indexing hints -->
+    <link rel="alternate" hreflang="en" href="https://marcoruch.ch/bites/the-hidden-shortcut/">
+    <link rel="alternate" hreflang="x-default" href="https://marcoruch.ch/bites/the-hidden-shortcut/">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Hidden Shortcut | Bites | Marco Ruch">
+    <meta property="og:description" content="After 66 years, researchers finally found a faster algorithm than Dijkstra's for shortest paths. Explore the breakthrough that won Best Paper at STOC 2025.">
+    <meta property="og:url" content="https://marcoruch.ch/bites/the-hidden-shortcut/">
+    <meta property="og:site_name" content="Marco Ruch">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:image" content="https://marcoruch.ch/bites/assets/images/the-hidden-shortcut_preview.jpg">
+    <meta property="og:image:alt" content="The Hidden Shortcut - Dijkstra Algorithm Breakthrough">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="article:author" content="Marco Ruch">
+    <meta property="article:published_time" content="2025-10-05T00:00:00Z">
+    <meta property="article:section" content="Computer Science">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="article:tag" content="Graph Theory">
+    <meta property="article:tag" content="Computer Science">
+
+    <!-- Twitter Card (Social) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Hidden Shortcut | Bites | Marco Ruch">
+    <meta name="twitter:description" content="After 66 years, researchers finally found a faster algorithm than Dijkstra's for shortest paths.">
+    <meta name="twitter:image" content="https://marcoruch.ch/bites/assets/images/the-hidden-shortcut_preview.jpg">
+    <meta name="twitter:creator" content="@marcoruch">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon-16x16.png">
+    <link rel="manifest" href="../../assets/manifest.json" crossorigin="use-credentials">
+    
+    <!-- Performance Enhancements -->
+    <!-- Preconnect / DNS Prefetch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://d3js.org">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://d3js.org">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../styles.css" as="style">
+    <link rel="preload" href="../../assets/css/breadcrumbs.css" as="style">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Shared Bites Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/breadcrumbs.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The Hidden Shortcut | Bites | Marco Ruch",
+      "description": "After 66 years, researchers finally found a faster algorithm than Dijkstra's for shortest paths. Explore how they broke the sorting barrier.",
+      "url": "https://marcoruch.ch/bites/the-hidden-shortcut/",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://marcoruch.ch/bites/the-hidden-shortcut/"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://marcoruch.ch/bites/assets/images/the-hidden-shortcut_preview.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "datePublished": "2025-10-05T00:00:00Z",
+      "dateModified": "2025-10-05T00:00:00Z",
+      "author": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/",
+        "jobTitle": "Senior Software Engineer",
+        "sameAs": [
+          "https://www.linkedin.com/in/marco-ruch/",
+          "https://github.com/marcoruch/"
+        ]
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Marco Ruch",
+        "url": "https://marcoruch.ch/"
+      },
+      "articleSection": "Computer Science",
+      "keywords": "algorithms, dijkstra, shortest path, graph theory, computer science, data structures, visualization",
+      "inLanguage": "en-GB",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Portfolio",
+            "item": "https://marcoruch.ch/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bites",
+            "item": "https://marcoruch.ch/bites/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "The Hidden Shortcut",
+            "item": "https://marcoruch.ch/bites/the-hidden-shortcut/"
+          }
+        ]
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Graph Algorithms"
+        },
+        {
+          "@type": "Thing",
+          "name": "Computer Science"
+        },
+        {
+          "@type": "Thing",
+          "name": "Algorithm Analysis"
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Leaflet.js for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Highcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.0/highcharts.js"></script>
+    
+    <style>
+        /* ===== Page-Specific Styles for The Hidden Shortcut ===== */
+        
+        /* Visualization Container */
+        .viz-container {
+            flex: 1;
+            min-height: 800px;
+            background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .viz-content {
+            flex: 1;
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        /* Map Visualization */
+        #canvas-container {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+        }
+        
+        .leaflet-container {
+            font-family: var(--font-secondary);
+        }
+        
+        /* City tooltips (on hover) */
+        .city-tooltip {
+            background: rgba(215, 189, 136, 0.95) !important;
+            border: 1px solid rgba(16, 33, 75, 0.3) !important;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-deep-blue) !important;
+            padding: 4px 8px !important;
+            border-radius: 4px;
+        }
+        
+        .city-tooltip::before {
+            border-top-color: rgba(215, 189, 136, 0.95) !important;
+        }
+        
+        /* Edge label icons */
+        .edge-label-icon {
+            background: transparent !important;
+            border: none !important;
+        }
+        
+        /* Graph Elements (legacy, can be removed but keeping for safety) */
+        .node {
+            stroke: var(--color-off-white);
+            stroke-width: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .node.unvisited {
+            fill: #ccc;
+        }
+        
+        .node.visited {
+            fill: var(--color-deep-blue);
+        }
+        
+        .node.current {
+            fill: var(--color-gold);
+            stroke: var(--color-deep-blue);
+            stroke-width: 3px;
+        }
+        
+        .node.source {
+            fill: var(--color-gold);
+            stroke: var(--color-deep-blue);
+            stroke-width: 3px;
+        }
+        
+        .node.target {
+            fill: var(--color-dust);
+            stroke: var(--color-deep-blue);
+            stroke-width: 3px;
+        }
+        
+        .node.path {
+            fill: var(--color-gold);
+            stroke: var(--color-deep-blue);
+            stroke-width: 3px;
+        }
+        
+        .edge {
+            stroke: #999;
+            stroke-width: 2px;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        
+        .edge.active {
+            stroke: var(--color-gold);
+            stroke-width: 3px;
+        }
+        
+        .edge.path {
+            stroke: var(--color-dust);
+            stroke-width: 4px;
+        }
+        
+        .edge-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            fill: var(--color-deep-blue);
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px;
+        }
+        
+        .node-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            fill: var(--color-deep-blue);
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        
+        .distance-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            fill: var(--color-deep-blue);
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        
+        /* Stats Panel */
+        .stats-panel {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 2rem;
+            border-top: 3px solid var(--color-gold);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin: 0 2rem 2rem 2rem;
+        }
+        
+        /* Operation Badge */
+        .operation-badge {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-dust);
+            color: var(--color-off-white);
+            padding: 0.8rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: var(--shadow-elevated);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .operation-badge.show {
+            opacity: 1;
+        }
+        
+        .operation-badge.dijkstra {
+            background: var(--color-deep-blue);
+        }
+        
+        .operation-badge.duan {
+            background: var(--color-gold);
+            color: var(--color-deep-blue);
+        }
+        
+        /* Info box in left panel */
+        .info-box-simple {
+            background: rgba(215, 189, 136, 0.1);
+            border-left: 3px solid var(--color-gold);
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        /* Controls customization */
+        .control-group.algorithm-select {
+            margin-bottom: 2rem;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .radio-option {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        /* Complexity Chart */
+        .complexity-section {
+            background: var(--color-off-white);
+            padding: 3rem 2rem;
+        }
+        
+        .complexity-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .chart-box {
+            background: white;
+            padding: 2rem;
+            border-left: 3px solid var(--color-gold);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            #canvas-container {
+                min-height: 500px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-panel {
+                margin: 0 1rem 1rem 1rem;
+                padding: 1.5rem;
+            }
+            
+            .stats-panel > div:first-child {
+                flex-direction: column !important;
+                gap: 1.5rem;
+            }
+            
+            .stats-panel > div:first-child > div:last-child {
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100%;
+            }
+            
+            .stats-panel > div:last-child > div {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            
+            .viz-container {
+                min-height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <div class="header-content">
+                <div class="breadcrumb-nav">
+                    <a href="../../index.html" class="breadcrumb-link">Portfolio</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <a href="../index.html" class="breadcrumb-link">Bites</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">The Hidden Shortcut</span>
+                </div>
+                <h1>The Hidden Shortcut</h1>
+                <p class="subtitle">After 66 years, researchers finally beat Dijkstra's shortest path algorithm. Watch it navigate from Lisbon to Warsaw.</p>
+            </div>
+        </header>
+        
+        <main>
+            <div class="viz-container">
+                <div class="viz-content">
+                    <!-- Left Panel: Info & Stats -->
+                    <div class="info-panel">
+                        <h3 class="info-title">European Road Network</h3>
+                        <p class="info-text">Watch both algorithms find the fastest route from Lisbon to Warsaw. 
+                            Edge weights represent travel time in hours. 
+                            Edge weights are estimates and do not accurately reflect real-world conditions.</p>
+                        
+                        <div class="legend">
+                            <h4 class="legend-title">Legend</h4>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-node" style="background: var(--color-gold);"></div>
+                                </div>
+                                <span class="legend-text">Lisbon (Start)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-node" style="background: var(--color-dust);"></div>
+                                </div>
+                                <span class="legend-text">Warsaw (Target)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-node" style="background: var(--color-deep-blue);"></div>
+                                </div>
+                                <span class="legend-text">Explored City</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-icon">
+                                    <div class="legend-node" style="background: #ccc;"></div>
+                                </div>
+                                <span class="legend-text">Unexplored</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box-simple">
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--color-deep-blue); font-weight: 600;">The Key Difference</h4>
+                            <p style="font-size: 0.85rem; line-height: 1.6; margin: 0;">
+                                <strong>Dijkstra:</strong> Fully sorts all cities by distance every time.<br>
+                                <strong>Duan et al.:</strong> Uses partial ordering: good enough, not perfect.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Center: Visualization -->
+                    <div id="canvas-container">
+                        <div class="operation-badge" id="operationBadge"></div>
+                        <div id="map"></div>
+                    </div>
+                    
+                    <!-- Right Panel: Controls -->
+                    <div class="controls-panel">
+                        <h3 class="controls-title">Algorithm Controls</h3>
+                        <p class="info-text">Select an algorithm and watch it find the shortest path step by step.</p>
+                        
+                        <div class="control-group algorithm-select">
+                            <label>Algorithm</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="algorithm" value="dijkstra" checked>
+                                    <span class="radio-label">Dijkstra (1959)</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="algorithm" value="duan">
+                                    <span class="radio-label">Duan et al. (2025)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Execution</label>
+                            <button class="btn btn-primary" id="runBtn">Run Algorithm</button>
+                            <button class="btn btn-secondary" id="resetBtn">Reset</button>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Speed</label>
+                            <div class="slider-container">
+                                <input type="range" id="speedSlider" min="100" max="2000" value="400" step="100">
+                                <span class="slider-value" id="speedValue">400ms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom: Stats Panel -->
+                <div class="stats-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem;">
+                        <div>
+                            <h3 style="font-family: var(--font-primary); font-size: 1.5rem; color: var(--color-deep-blue); margin: 0;">Live Metrics</h3>
+                            <p style="color: #666; font-size: 0.85rem; margin: 0.3rem 0 0 0;">Watch the algorithm in action</p>
+                        </div>
+                        <div style="display: flex; gap: 2rem;">
+                            <div>
+                                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; font-weight: 600;">Operations</div>
+                                <div style="font-family: var(--font-primary); font-size: 2rem; font-weight: 700; color: var(--color-gold);" id="operationsCount">0</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #666; font-weight: 600;">Cities Explored</div>
+                                <div style="font-family: var(--font-primary); font-size: 2rem; font-weight: 700; color: var(--color-deep-blue);" id="nodesVisited">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="border-top: 2px solid rgba(16, 33, 75, 0.1); padding-top: 1rem;">
+                        <div style="display: flex; gap: 3rem; align-items: center;">
+                            <div style="font-size: 0.9rem; color: #666;">
+                                <strong style="color: var(--color-deep-blue);">Route:</strong>
+                                <span id="pathLengthText" style="margin-left: 0.5rem;">Not yet found</span>
+                            </div>
+                            <div style="font-size: 0.9rem; color: #666;">
+                                <strong style="color: var(--color-deep-blue);">Travel Time:</strong>
+                                <span id="totalDistanceText" style="margin-left: 0.5rem;">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section class="explanation">
+            <div class="explanation-content">
+                <h2 class="section-header">Breaking the Sorting Barrier</h2>
+                <p class="section-intro">
+                    For 66 years, computer scientists believed that Dijkstra's algorithm was optimal for finding shortest paths in directed graphs. The bottleneck was sorting: maintaining a priority queue of nodes ordered by their distances required O(n log n) time. In April 2025, that assumption was shattered.
+                </p>
+                
+                <blockquote class="highlight-quote">
+                    The breakthrough insight is surprisingly simple: <strong>you don't need perfect order, just good enough order</strong>. Dijkstra's algorithm maintains a priority queue where every city is sorted by exact distance. But what if you only needed to maintain <em>partial order</em>, grouping cities into approximate distance buckets and only sorting precisely when necessary? Imagine a GPS that groups destinations by "nearby," "medium distance," and "far away" instead of ranking every single location. This seemingly small change saves enormous computational work, especially on sparse networks like road systems.
+                </blockquote>
+                
+                <h3 class="section-header">The Key Insight</h3>
+                
+                <div class="flowing-explanation">
+                    <p><strong>Dijkstra's approach:</strong> Maintain a priority queue (typically a binary heap) of all unvisited nodes, sorted by their current shortest distance from the source. Every time you update a node's distance, you must re-sort the heap - an expensive operation that happens over and over throughout the algorithm's execution.</p>
+                    
+                    <p><strong>Duan et al.'s approach:</strong> Instead of maintaining perfect sorted order, they use a technique called <em>recursive partial ordering</em>. Cities are grouped into distance ranges, and the algorithm only sorts within groups when needed. By combining ideas from Dijkstra and the older Bellman-Ford algorithm, they avoid the full sorting step that creates Dijkstra's O(n log n) bottleneck.</p>
+                    
+                    <p>Think of it like planning deliveries: Dijkstra ranks every destination by exact distance before visiting each one. Duan et al. group destinations by region, visit all nearby locations together, and only sort precisely when moving to a new area. The result? <strong>O(m log²⁄₃ n)</strong> time complexity - the first proven improvement to Dijkstra for sparse graphs in over six decades.</p>
+                </div>
+                
+                <h3 class="section-header">How Much Faster?</h3>
+                
+                <div class="complexity-section" style="background: transparent; padding: 2rem 0;">
+                    <div class="complexity-container">
+                        <div class="chart-box">
+                            <div id="complexityChart"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flowing-explanation">
+                    <p>The advantage grows with graph size. For small graphs, the difference is negligible. But for massive real-world networks (social graphs with millions of nodes, road networks spanning continents, or biological interaction networks), the savings become substantial. The breakthrough proves that even problems we think are fully solved can still hide improvements waiting to be discovered.</p>
+                </div>
+                
+                <h3 class="section-header">Real-World Impact</h3>
+                
+                <div class="explanation-grid">
+                    <div class="explanation-card">
+                        <h3>Navigation Systems</h3>
+                        <p>Routing algorithms in GPS, Google Maps, and logistics networks rely on shortest path computation. Faster algorithms mean quicker route updates, lower server costs, and more responsive navigation.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Network Protocols</h3>
+                        <p>Internet routing protocols use shortest path algorithms to efficiently route packets across networks. Improvements translate directly to faster, more efficient data transmission.</p>
+                    </div>
+                    
+                    <div class="explanation-card">
+                        <h3>Scientific Computing</h3>
+                        <p>From analyzing protein interactions in biology to optimizing supply chains in economics, shortest path problems appear everywhere. Faster algorithms enable previously infeasible computations.</p>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3 class="section-header">Why It Took 66 Years</h3>
+                    <p>Dijkstra's algorithm is elegant, intuitive, and remarkably efficient. For decades, it seemed optimal. Computer scientists assumed the sorting step was unavoidable. Breaking that assumption required questioning a fundamental design choice and combining techniques from different algorithmic paradigms in a novel way.</p>
+                    <p>The work by Duan, Mao, Mao, Shu, and Yin shows that even in mature fields of computer science, breakthrough improvements are still possible. Sometimes the hidden shortcut was there all along, you just need the right perspective to see it.</p>
+                </div>
+                
+                <div class="technical-note">
+                    <h4>References & Further Reading</h4>
+                    <p>
+                        The breakthrough algorithm is detailed in the paper <a href="https://arxiv.org/abs/2504.17033" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">"Breaking the Sorting Barrier for Directed Single-Source Shortest Paths"</a> by Ran Duan, Jiayi Mao, Xiao Mao, Xinkai Shu, and Longhui Yin, published April 23, 2025, on arXiv. The work received the <strong>Best Paper Award at STOC 2025</strong> (ACM Symposium on Theory of Computing).
+                    </p>
+                    <p>
+                        For background on shortest path algorithms, see: <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" target="_blank" rel="noopener noreferrer" style="color: var(--color-gold); text-decoration: underline;">Dijkstra's Algorithm (Wikipedia)</a> and the classic textbook <em>Introduction to Algorithms</em> by Cormen, Leiserson, Rivest, and Stein (CLRS), which covers both Dijkstra and Bellman-Ford algorithms in depth.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // ===== Graph and Algorithm Classes =====
+        
+        class Graph {
+            constructor() {
+                this.nodes = [];
+                this.edges = [];
+                this.adjacencyList = new Map();
+            }
+            
+            generateRandomGraph() {
+                this.nodes = [];
+                this.edges = [];
+                this.adjacencyList = new Map();
+                
+                // Major European cities along Lisbon-Warsaw route
+                const cities = [
+                    // Start - Iberia
+                    { name: 'Lisbon', lat: 38.7223, lng: -9.1393, country: 'Portugal' },
+                    { name: 'Madrid', lat: 40.4168, lng: -3.7038, country: 'Spain' },
+                    { name: 'Barcelona', lat: 41.3851, lng: 2.1734, country: 'Spain' },
+                    
+                    // France
+                    { name: 'Rennes', lat: 48.1173, lng: -1.6778, country: 'France' },
+                    { name: 'Paris', lat: 48.8566, lng: 2.3522, country: 'France' },
+                    { name: 'Lyon', lat: 45.7640, lng: 4.8357, country: 'France' },
+                    
+                    // UK
+                    { name: 'London', lat: 51.5074, lng: -0.1278, country: 'UK' },
+                    
+                    // Benelux
+                    { name: 'Brussels', lat: 50.8503, lng: 4.3517, country: 'Belgium' },
+                    
+                    // Germany
+                    { name: 'Frankfurt', lat: 50.1109, lng: 8.6821, country: 'Germany' },
+                    { name: 'Hamburg', lat: 53.5511, lng: 9.9937, country: 'Germany' },
+                    { name: 'Berlin', lat: 52.5200, lng: 13.4050, country: 'Germany' },
+                    { name: 'Munich', lat: 48.1351, lng: 11.5820, country: 'Germany' },
+                    
+                    // Alpine region
+                    { name: 'Zurich', lat: 47.3769, lng: 8.5417, country: 'Switzerland' },
+                    { name: 'Vienna', lat: 48.2082, lng: 16.3738, country: 'Austria' },
+                    { name: 'Prague', lat: 50.0755, lng: 14.4378, country: 'Czech Rep.' },
+                    
+                    // Italy & Monaco
+                    { name: 'Milan', lat: 45.4642, lng: 9.1900, country: 'Italy' },
+                    { name: 'Monaco', lat: 43.7384, lng: 7.4246, country: 'Monaco' },
+                    { name: 'Rome', lat: 41.9028, lng: 12.4964, country: 'Italy' },
+                    
+                    // Slovenia
+                    { name: 'Ljubljana', lat: 46.0569, lng: 14.5058, country: 'Slovenia' },
+                    
+                    // Eastern Europe
+                    { name: 'Krakow', lat: 50.0647, lng: 19.9450, country: 'Poland' },
+                    { name: 'Warsaw', lat: 52.2297, lng: 21.0122, country: 'Poland' },
+                    { name: 'Budapest', lat: 47.4979, lng: 19.0402, country: 'Hungary' },
+                ];
+                
+                // Total cities: 23 (indices 0-22)
+                
+                // Create nodes from cities
+                cities.forEach((city, id) => {
+                    this.nodes.push({
+                        id,
+                        name: city.name,
+                        country: city.country,
+                        lat: city.lat,
+                        lng: city.lng,
+                        distance: Infinity,
+                        visited: false,
+                        previous: null
+                    });
+                    this.adjacencyList.set(id, []);
+                });
+                
+                // European highway network - simplified (driving times in hours ×60 for minutes)
+                // Indices: 0=Lisbon, 1=Madrid, 2=Barcelona, 3=Rennes, 4=Paris, 5=Lyon, 6=London,
+                //          7=Brussels, 8=Frankfurt, 9=Hamburg, 10=Berlin, 11=Munich, 12=Zurich,
+                //          13=Vienna, 14=Prague, 15=Milan, 16=Monaco, 17=Rome, 18=Ljubljana,
+                //          19=Krakow, 20=Warsaw, 21=Budapest
+                const roads = [
+                    // Iberian route
+                    { from: 0, to: 1, weight: 360 },   // Lisbon - Madrid (6h)
+                    { from: 1, to: 2, weight: 360 },   // Madrid - Barcelona (6h)
+                    
+                    // Spain to France
+                    { from: 2, to: 4, weight: 360 },   // Barcelona - Paris (6h)
+                    { from: 1, to: 4, weight: 600 },   // Madrid - Paris (10h)
+                    { from: 2, to: 5, weight: 300 },   // Barcelona - Lyon (5h)
+                    
+                    // France - West
+                    { from: 0, to: 3, weight: 540 },   // Lisbon - Rennes (9h)
+                    { from: 3, to: 4, weight: 210 },   // Rennes - Paris (3.5h)
+                    { from: 3, to: 6, weight: 240 },   // Rennes - London (4h via ferry)
+                    
+                    // France internal
+                    { from: 4, to: 5, weight: 240 },   // Paris - Lyon (4h)
+                    { from: 5, to: 16, weight: 240 },  // Lyon - Monaco (4h)
+                    { from: 16, to: 15, weight: 180 }, // Monaco - Milan (3h)
+                    
+                    // UK & Northern
+                    { from: 6, to: 4, weight: 240 },   // London - Paris (4h via tunnel)
+                    { from: 6, to: 7, weight: 240 },   // London - Brussels (4h via tunnel)
+                    
+                    // France to Central Europe
+                    { from: 4, to: 7, weight: 180 },   // Paris - Brussels (3h)
+                    { from: 4, to: 8, weight: 300 },   // Paris - Frankfurt (5h)
+                    { from: 7, to: 8, weight: 240 },   // Brussels - Frankfurt (4h)
+                    
+                    // Germany
+                    { from: 8, to: 9, weight: 240 },   // Frankfurt - Hamburg (4h)
+                    { from: 9, to: 10, weight: 180 },  // Hamburg - Berlin (3h)
+                    { from: 8, to: 10, weight: 330 },  // Frankfurt - Berlin (5.5h)
+                    { from: 8, to: 11, weight: 240 },  // Frankfurt - Munich (4h)
+                    { from: 10, to: 11, weight: 360 }, // Berlin - Munich (6h)
+                    { from: 7, to: 10, weight: 420 },  // Brussels - Berlin (7h)
+                    
+                    // Alpine connections
+                    { from: 11, to: 12, weight: 240 }, // Munich - Zurich (4h)
+                    { from: 11, to: 13, weight: 240 }, // Munich - Vienna (4h)
+                    { from: 12, to: 15, weight: 180 }, // Zurich - Milan (3h)
+                    { from: 5, to: 15, weight: 240 },  // Lyon - Milan (4h)
+                    
+                    // Italy
+                    { from: 15, to: 17, weight: 360 }, // Milan - Rome (6h)
+                    { from: 16, to: 17, weight: 360 }, // Monaco - Rome (6h)
+                    
+                    // Slovenia connections
+                    { from: 15, to: 18, weight: 270 }, // Milan - Ljubljana (4.5h)
+                    { from: 13, to: 18, weight: 240 }, // Vienna - Ljubljana (4h)
+                    { from: 18, to: 21, weight: 300 }, // Ljubljana - Budapest (5h)
+                    
+                    // Central to Eastern Europe
+                    { from: 10, to: 14, weight: 210 }, // Berlin - Prague (3.5h)
+                    { from: 14, to: 13, weight: 180 }, // Prague - Vienna (3h)
+                    { from: 11, to: 14, weight: 240 }, // Munich - Prague (4h)
+                    
+                    // Poland route
+                    { from: 10, to: 20, weight: 360 }, // Berlin - Warsaw (6h)
+                    { from: 14, to: 19, weight: 330 }, // Prague - Krakow (5.5h)
+                    { from: 19, to: 20, weight: 180 }, // Krakow - Warsaw (3h)
+                    { from: 14, to: 20, weight: 360 }, // Prague - Warsaw (6h)
+                    
+                    // Southern connections
+                    { from: 13, to: 21, weight: 180 }, // Vienna - Budapest (3h)
+                    { from: 19, to: 21, weight: 240 }, // Krakow - Budapest (4h)
+                ];
+                
+                // Add roads as bidirectional edges
+                roads.forEach(road => {
+                    // Forward direction
+                    this.edges.push({
+                        from: road.from,
+                        to: road.to,
+                        weight: road.weight
+                    });
+                    this.adjacencyList.get(road.from).push({ 
+                        node: road.to, 
+                        weight: road.weight 
+                    });
+                    
+                    // Reverse direction (bidirectional roads)
+                    this.edges.push({
+                        from: road.to,
+                        to: road.from,
+                        weight: road.weight
+                    });
+                    this.adjacencyList.get(road.to).push({ 
+                        node: road.from, 
+                        weight: road.weight 
+                    });
+                });
+            }
+            
+            reset() {
+                this.nodes.forEach(node => {
+                    node.distance = Infinity;
+                    node.visited = false;
+                    node.previous = null;
+                });
+            }
+        }
+        
+        class DijkstraAlgorithm {
+            constructor(graph, source) {
+                this.graph = graph;
+                this.source = source;
+                this.steps = [];
+                this.operations = 0;
+            }
+            
+            *execute() {
+                this.graph.reset();
+                this.graph.nodes[this.source].distance = 0;
+                this.operations = 0;
+                
+                const unvisited = new Set(this.graph.nodes.map(n => n.id));
+                
+                while (unvisited.size > 0) {
+                    // Find node with minimum distance (this is the "sort" operation)
+                    this.operations++; // Count as a sort/heap operation
+                    yield {
+                        type: 'sort',
+                        message: 'Full Sort',
+                        operations: this.operations
+                    };
+                    
+                    let current = null;
+                    let minDist = Infinity;
+                    
+                    for (const nodeId of unvisited) {
+                        const node = this.graph.nodes[nodeId];
+                        if (node.distance < minDist) {
+                            minDist = node.distance;
+                            current = nodeId;
+                        }
+                    }
+                    
+                    if (current === null || minDist === Infinity) break;
+                    
+                    const currentNode = this.graph.nodes[current];
+                    currentNode.visited = true;
+                    unvisited.delete(current);
+                    
+                    yield {
+                        type: 'visit',
+                        node: current,
+                        operations: this.operations
+                    };
+                    
+                    // Relax edges
+                    const neighbors = this.graph.adjacencyList.get(current) || [];
+                    for (const { node: neighborId, weight } of neighbors) {
+                        if (!this.graph.nodes[neighborId].visited) {
+                            const alt = currentNode.distance + weight;
+                            
+                            yield {
+                                type: 'relax',
+                                from: current,
+                                to: neighborId,
+                                operations: this.operations
+                            };
+                            
+                            if (alt < this.graph.nodes[neighborId].distance) {
+                                this.graph.nodes[neighborId].distance = alt;
+                                this.graph.nodes[neighborId].previous = current;
+                                
+                                yield {
+                                    type: 'update',
+                                    node: neighborId,
+                                    distance: alt,
+                                    operations: this.operations
+                                };
+                            }
+                        }
+                    }
+                }
+                
+                yield {
+                    type: 'complete',
+                    operations: this.operations
+                };
+            }
+        }
+        
+        class DuanAlgorithm {
+            constructor(graph, source) {
+                this.graph = graph;
+                this.source = source;
+                this.operations = 0;
+            }
+            
+            *execute() {
+                this.graph.reset();
+                this.graph.nodes[this.source].distance = 0;
+                this.operations = 0;
+                
+                const unvisited = new Set(this.graph.nodes.map(n => n.id));
+                let batchCount = 0;
+                
+                while (unvisited.size > 0) {
+                    // Partial ordering: group nodes into approximate distance buckets
+                    // This simulates the key difference - fewer "sort" operations
+                    if (batchCount % 3 === 0) {
+                        this.operations++;
+                        yield {
+                            type: 'partial_order',
+                            message: 'Partial Order',
+                            operations: this.operations
+                        };
+                    }
+                    batchCount++;
+                    
+                    // Find minimum distance node (same as Dijkstra for visualization)
+                    let current = null;
+                    let minDist = Infinity;
+                    
+                    for (const nodeId of unvisited) {
+                        const node = this.graph.nodes[nodeId];
+                        if (node.distance < minDist) {
+                            minDist = node.distance;
+                            current = nodeId;
+                        }
+                    }
+                    
+                    if (current === null || minDist === Infinity) break;
+                    
+                    const currentNode = this.graph.nodes[current];
+                    currentNode.visited = true;
+                    unvisited.delete(current);
+                    
+                    yield {
+                        type: 'visit',
+                        node: current,
+                        operations: this.operations
+                    };
+                    
+                    // Relax edges (same as Dijkstra)
+                    const neighbors = this.graph.adjacencyList.get(current) || [];
+                    for (const { node: neighborId, weight } of neighbors) {
+                        if (!this.graph.nodes[neighborId].visited) {
+                            const alt = currentNode.distance + weight;
+                            
+                            yield {
+                                type: 'relax',
+                                from: current,
+                                to: neighborId,
+                                operations: this.operations
+                            };
+                            
+                            if (alt < this.graph.nodes[neighborId].distance) {
+                                this.graph.nodes[neighborId].distance = alt;
+                                this.graph.nodes[neighborId].previous = current;
+                                
+                                yield {
+                                    type: 'update',
+                                    node: neighborId,
+                                    distance: alt,
+                                    operations: this.operations
+                                };
+                            }
+                        }
+                    }
+                }
+                
+                yield {
+                    type: 'complete',
+                    operations: this.operations
+                };
+            }
+        }
+        
+        // ===== Visualization Class =====
+        
+        class ShortestPathVisualization {
+            constructor() {
+                this.graph = new Graph();
+                this.map = null;
+                this.markers = {};
+                this.polylines = {};
+                this.algorithm = null;
+                this.algorithmIterator = null;
+                this.isRunning = false;
+                this.speed = 400;
+                this.source = 0;  // Lisbon
+                this.target = 20; // Warsaw
+                
+                this.init();
+            }
+            
+            init() {
+                // Initialize Leaflet map centered on Europe (Lisbon to Warsaw)
+                this.map = L.map('map', {
+                    zoomControl: false,
+                    attributionControl: true,
+                }).setView([46.0, 10.0], 5);
+                
+                // Add basic OpenStreetMap tiles (simple, no topology)
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    minZoom: 3,
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(this.map);
+                
+                // Wait for map to be ready, then generate graph
+                this.map.whenReady(() => {
+                    this.map.touchZoom.disable();
+                    this.map.scrollWheelZoom.disable();
+                    this.map.doubleClickZoom.disable(); 
+                    this.map.boxZoom.disable(); 
+                    this.map.keyboard.disable();
+                    this.map.dragging.disable();
+
+                    this.generateGraph();
+                });
+            }
+            
+            generateGraph() {
+                this.graph.generateRandomGraph();
+                this.render();
+            }
+            
+            render() {
+                // Clear existing markers and polylines
+                Object.values(this.markers).forEach(marker => marker.remove());
+                Object.values(this.polylines).forEach(obj => {
+                    if (obj.line) obj.line.remove();
+                    if (obj.label) obj.label.remove();
+                });
+                this.markers = {};
+                this.polylines = {};
+                
+                // Draw edges (roads) first so they appear under markers
+                const addedEdges = new Set();
+                this.graph.edges.forEach(edge => {
+                    const key = [Math.min(edge.from, edge.to), Math.max(edge.from, edge.to)].join('-');
+                    
+                    // Only draw each road once (bidirectional)
+                    if (!addedEdges.has(key)) {
+                        addedEdges.add(key);
+                        
+                        const from = this.graph.nodes[edge.from];
+                        const to = this.graph.nodes[edge.to];
+                        
+                        const polyline = L.polyline(
+                            [[from.lat, from.lng], [to.lat, to.lng]],
+                            {
+                                color: '#10214b',
+                                weight: 3,
+                                opacity: 0.7
+                            }
+                        ).addTo(this.map);
+                        
+                        // Add label in the middle
+                        const midLat = (from.lat + to.lat) / 2;
+                        const midLng = (from.lng + to.lng) / 2;
+                        
+                        const label = L.marker([midLat, midLng], {
+                            icon: L.divIcon({
+                                className: 'edge-label-icon',
+                                html: `<div style="background: rgba(215, 189, 136, 0.85); padding: 2px 6px; border-radius: 3px; font-size: 0.65rem; font-weight: 600; color: #10214b; box-shadow: 0 1px 3px rgba(0,0,0,0.2); border: 1px solid rgba(16, 33, 75, 0.3);">${Math.round(edge.weight / 60)}h</div>`,
+                                iconSize: [35, 18]
+                            }),
+                            interactive: false
+                        }).addTo(this.map);
+                        
+                        this.polylines[key] = { line: polyline, label: label };
+                    }
+                });
+                
+                // Draw city markers
+                this.graph.nodes.forEach(node => {
+                    let iconHtml, iconClass;
+                    
+                    if (node.id === this.source) {
+                        iconClass = 'marker-source';
+                        iconHtml = `<div style="background: #d7bd88; border: 3px solid #10214b; width: 24px; height: 24px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3);"></div>`;
+                    } else if (node.id === this.target) {
+                        iconClass = 'marker-target';
+                        iconHtml = `<div style="background: #d03c3b; border: 3px solid #10214b; width: 24px; height: 24px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3);"></div>`;
+                    } else {
+                        iconClass = 'marker-unvisited';
+                        iconHtml = `<div style="background: #ccc; border: 2px solid white; width: 20px; height: 20px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>`;
+                    }
+                    
+                    const marker = L.marker([node.lat, node.lng], {
+                        icon: L.divIcon({
+                            className: iconClass,
+                            html: iconHtml,
+                            iconSize: [24, 24],
+                            iconAnchor: [12, 12]
+                        })
+                    }).addTo(this.map);
+                    
+                    // Add tooltip on hover only
+                    marker.bindTooltip(node.name, {
+                        permanent: false,
+                        direction: 'top',
+                        offset: [0, -15],
+                        className: 'city-tooltip'
+                    });
+                    
+                    this.markers[node.id] = marker;
+                });
+                
+                this.updateStats();
+            }
+            
+            async runAlgorithm() {
+                if (this.isRunning) return;
+                
+                this.isRunning = true;
+                this.graph.reset();
+                
+                // Reset stats
+                document.getElementById('pathLengthText').textContent = 'Not yet found';
+                document.getElementById('totalDistanceText').textContent = '-';
+                
+                this.render();
+                
+                const algorithmType = document.querySelector('input[name="algorithm"]:checked').value;
+                
+                if (algorithmType === 'dijkstra') {
+                    this.algorithm = new DijkstraAlgorithm(this.graph, this.source);
+                } else {
+                    this.algorithm = new DuanAlgorithm(this.graph, this.source);
+                }
+                
+                this.algorithmIterator = this.algorithm.execute();
+                
+                for (const step of this.algorithmIterator) {
+                    await this.visualizeStep(step, algorithmType);
+                    await this.sleep(this.speed);
+                }
+                
+                this.highlightShortestPath();
+                this.isRunning = false;
+            }
+            
+            async visualizeStep(step, algorithmType) {
+                const badge = document.getElementById('operationBadge');
+                
+                if (step.type === 'sort') {
+                    badge.textContent = 'FULL SORT';
+                    badge.className = 'operation-badge dijkstra show';
+                    setTimeout(() => badge.classList.remove('show'), 600);
+                } else if (step.type === 'partial_order') {
+                    badge.textContent = 'PARTIAL ORDER';
+                    badge.className = 'operation-badge duan show';
+                    setTimeout(() => badge.classList.remove('show'), 600);
+                } else if (step.type === 'visit') {
+                    const node = this.graph.nodes[step.node];
+                    const marker = this.markers[step.node];
+                    
+                    if (marker && step.node !== this.source && step.node !== this.target) {
+                        // Show as current (gold)
+                        marker.setIcon(L.divIcon({
+                            className: 'marker-current',
+                            html: `<div style="background: #d7bd88; border: 3px solid #10214b; width: 24px; height: 24px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.4);"></div>`,
+                            iconSize: [24, 24],
+                            iconAnchor: [12, 12]
+                        }));
+                        
+                        setTimeout(() => {
+                            // Change to visited (blue)
+                            if (marker && step.node !== this.source && step.node !== this.target) {
+                                marker.setIcon(L.divIcon({
+                                    className: 'marker-visited',
+                                    html: `<div style="background: #10214b; border: 2px solid white; width: 20px; height: 20px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>`,
+                                    iconSize: [20, 20],
+                                    iconAnchor: [10, 10]
+                                }));
+                            }
+                        }, this.speed / 2);
+                    }
+                } else if (step.type === 'relax') {
+                    const key = [Math.min(step.from, step.to), Math.max(step.from, step.to)].join('-');
+                    const polylineObj = this.polylines[key];
+                    
+                    if (polylineObj) {
+                        // Highlight the edge being relaxed
+                        polylineObj.line.setStyle({ color: '#d7bd88', weight: 5, opacity: 1 });
+                        
+                        setTimeout(() => {
+                            polylineObj.line.setStyle({ color: '#10214b', weight: 3, opacity: 0.7 });
+                        }, this.speed);
+                    }
+                }
+                
+                this.updateStats(step.operations);
+            }
+            
+            highlightShortestPath() {
+                const path = [];
+                let current = this.target;
+                
+                while (current !== null && current !== undefined) {
+                    path.unshift(current);
+                    current = this.graph.nodes[current].previous;
+                }
+                
+                // Highlight path markers
+                path.forEach(nodeId => {
+                    if (nodeId !== this.source && nodeId !== this.target) {
+                        const marker = this.markers[nodeId];
+                        if (marker) {
+                            marker.setIcon(L.divIcon({
+                                className: 'marker-path',
+                                html: `<div style="background: #d7bd88; border: 3px solid #10214b; width: 24px; height: 24px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.4);"></div>`,
+                                iconSize: [24, 24],
+                                iconAnchor: [12, 12]
+                            }));
+                        }
+                    }
+                });
+                
+                // Highlight path edges
+                for (let i = 0; i < path.length - 1; i++) {
+                    const key = [Math.min(path[i], path[i + 1]), Math.max(path[i], path[i + 1])].join('-');
+                    const polylineObj = this.polylines[key];
+                    
+                    if (polylineObj) {
+                        polylineObj.line.setStyle({ 
+                            color: '#d03c3b', 
+                            weight: 5, 
+                            opacity: 1 
+                        });
+                        polylineObj.line.bringToFront();
+                    }
+                }
+                
+                // Calculate path metrics
+                let totalDistance = 0;
+                for (let i = 0; i < path.length - 1; i++) {
+                    const edge = this.graph.edges.find(e => 
+                        (e.from === path[i] && e.to === path[i + 1]) ||
+                        (e.from === path[i + 1] && e.to === path[i])
+                    );
+                    if (edge) totalDistance += edge.weight;
+                }
+                
+                const pathHops = path.length - 1;
+                const hours = Math.floor(totalDistance / 60);
+                const mins = totalDistance % 60;
+                const timeText = hours > 0 ? `${hours}h ${mins}min` : `${mins}min`;
+                document.getElementById('pathLengthText').textContent = `${pathHops} stop${pathHops !== 1 ? 's' : ''}`;
+                document.getElementById('totalDistanceText').textContent = timeText;
+            }
+            
+            updateStats(operations = 0) {
+                document.getElementById('operationsCount').textContent = operations;
+                const visitedCount = this.graph.nodes.filter(n => n.visited).length;
+                document.getElementById('nodesVisited').textContent = visitedCount;
+            }
+            
+            reset() {
+                this.isRunning = false;
+                if (this.algorithmIterator) {
+                    this.algorithmIterator = null;
+                }
+                this.graph.reset();
+                this.render();
+                document.getElementById('pathLengthText').textContent = 'Not yet found';
+                document.getElementById('totalDistanceText').textContent = '-';
+            }
+            
+            sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+        
+        // ===== Initialize =====
+        let viz;
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            viz = new ShortestPathVisualization();
+            
+            // Run button
+            document.getElementById('runBtn').addEventListener('click', () => {
+                viz.runAlgorithm();
+            });
+            
+            // Reset button
+            document.getElementById('resetBtn').addEventListener('click', () => {
+                viz.reset();
+            });
+            
+            // Speed slider
+            document.getElementById('speedSlider').addEventListener('input', (e) => {
+                viz.speed = parseInt(e.target.value);
+                document.getElementById('speedValue').textContent = viz.speed + 'ms';
+            });
+            
+            // Initialize complexity chart
+            initComplexityChart();
+        });
+        
+        function initComplexityChart() {
+            // Generate data points for both algorithms
+            const dataPoints = [];
+            for (let m = 100; m <= 100000; m *= 1.5) {
+                const n = Math.sqrt(m); // Approximate for sparse graphs
+                const dijkstra = m + n * Math.log2(n);
+                const duan = m * Math.pow(Math.log2(n), 2/3);
+                
+                dataPoints.push({
+                    m: Math.round(m),
+                    dijkstra: dijkstra,
+                    duan: duan
+                });
+            }
+            
+            Highcharts.chart('complexityChart', {
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'transparent',
+                    height: 400
+                },
+                title: {
+                    text: 'Time Complexity Comparison',
+                    style: {
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: '1.5rem',
+                        color: '#10214b',
+                        fontWeight: '700'
+                    }
+                },
+                subtitle: {
+                    text: 'How operations scale with graph size (sparse graphs)',
+                    style: {
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontSize: '0.9rem',
+                        color: '#666'
+                    }
+                },
+                credits: { enabled: false },
+                xAxis: {
+                    type: 'logarithmic',
+                    title: {
+                        text: 'Number of edges (m)',
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontSize: '0.9rem',
+                            color: '#10214b'
+                        }
+                    },
+                    labels: {
+                        formatter: function() {
+                            return this.value.toLocaleString();
+                        },
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            color: '#10214b'
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'logarithmic',
+                    title: {
+                        text: 'Operations (relative)',
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            fontSize: '0.9rem',
+                            color: '#10214b'
+                        }
+                    },
+                    labels: {
+                        formatter: function() {
+                            return this.value.toLocaleString();
+                        },
+                        style: {
+                            fontFamily: "'Montserrat', sans-serif",
+                            color: '#10214b'
+                        }
+                    }
+                },
+                tooltip: {
+                    useHTML: true,
+                    formatter: function() {
+                        const improvement = ((this.points[0].y - this.points[1].y) / this.points[0].y * 100).toFixed(1);
+                        return `<b>Edges: ${this.x.toLocaleString()}</b><br/>` +
+                               `Dijkstra: ${Math.round(this.points[0].y).toLocaleString()}<br/>` +
+                               `Duan et al.: ${Math.round(this.points[1].y).toLocaleString()}<br/>` +
+                               `<strong>Improvement: ${improvement}%</strong>`;
+                    },
+                    shared: true,
+                    style: {
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontSize: '0.85rem'
+                    }
+                },
+                legend: {
+                    enabled: true,
+                    itemStyle: {
+                        fontFamily: "'Montserrat', sans-serif",
+                        fontSize: '0.9rem',
+                        color: '#10214b'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        lineWidth: 3,
+                        marker: {
+                            enabled: true,
+                            radius: 4
+                        }
+                    },
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: 'Dijkstra O(m + n log n)',
+                        data: dataPoints.map(d => [d.m, d.dijkstra]),
+                        color: '#10214b',
+                        marker: { symbol: 'circle' }
+                    },
+                    {
+                        name: 'Duan et al. O(m log²⁄₃ n)',
+                        data: dataPoints.map(d => [d.m, d.duan]),
+                        color: '#d7bd88',
+                        marker: { symbol: 'square' }
+                    }
+                ]
+            });
+        }
+    </script>
+</body>
+</html>

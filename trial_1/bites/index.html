@@ -434,16 +434,48 @@
                     <span class="filter-label">Filter by Topic</span>
                     <div class="filter-tags">
                         <button class="filter-tag active" data-filter="all">All</button>
+                        <button class="filter-tag" data-filter="algorithms">Algorithms</button>
                         <button class="filter-tag" data-filter="networks">Networks</button>
                         <button class="filter-tag" data-filter="visualization">Visualization</button>
                         <button class="filter-tag" data-filter="mathematics">Mathematics</button>
                         <button class="filter-tag" data-filter="psychology">Psychology</button>
+                        <button class="filter-tag" data-filter="computer-science">Computer Science</button>
                         <button class="filter-tag" data-filter="data-science">Data Science</button>
                     </div>
                 </div>
                 
                 <!-- Bites Grid -->
                 <div class="bites-grid" id="bitesGrid">
+                    <!-- Future bites will be added here, aka below this comment to stay chronologically correct -->
+                    
+                    <!-- Bite Card: The Hidden Shortcut -->
+                    <a href="the-hidden-shortcut/index.html" class="bite-card" data-tags="algorithms,visualization,computer-science">
+                        <div class="bite-image-container">
+                            <img src="assets/images/the-hidden-shortcut_preview.jpg" 
+                                 alt="The Hidden Shortcut - Dijkstra Algorithm Breakthrough" 
+                                 class="bite-image"
+                                 style="opacity: 0.83;"
+                                 loading="lazy">
+                        </div>
+                        <div class="bite-content">
+                            <h2 class="bite-title">The Hidden Shortcut</h2>
+                            <div class="bite-tags">
+                                <span class="bite-tag">Algorithms</span>
+                                <span class="bite-tag">Visualization</span>
+                                <span class="bite-tag">Computer Science</span>
+                            </div>
+                            <div class="bite-meta">
+                                <span class="author">Marco Ruch</span>
+                                <span class="separator">•</span>
+                                <span class="date">05.10.2025</span>
+                            </div>
+                            <p class="bite-description">
+                                After 66 years, researchers finally beat Dijkstra's shortest path algorithm. Explore the breakthrough that won Best Paper at STOC 2025 and see how avoiding perfect order leads to faster pathfinding.
+                            </p>
+                            <span class="bite-cta">Discover The Breakthrough</span>
+                        </div>
+                    </a>
+
                     <!-- Bite Card: You're Not Random -->
                     <a href="youre-not-random/index.html" class="bite-card" data-tags="psychology,visualization,data-science">
                         <div class="bite-image-container">
@@ -478,6 +510,7 @@
                             <img src="assets/images/what-a-small-world-cluster_preview.webp" 
                                  alt="What a Small World visualization preview" 
                                  class="bite-image"
+                                 style="opacity: 0.83;"
                                  loading="lazy">
                         </div>
                         <div class="bite-content">
@@ -498,8 +531,6 @@
                             <span class="bite-cta">See The Connections</span>
                         </div>
                     </a>
-                    
-                    <!-- Future bites will be added here -->
                 </div>
                 
                 <!-- Empty State (hidden by default, shown when filter returns no results) -->
