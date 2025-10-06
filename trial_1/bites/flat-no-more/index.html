@@ -601,6 +601,302 @@
             box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.3);
         }
         
+        /* Step 3: Affordance Demo */
+        .affordance-demo {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .demo-button {
+            padding: 1rem 2rem;
+            background: hsl(220, 15%, 96%);
+            color: var(--color-deep-blue);
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-family: var(--font-secondary);
+        }
+        
+        .demo-button.state-default {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.08);
+        }
+        
+        .demo-button.state-default:hover {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .demo-button.state-hover {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .demo-button.state-active {
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateY(1px);
+            background: hsl(220, 15%, 92%);
+        }
+        
+        .demo-button.state-active:active {
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+            transform: translateY(1px);
+        }
+        
+        /* Step 4: Theme Comparison */
+        .theme-switch-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .theme-switch-btn {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--color-deep-blue);
+            color: var(--color-deep-blue);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .theme-switch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-subtle);
+        }
+        
+        .theme-switch-btn.active {
+            background: var(--color-deep-blue);
+            color: white;
+        }
+        
+        .theme-comparison-demo {
+            padding: 3rem;
+            border-radius: 12px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-slow);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="light"] {
+            background: hsl(220, 15%, 85%);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="dark"] {
+            background: hsl(220, 15%, 15%);
+        }
+        
+        .layer-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .stack-layer {
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            transition: all var(--transition-slow);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="light"] .layer-bg {
+            background: hsl(220, 15%, 88%);
+            color: hsl(220, 15%, 25%);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="light"] .layer-surface {
+            background: hsl(220, 15%, 94%);
+            color: hsl(220, 15%, 20%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.08);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="light"] .layer-elevated {
+            background: hsl(220, 15%, 98%);
+            color: hsl(220, 15%, 15%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="dark"] .layer-bg {
+            background: hsl(220, 15%, 18%);
+            color: hsl(220, 15%, 80%);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="dark"] .layer-surface {
+            background: hsl(220, 15%, 22%);
+            color: hsl(220, 15%, 85%);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.03), 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .theme-comparison-demo[data-demo-theme="dark"] .layer-elevated {
+            background: hsl(220, 15%, 28%);
+            color: hsl(220, 15%, 92%);
+            box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05), 0 4px 14px rgba(0,0,0,0.4);
+        }
+        
+        /* Step 5: Hue Demo */
+        .hue-demo-card {
+            background: hsl(220, 15%, 88%);
+            padding: 2rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: all var(--transition-normal);
+        }
+        
+        .hue-layer {
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all var(--transition-normal);
+        }
+        
+        .hue-layer h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .hue-layer p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .hue-input-field {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all var(--transition-normal);
+        }
+        
+        /* Step 6: Elements Gallery */
+        .elements-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: hsl(220, 15%, 88%);
+            border-radius: 12px;
+        }
+        
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .element-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+            opacity: 0.7;
+        }
+        
+        .element-button {
+            padding: 0.8rem 1.5rem;
+            background: hsl(220, 15%, 96%);
+            color: var(--color-deep-blue);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 3px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .element-button:hover {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 5px 15px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .element-input {
+            width: 140px;
+            padding: 0.6rem 1rem;
+            background: hsl(220, 15%, 98%);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            text-align: center;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .element-card {
+            padding: 1.2rem;
+            background: hsl(220, 15%, 98%);
+            border-radius: 10px;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .element-chip {
+            padding: 0.5rem 1rem;
+            background: hsl(220, 15%, 94%);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.06);
+        }
+        
+        .element-toggle {
+            display: flex;
+            align-items: center;
+        }
+        
+        .toggle-track {
+            width: 50px;
+            height: 26px;
+            background: hsl(220, 15%, 92%);
+            border-radius: 13px;
+            position: relative;
+            box-shadow: inset 0 2px 3px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        
+        .toggle-thumb {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all var(--transition-normal);
+        }
+        
+        .element-dropdown {
+            padding: 0.7rem 1.2rem;
+            background: hsl(220, 15%, 98%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-deep-blue);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.08);
+            cursor: pointer;
+        }
+        
         /* Full Dashboard Styles */
         .dashboard-controls {
             display: flex;
@@ -928,7 +1224,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 1rem;
         }
         
         .section-header-row h3,
@@ -1071,13 +1366,6 @@
             transition: all var(--transition-slow);
         }
         
-        .see-all-link {
-            font-size: 0.8rem;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
         .transactions-table {
             width: 100%;
             border-collapse: collapse;
@@ -1139,6 +1427,20 @@
             .tables-row {
                 grid-template-columns: 1fr;
             }
+            
+            .affordance-demo {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .demo-button {
+                width: 100%;
+            }
+            
+            .elements-gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
         }
         
         @media (max-width: 1024px) {
@@ -1160,7 +1462,7 @@
                     <span class="breadcrumb-current">Flat No More</span>
                 </div>
                 <h1>Flat No More</h1>
-                <p class="subtitle">We've gone from skeuomorphic to flat, but stopped too soon. Explore how subtle depth, layering, and shadow can transform sterile interfaces into tactile, engaging designs.</p>
+                <p class="subtitle">Explore how subtle depth, layering, and shadow can transform sterile interfaces into tactile, engaging designs.</p>
             </div>
         </header>
         
@@ -1235,7 +1537,7 @@
                     
                     <div class="slider-container" style="margin-bottom: 2rem;">
                         <span style="font-size: 0.85rem; color: #666;">Darker</span>
-                        <input type="range" id="lightnessSlider" min="0" max="30" value="10" step="1">
+                        <input type="range" id="lightnessSlider" min="0" max="30" value="0" step="1">
                         <span style="font-size: 0.85rem; color: #666;">Lighter</span>
                     </div>
                     
@@ -1325,12 +1627,201 @@
                 </div>
             </section>
             
-            <!-- Step 3: Real-World Dashboard Example -->
-            <section class="interactive-section" style="background: white; min-height: auto; padding: 4rem 2rem;">
+            <!-- Step 3: Interactive Affordances -->
+            <section class="interactive-section">
                 <div class="section-intro">
-                    <h2 class="intro-title">Step 3: Bringing It All Together</h2>
+                    <h2 class="intro-title">Step 3: Interactive Affordances</h2>
                     <p class="intro-text">
-                        Let's see how depth transforms an entire dashboard interface. Same layout, radically different perception. Toggle between flat and depth designs, and switch between light and dark modes to see how color, depth, and shadow reshape the feel.
+                        Depth doesn't just make things look better. It signals what's clickable. Hover states, active states, and elevation changes tell users "I'm interactive" without any instruction.
+                    </p>
+                </div>
+                
+                <div class="playground">
+                    <h3 class="playground-title">Button States</h3>
+                    <p class="playground-subtitle">Hover and click these buttons to see how depth creates instant feedback.</p>
+                    
+                    <div class="affordance-demo">
+                        <button class="demo-button state-default">
+                            <span>Default State</span>
+                        </button>
+                        <button class="demo-button state-hover">
+                            <span>Hover State</span>
+                        </button>
+                        <button class="demo-button state-active">
+                            <span>Active/Pressed</span>
+                        </button>
+                    </div>
+                    
+                    <div class="usage-map" style="margin-top: 2rem;">
+                        <div class="usage-title">How Depth Signals Interaction</div>
+                        <div class="usage-item">
+                            <span><strong>Default:</strong> Subtle elevation shows it's interactive</span>
+                        </div>
+                        <div class="usage-item">
+                            <span><strong>Hover:</strong> Increased shadow says "I'm ready to be clicked"</span>
+                        </div>
+                        <div class="usage-item">
+                            <span><strong>Active:</strong> Reduced shadow simulates pressing down into the surface</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Step 4: Theme Adaptation -->
+            <section class="interactive-section" style="background: white;">
+                <div class="section-intro">
+                    <h2 class="intro-title">Step 4: Theme Adaptation</h2>
+                    <p class="intro-text">
+                        The same depth system works in both light and dark modes. The principle stays consistent: darker backgrounds, lighter elevated surfaces. In dark mode, you simply start with a darker base and build up from there.
+                    </p>
+                </div>
+                
+                <div class="playground">
+                    <h3 class="playground-title">Depth in Both Themes</h3>
+                    <p class="playground-subtitle">Toggle between themes to see how the layering principle adapts.</p>
+                    
+                    <div class="theme-switch-buttons">
+                        <button class="theme-switch-btn active" data-demo-theme="light">Light Mode</button>
+                        <button class="theme-switch-btn" data-demo-theme="dark">Dark Mode</button>
+                    </div>
+                    
+                    <div class="theme-comparison-demo" id="themeComparisonDemo" data-demo-theme="light">
+                        <div class="layer-stack">
+                            <div class="stack-layer layer-bg">
+                                <span>Background Layer</span>
+                            </div>
+                            <div class="stack-layer layer-surface">
+                                <span>Surface Layer</span>
+                            </div>
+                            <div class="stack-layer layer-elevated">
+                                <span>Elevated Layer</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-map" style="margin-top: 2rem;">
+                        <div class="usage-title">The Principle Stays Constant</div>
+                        <div class="usage-item">
+                            <span><strong>Light Mode:</strong> Start with light gray, get progressively whiter</span>
+                        </div>
+                        <div class="usage-item">
+                            <span><strong>Dark Mode:</strong> Start with dark gray, get progressively lighter</span>
+                        </div>
+                        <div class="usage-item">
+                            <span><strong>Shadows:</strong> In dark mode, invert highlights to lower edge, darken depth shadows</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Step 5: Works Across Colors -->
+            <section class="interactive-section">
+                <div class="section-intro">
+                    <h2 class="intro-title">Step 5: Works Across All Colors</h2>
+                    <p class="intro-text">
+                        This isn't just for grays and neutrals. The layering principle works with any hue. Adjust the slider to see how depth works across the entire color spectrum.
+                    </p>
+                </div>
+                
+                <div class="playground">
+                    <h3 class="playground-title">Hue Explorer</h3>
+                    <p class="playground-subtitle">Slide through different colors. The depth hierarchy remains clear regardless of hue.</p>
+                    
+                    <div class="slider-container" style="margin-bottom: 2rem;">
+                        <span style="font-size: 0.85rem; color: #666;">Red</span>
+                        <input type="range" id="hueSlider" min="0" max="360" value="220" step="1">
+                        <span style="font-size: 0.85rem; color: #666;">Red (360°)</span>
+                    </div>
+                    
+                    <div class="hue-demo-card" id="hueDemoCard">
+                        <div class="hue-layer hue-bg">
+                            <h4>Card Title</h4>
+                            <p>This is the main card surface</p>
+                        </div>
+                        <div class="hue-layer hue-elevated">
+                            <span>Interactive Element</span>
+                        </div>
+                        <div class="hue-layer hue-input">
+                            <input type="text" placeholder="Input field..." class="hue-input-field" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-map" style="margin-top: 2rem;">
+                        <div class="usage-title">Current Hue: <span id="currentHue">220°</span> (Blue)</div>
+                        <div class="usage-item">
+                            <span>The same lightness steps work for any color. Pick your brand color and build layers from there.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Step 6: Consistent Light Direction -->
+            <section class="interactive-section" style="background: white;">
+                <div class="section-intro">
+                    <h2 class="intro-title">Step 6: Consistent Light Direction</h2>
+                    <p class="intro-text">
+                        Once you establish a light source (almost always from above), maintain it everywhere. Every shadow, every highlight, every gradient should reinforce the same lighting system.
+                    </p>
+                </div>
+                
+                <div class="playground">
+                    <h3 class="playground-title">UI Elements Gallery</h3>
+                    <p class="playground-subtitle">All elements follow the same lighting rule: light from above, shadow below.</p>
+                    
+                    <div class="elements-gallery">
+                        <div class="gallery-item">
+                            <div class="element-button">Button</div>
+                            <span class="element-label">Button</span>
+                        </div>
+                        <div class="gallery-item">
+                            <input type="text" class="element-input" value="Input Field" readonly>
+                            <span class="element-label">Input</span>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="element-card">
+                                <div style="font-weight: 600; margin-bottom: 0.3rem;">Card</div>
+                                <div style="font-size: 0.8rem; opacity: 0.7;">Content</div>
+                            </div>
+                            <span class="element-label">Card</span>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="element-chip">Chip</div>
+                            <span class="element-label">Chip</span>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="element-toggle">
+                                <div class="toggle-track">
+                                    <div class="toggle-thumb"></div>
+                                </div>
+                            </div>
+                            <span class="element-label">Toggle</span>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="element-dropdown">
+                                <span>Select</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m6 9 6 6 6-6" />
+                                </svg>
+                            </div>
+                            <span class="element-label">Dropdown</span>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-map" style="margin-top: 2rem;">
+                        <div class="usage-title">Universal Lighting System</div>
+                        <div class="usage-item">
+                            <span>Every element has a light rim on top and a dark shadow below. This consistency makes the entire interface feel cohesive and professional.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Step 7: Complete Dashboard Example -->
+            <section class="interactive-section" style="background: linear-gradient(to bottom, var(--color-off-white), #f5f2ed); min-height: auto; padding: 4rem 2rem;">
+                <div class="section-intro">
+                    <h2 class="intro-title">Bringing It All Together</h2>
+                    <p class="intro-text">
+                        Now let's see all these principles in action. This complete dashboard combines color layering, shadows, interactive affordances, theme adaptation, and consistent lighting into one cohesive interface. Same layout, radically different perception. Toggle between flat and depth designs, and switch between light and dark modes to see how it all works together.
                     </p>
                 </div>
                 
@@ -1513,12 +2004,20 @@
                                             <div class="progress-fill" style="width: 64.9%"></div>
                                         </div>
                                     </div>
+                                    <div class="metric-item">
+                                        <div class="metric-header">
+                                            <span>TT3</span>
+                                            <span>813/1000</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 81.3%"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="transactions-section">
                                     <div class="section-header-row">
                                         <h4>Recent Transactions</h4>
-                                        <a href="javascript:void(0);" class="see-all-link">See all</a>
                                     </div>
                                     <table class="transactions-table">
                                         <tr>
@@ -1682,6 +2181,63 @@
                 option.classList.add('active');
             });
         });
+        
+        // ===== Step 4: Theme Comparison Toggle =====
+        const themeComparisonDemo = document.getElementById('themeComparisonDemo');
+        const themeSwitchBtns = document.querySelectorAll('.theme-switch-btn');
+        
+        themeSwitchBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.demoTheme;
+                themeSwitchBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                themeComparisonDemo.setAttribute('data-demo-theme', theme);
+            });
+        });
+        
+        // ===== Step 5: Hue Slider =====
+        const hueSlider = document.getElementById('hueSlider');
+        const hueDemoCard = document.getElementById('hueDemoCard');
+        const currentHueSpan = document.getElementById('currentHue');
+        
+        function updateHueDemo() {
+            const hue = parseInt(hueSlider.value);
+            const saturation = 15;
+            
+            // Update card background
+            hueDemoCard.style.background = `hsl(${hue}, ${saturation}%, 88%)`;
+            
+            // Update layers
+            const hueBg = hueDemoCard.querySelector('.hue-bg');
+            const hueElevated = hueDemoCard.querySelector('.hue-elevated');
+            const hueInput = hueDemoCard.querySelector('.hue-input');
+            const hueInputField = hueDemoCard.querySelector('.hue-input-field');
+            
+            hueBg.style.background = `hsl(${hue}, ${saturation}%, 92%)`;
+            hueBg.style.color = `hsl(${hue}, ${saturation}%, 20%)`;
+            
+            hueElevated.style.background = `hsl(${hue}, ${saturation}%, 96%)`;
+            hueElevated.style.color = `hsl(${hue}, ${saturation}%, 15%)`;
+            
+            hueInput.style.background = `hsl(${hue}, ${saturation}%, 98%)`;
+            hueInputField.style.background = `hsl(${hue}, ${saturation}%, 100%)`;
+            hueInputField.style.color = `hsl(${hue}, ${saturation}%, 20%)`;
+            
+            // Update hue label
+            let colorName = 'Red';
+            if (hue >= 30 && hue < 60) colorName = 'Orange';
+            else if (hue >= 60 && hue < 90) colorName = 'Yellow';
+            else if (hue >= 90 && hue < 150) colorName = 'Green';
+            else if (hue >= 150 && hue < 210) colorName = 'Cyan';
+            else if (hue >= 210 && hue < 270) colorName = 'Blue';
+            else if (hue >= 270 && hue < 330) colorName = 'Purple';
+            else if (hue >= 330) colorName = 'Pink/Red';
+            
+            currentHueSpan.textContent = `${hue}° (${colorName})`;
+        }
+        
+        hueSlider.addEventListener('input', updateHueDemo);
+        updateHueDemo();
         
         // ===== Full Dashboard Controls =====
         const fullDashboard = document.getElementById('fullDashboard');

@@ -23,7 +23,17 @@
       <image:caption>Interactive visualizations and explorations of interesting concepts in data science, mathematics, and technology</image:caption>
     </image:image>
   </url>
-
+  <url>
+    <loc>https://marcoruch.ch/bites/flat-no-more/</loc>
+    <lastmod>2025-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://marcoruch.ch/bites/assets/images/flat-no-more_preview.jpg</image:loc>
+      <image:title>Flat No More - How Subtle Depth and Layering Transform Interfaces</image:title>
+      <image:caption>Explore how subtle depth, layering, and shadow can transform sterile interfaces into tactile, engaging designs.</image:caption>
+    </image:image>
+  </url>
   <url>
     <loc>https://marcoruch.ch/bites/the-hidden-shortcut/</loc>
     <lastmod>2025-10-05</lastmod>
