@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://marcoruch.ch/</loc>
+    <loc>https://www.marcoruch.ch/</loc>
     <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://marcoruch.ch/assets/images/miscellaneous/profile.webp</image:loc>
+      <image:loc>https://www.marcoruch.ch/assets/images/miscellaneous/profile.webp</image:loc>
       <image:title>Marco Ruch - C# &amp; Angular Software Engineer</image:title>
       <image:caption>Professional portfolio of Marco Ruch, software engineer specializing in C# and Angular development</image:caption>
     </image:image>
   </url>
   
   <url>
-    <loc>https://marcoruch.ch/bites/</loc>
+    <loc>https://www.marcoruch.ch/bites/</loc>
     <lastmod>2025-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://marcoruch.ch/bites/assets/images/bites-by-marco-ruch_preview.webp</image:loc>
+      <image:loc>https://www.marcoruch.ch/bites/assets/images/bites-by-marco-ruch_preview.webp</image:loc>
       <image:title>Bites - Interactive Explorations</image:title>
       <image:caption>Interactive visualizations and explorations of interesting concepts in computer science, data science, UX/UI design and more.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://marcoruch.ch/bites/flat-no-more/</loc>
+    <loc>https://www.marcoruch.ch/bites/flat-no-more/</loc>
     <lastmod>2025-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://marcoruch.ch/bites/assets/images/flat-no-more_preview.webp</image:loc>
+      <image:loc>https://www.marcoruch.ch/bites/assets/images/flat-no-more_preview.webp</image:loc>
       <image:title>Flat No More - How Subtle Depth and Layering Transform Interfaces</image:title>
       <image:caption>Explore how subtle depth, layering, and shadow can transform sterile interfaces into tactile, engaging designs.</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://marcoruch.ch/bites/the-hidden-shortcut/</loc>
+    <loc>https://www.marcoruch.ch/bites/the-hidden-shortcut/</loc>
     <lastmod>2025-10-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://marcoruch.ch/bites/assets/images/the-hidden-shortcut_preview.webp</image:loc>
+      <image:loc>https://www.marcoruch.ch/bites/assets/images/the-hidden-shortcut_preview.webp</image:loc>
       <image:title>The Hidden Shortcut - How Dijkstra's Algorithm Was Outpaced</image:title>
       <image:caption>An interactive visualization demonstrating how Duanetal.'s new algorithm's efficiency over Dijkstra's</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://marcoruch.ch/bites/youre-not-random/</loc>
+    <loc>https://www.marcoruch.ch/bites/youre-not-random/</loc>
     <lastmod>2025-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://marcoruch.ch/bites/assets/images/youre-not-random-sand_preview.webp</image:loc>
+      <image:loc>https://www.marcoruch.ch/bites/assets/images/youre-not-random-sand_preview.webp</image:loc>
       <image:title>You're Not Random - Human Behavior Visualization</image:title>
       <image:caption>The reasons why human randomness is an illusion, compiled into a bite-sized exploration</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://marcoruch.ch/bites/what-a-small-world/</loc>
+    <loc>https://www.marcoruch.ch/bites/what-a-small-world/</loc>
     <lastmod>2025-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp</image:loc>
+      <image:loc>https://www.marcoruch.ch/bites/assets/images/what-a-small-world-cluster_preview.webp</image:loc>
       <image:title>What a Small World - Interactive Network Visualization</image:title>
       <image:caption>An interactive 3D visualization exploring the small-world phenomenon and six degrees of separation in networks</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://marcoruch.ch/privacy.html</loc>
+    <loc>https://www.marcoruch.ch/privacy.html</loc>
     <lastmod>2025-09-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
