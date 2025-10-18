@@ -816,13 +816,13 @@
                 </p>
                 
                 <blockquote class="highlight-quote">
-                    The breakthrough insight: <strong>if we can represent text as numbers, we can measure similarity mathematically</strong>. Words with similar meanings should have similar numerical representations. This is the foundation of embeddings—transforming language into geometry where proximity equals semantic similarity.
+                    The breakthrough insight: <strong>if we can represent text as numbers, we can measure similarity mathematically</strong>. Words with similar meanings should have similar numerical representations. This is the foundation of embeddings — transforming language into geometry where proximity equals semantic similarity.
                 </blockquote>
                 
                 <h3 class="section-header">How Embeddings Work</h3>
                 
                 <div class="flowing-explanation">
-                    <p>An embedding is a transformation from words to vectors—lists of numbers. But not just any numbers. The key is that similar words end up close together in this vector space, while different words stay far apart.</p>
+                    <p>An embedding is a transformation from words to vectors — lists of numbers. But not just any numbers. The key is that similar words end up close together in this vector space, while different words stay far apart.</p>
                     
                     <p><strong>TF-IDF Embeddings:</strong> Our implementation uses Term Frequency-Inverse Document Frequency, a classic technique from information retrieval. For each word, we calculate two things:</p>
                     
@@ -838,7 +838,7 @@
                 <div class="flowing-explanation">
                     <p>Once we have vectors, we need to measure how similar they are. Cosine similarity is perfect for this. Instead of measuring straight-line distance, it measures the angle between vectors.</p>
                     
-                    <p>Why angles instead of distance? Imagine two documents about elephants—one is a short definition, the other a detailed encyclopedia entry. They have very different vector lengths (magnitudes), but they point in the same direction (similar word distributions). Cosine similarity captures this: it returns 1.0 for identical directions, 0.0 for perpendicular (unrelated), and -1.0 for opposite directions.</p>
+                    <p>Why angles instead of distance? Imagine two documents about elephants — one is a short definition, the other a detailed encyclopedia entry. They have very different vector lengths (magnitudes), but they point in the same direction (similar word distributions). Cosine similarity captures this: it returns 1.0 for identical directions, 0.0 for perpendicular (unrelated), and -1.0 for opposite directions.</p>
                     
                     <p>The formula: <em>cosine(A, B) = (A · B) / (||A|| × ||B||)</em>, where A · B is the dot product and ||A|| is the magnitude. In practice, this means: multiply matching dimensions, sum them up, and normalize by vector lengths.</p>
                 </div>
@@ -863,7 +863,7 @@
                     
                     <div class="explanation-card">
                         <h3>Document Clustering</h3>
-                        <p>News aggregators group similar articles automatically by clustering their embeddings. No manual categorization needed—the vectors naturally cluster by topic.</p>
+                        <p>News aggregators group similar articles automatically by clustering their embeddings. No manual categorization needed — the vectors naturally cluster by topic.</p>
                     </div>
                     
                     <div class="explanation-card">
@@ -884,7 +884,7 @@
                     
                     <p><strong>Word2Vec and GloVe:</strong> These models learn word embeddings from massive text corpora. They famously capture analogies: <em>king - man + woman ≈ queen</em>. The vectors encode semantic relationships learned from patterns of word co-occurrence.</p>
                     
-                    <p><strong>Sentence Transformers:</strong> Models like BERT and its variants create embeddings for entire sentences. They understand context—"bank" near "river" gets a different embedding than "bank" near "money."</p>
+                    <p><strong>Sentence Transformers:</strong> Models like BERT and its variants create embeddings for entire sentences. They understand context — "bank" near "river" gets a different embedding than "bank" near "money."</p>
                     
                     <p><strong>Multi-modal Embeddings:</strong> CLIP and similar models embed both images and text into the same vector space. Search images with text queries, or text with image queries. The same similarity math works across modalities.</p>
                     
@@ -901,7 +901,7 @@
                         <li><strong>Approximate nearest neighbors:</strong> Algorithms like HNSW or IVF for sub-linear search time</li>
                         <li><strong>Dimensionality reduction:</strong> PCA or UMAP to reduce vector size while preserving relationships</li>
                     </ul>
-                    <p>But the core concept—embeddings enabling semantic search through similarity metrics—remains the same regardless of implementation complexity.</p>
+                    <p>But the core concept — embeddings enabling semantic search through similarity metrics — remains the same regardless of implementation complexity.</p>
                 </div>
                 
                 <div class="technical-note">
