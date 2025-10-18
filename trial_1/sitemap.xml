@@ -24,6 +24,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.marcoruch.ch/bites/mapping-meaning/</loc>
+    <lastmod>2025-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.marcoruch.ch/bites/assets/images/mapping-meaning_preview.webp</image:loc>
+      <image:title>Mapping Meaning - Building a Semantic Search Engine</image:title>
+      <image:caption>Build a semantic search engine from scratch using JavaScript embeddings. Learn how vector databases power modern search through interactive examples.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.marcoruch.ch/bites/flat-no-more/</loc>
     <lastmod>2025-10-06</lastmod>
     <changefreq>monthly</changefreq>
