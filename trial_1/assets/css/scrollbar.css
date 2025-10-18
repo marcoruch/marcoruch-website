@@ -1,0 +1,126 @@
+/* 
+ * Custom Scrollbar Styles
+ * Follows the "expensive materialistic" design aesthetic
+ * Subtle, sophisticated scrollbar with squared design
+ */
+
+/* ===== Webkit Browsers (Chrome, Safari, Edge) ===== */
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track (background of scrollbar) */
+::-webkit-scrollbar-track {
+    background: rgba(235, 231, 225, 0.3); /* Off-white with transparency */
+    border-left: 1px solid rgba(16, 33, 75, 0.1); /* Subtle deep blue border */
+}
+
+/* Thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+    background: rgba(16, 33, 75, 0.4); /* Deep blue with 40% opacity */
+    border-radius: 0; /* Squared corners */
+    transition: background 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 33, 75, 0.7); /* More prominent deep blue */
+}
+
+/* Thumb when active/dragging */
+::-webkit-scrollbar-thumb:active {
+    background: #d7bd88; /* Gold accent when active */
+}
+
+/* Corner where horizontal and vertical scrollbars meet */
+::-webkit-scrollbar-corner {
+    background: rgba(235, 231, 225, 0.3);
+}
+
+/* ===== Firefox ===== */
+
+* {
+    scrollbar-width: thin; /* "auto" or "thin" or "none" */
+    scrollbar-color: rgba(16, 33, 75, 0.4) rgba(235, 231, 225, 0.3); /* thumb track */
+}
+
+/* Enhanced scrollbar for specific sections with dark backgrounds */
+.hero-section::-webkit-scrollbar-track,
+.skills-section::-webkit-scrollbar-track,
+.education-section::-webkit-scrollbar-track,
+.contact-section::-webkit-scrollbar-track,
+.modal::-webkit-scrollbar-track {
+    background: rgba(235, 231, 225, 0.1); /* Light track on dark sections */
+    border-left: 1px solid rgba(215, 189, 136, 0.15); /* Subtle gold border accent */
+}
+
+.hero-section::-webkit-scrollbar-thumb,
+.skills-section::-webkit-scrollbar-thumb,
+.education-section::-webkit-scrollbar-thumb,
+.contact-section::-webkit-scrollbar-thumb,
+.modal::-webkit-scrollbar-thumb {
+    background: rgba(215, 189, 136, 0.4); /* Gold thumb on dark backgrounds for contrast */
+}
+
+.hero-section::-webkit-scrollbar-thumb:hover,
+.skills-section::-webkit-scrollbar-thumb:hover,
+.education-section::-webkit-scrollbar-thumb:hover,
+.contact-section::-webkit-scrollbar-thumb:hover,
+.modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(215, 189, 136, 0.7); /* More prominent gold on hover */
+}
+
+.hero-section::-webkit-scrollbar-thumb:active,
+.skills-section::-webkit-scrollbar-thumb:active,
+.education-section::-webkit-scrollbar-thumb:active,
+.contact-section::-webkit-scrollbar-thumb:active,
+.modal::-webkit-scrollbar-thumb:active {
+    background: #d7bd88; /* Full gold when active */
+}
+
+/* Firefox for dark sections */
+.hero-section,
+.skills-section,
+.education-section,
+.contact-section,
+.modal {
+    scrollbar-color: rgba(215, 189, 136, 0.4) rgba(235, 231, 225, 0.1);
+}
+
+/* Modal scrollbar refinement */
+.modal-content::-webkit-scrollbar {
+    width: 8px; /* Slightly thinner for modal */
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(235, 231, 225, 0.2);
+    border-left: 1px solid rgba(16, 33, 75, 0.1);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(16, 33, 75, 0.4); /* Deep blue for modal */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 33, 75, 0.7); /* Darker blue on hover */
+}
+
+.modal-content::-webkit-scrollbar-thumb:active {
+    background: #d7bd88; /* Gold accent when active */
+}
+
+.modal-content {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(16, 33, 75, 0.4) rgba(235, 231, 225, 0.2);
+}
+
+/* ===== Reduced Motion Preference ===== */
+@media (prefers-reduced-motion: reduce) {
+    ::-webkit-scrollbar-thumb {
+        transition: none;
+    }
+}
+

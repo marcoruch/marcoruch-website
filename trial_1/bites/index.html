@@ -63,6 +63,7 @@
     <!-- Shared Bites Styles -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="../assets/css/breadcrumbs.css">
+    <link rel="stylesheet" href="../assets/css/scrollbar.css">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -99,6 +100,20 @@
                 "url": "https://marcoruch.ch/"
             },
             "hasPart": [
+                {
+                    "@type": "Article",
+                    "@id": "https://marcoruch.ch/bites/mapping-meaning/#article",
+                    "headline": "Mapping Meaning",
+                    "description": "Build a semantic search engine from scratch using JavaScript embeddings. Learn how vector databases power modern search through interactive examples.",
+                    "author": { 
+                        "@type": "Person", 
+                        "name": "Marco Ruch",
+                        "url": "https://marcoruch.ch/" 
+                    },
+                    "datePublished": "2025-10-18T12:00:00+02:00",
+                    "url": "https://marcoruch.ch/bites/mapping-meaning/",
+                    "image": "https://marcoruch.ch/bites/assets/images/mapping-meaning_preview.webp"
+                },
                 {
                     "@type": "Article",
                     "@id": "https://marcoruch.ch/bites/flat-no-more/#article",
@@ -513,6 +528,33 @@
                 <!-- Bites Grid -->
                 <div class="bites-grid" id="bitesGrid">
                     <!-- Future bites will be added here, aka below this comment to stay chronologically correct -->
+                    
+                    <!-- Bite Card: Mapping Meaning -->
+                    <a href="mapping-meaning/index.html" class="bite-card" data-tags="algorithms,data-science,computer-science">
+                        <div class="bite-image-container">
+                            <img src="assets/images/mapping-meaning_preview.webp" 
+                                 alt="Mapping Meaning - Semantic Search Visualization" 
+                                 class="bite-image"
+                                 style="opacity: 0.83;"
+                                 loading="lazy">
+                        </div>
+                        <div class="bite-content">
+                            <h2 class="bite-title">Mapping Meaning</h2>
+                            <div class="bite-tags">
+                                <span class="bite-tag">Algorithms</span>
+                                <span class="bite-tag">Data Science</span>
+                            </div>
+                            <div class="bite-meta">
+                                <span class="author">Marco Ruch</span>
+                                <span class="separator">•</span>
+                                <span class="date">19.10.2025</span>
+                            </div>
+                            <p class="bite-description">
+                                Build a semantic search engine from scratch using JavaScript embeddings. Discover how TF-IDF transforms words into vectors and how similarity search powers modern applications from Google to ChatGPT.
+                            </p>
+                            <span class="bite-cta">Explore Vector Search</span>
+                        </div>
+                    </a>
                     
                     <!-- Bite Card: Flat No More -->
                     <a href="flat-no-more" class="bite-card" data-tags="ux-ui-design">
