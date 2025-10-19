@@ -1208,7 +1208,13 @@
         // ===== Knowledge Base Dataset =====
         // Total: 640 items across 8 categories (80 items each)
         async function loadKnowledgeBase() {
-            const response = await fetch('data/knowledge-base.json');
+            const categories = ['animals', 'countries', 'coffee', 'concepts', 'technology', 'foods', 'music', 'sports'];
+            const knowledgeBases = await Promise.all(categories.map(category => loadKnowledgeBaseCategory(category)));
+            return knowledgeBases.flat();
+        }
+
+        async function loadKnowledgeBaseCategory(category) {
+            const response = await fetch(`data/knowledge-base-${category}.json`);
             const knowledgeBase = await response.json();
             return knowledgeBase;
         }
