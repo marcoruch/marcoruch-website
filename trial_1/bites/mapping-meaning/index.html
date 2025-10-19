@@ -1214,7 +1214,7 @@
         }
 
         // ===== Visualization =====
-        
+        let knowledgeBase;
         let searchEngine;
         let currentCategory = 'all';
         let currentVizMode = 'bars';
@@ -1223,7 +1223,9 @@
         let currentTopResults = [];
         
         async function initializeApp() {
-            const knowledgeBase = await loadKnowledgeBase();
+            // hoist, is a global variable
+            knowledgeBase = await loadKnowledgeBase();
+
             // Show loading state
             const statusText = document.getElementById('statusText');
             const progressBar = document.getElementById('progressBar');
